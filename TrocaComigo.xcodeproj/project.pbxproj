@@ -12,6 +12,7 @@
 		1818E9401D07470B0056BE6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818E93E1D07470B0056BE6D /* Main.storyboard */; };
 		1818E9421D07470B0056BE6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1818E9411D07470B0056BE6D /* Assets.xcassets */; };
 		1818E9451D07470B0056BE6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818E9431D07470B0056BE6D /* LaunchScreen.storyboard */; };
+		254E671A017F193D3665B9DC /* Pods_TrocaComigo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB913FDC8C05A6305364256 /* Pods_TrocaComigo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		1818E9411D07470B0056BE6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1818E9441D07470B0056BE6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1818E9461D07470B0056BE6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FB913FDC8C05A6305364256 /* Pods_TrocaComigo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrocaComigo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CE29F51273DB4697D507A3D /* Pods-TrocaComigo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrocaComigo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrocaComigo/Pods-TrocaComigo.debug.xcconfig"; sourceTree = "<group>"; };
+		BED5A3FCC83EF6BAC92CA11A /* Pods-TrocaComigo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrocaComigo.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrocaComigo/Pods-TrocaComigo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254E671A017F193D3665B9DC /* Pods_TrocaComigo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		047DCD20309CD797FFDBD768 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FB913FDC8C05A6305364256 /* Pods_TrocaComigo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1818E92E1D07470A0056BE6D = {
 			isa = PBXGroup;
 			children = (
 				1818E9391D07470A0056BE6D /* TrocaComigo */,
 				1818E9381D07470A0056BE6D /* Products */,
+				D0406BF6B8D4D5A923034621 /* Pods */,
+				047DCD20309CD797FFDBD768 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +79,15 @@
 			path = TrocaComigo;
 			sourceTree = "<group>";
 		};
+		D0406BF6B8D4D5A923034621 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CE29F51273DB4697D507A3D /* Pods-TrocaComigo.debug.xcconfig */,
+				BED5A3FCC83EF6BAC92CA11A /* Pods-TrocaComigo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1818E9491D07470B0056BE6D /* Build configuration list for PBXNativeTarget "TrocaComigo" */;
 			buildPhases = (
+				288DFF0B42936C69CD94193D /* [CP] Check Pods Manifest.lock */,
 				1818E9331D07470A0056BE6D /* Sources */,
 				1818E9341D07470A0056BE6D /* Frameworks */,
 				1818E9351D07470A0056BE6D /* Resources */,
+				DECE80199BCED0DD16FB010D /* [CP] Embed Pods Frameworks */,
+				A2C2765FDD6A64D187AADE92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		288DFF0B42936C69CD94193D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A2C2765FDD6A64D187AADE92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrocaComigo/Pods-TrocaComigo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DECE80199BCED0DD16FB010D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrocaComigo/Pods-TrocaComigo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1818E9331D07470A0056BE6D /* Sources */ = {
@@ -247,6 +322,7 @@
 		};
 		1818E94A1D07470B0056BE6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CE29F51273DB4697D507A3D /* Pods-TrocaComigo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TrocaComigo/Info.plist;
@@ -258,6 +334,7 @@
 		};
 		1818E94B1D07470B0056BE6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BED5A3FCC83EF6BAC92CA11A /* Pods-TrocaComigo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TrocaComigo/Info.plist;
@@ -286,6 +363,7 @@
 				1818E94B1D07470B0056BE6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
