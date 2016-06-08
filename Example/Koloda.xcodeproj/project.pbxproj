@@ -19,6 +19,8 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3951D08AE52003EF2CE /* LoginViewController.swift */; };
+		F631A3981D08AF38003EF2CE /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3971D08AF38003EF2CE /* DAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		A8A21A7254497CF03F2BBEA3 /* Pods-Koloda_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF2C9E50C19A9188464AE19E /* Pods-Koloda_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D6781607B5327BAF503C32E3 /* Koloda.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Koloda.podspec; path = ../Koloda.podspec; sourceTree = "<group>"; };
+		F631A3951D08AE52003EF2CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F631A3971D08AF38003EF2CE /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,18 +83,20 @@
 		607FACD21AFB9204008FA782 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				F631A3941D08AD11003EF2CE /* View */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,
 				446BFD081CB0184A00619E78 /* BackgroundKolodaAnimator.swift */,
 				4420661E1B4457E800FD4CAD /* ExampleOverlayView.swift */,
 				440FB7661B51499A009FC9FC /* CustomKolodaView.swift */,
 				44B5EC281B660C8500895E3D /* CustomOverlayView.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				4420661B1B44577500FD4CAD /* OverlayView.xib */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				44B5EC2A1B660C9100895E3D /* CustomOverlayView.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
+				F631A3971D08AF38003EF2CE /* DAO.swift */,
 			);
 			name = Example;
 			path = Koloda;
@@ -131,6 +137,14 @@
 				1242FA2632AFB60821C100AF /* Pods-Koloda_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F631A3941D08AD11003EF2CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +271,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F631A3981D08AF38003EF2CE /* DAO.swift in Sources */,
+				F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */,
 				446BFD091CB0184A00619E78 /* BackgroundKolodaAnimator.swift in Sources */,
 				440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */,
 				44B5EC291B660C8500895E3D /* CustomOverlayView.swift in Sources */,
