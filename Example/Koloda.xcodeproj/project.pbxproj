@@ -22,6 +22,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3951D08AE52003EF2CE /* LoginViewController.swift */; };
 		F631A3981D08AF38003EF2CE /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3971D08AF38003EF2CE /* DAO.swift */; };
+		F6C10F121D09920300DEE51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6C10F111D09920300DEE51F /* GoogleService-Info.plist */; };
+		F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		D6781607B5327BAF503C32E3 /* Koloda.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Koloda.podspec; path = ../Koloda.podspec; sourceTree = "<group>"; };
 		F631A3951D08AE52003EF2CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F631A3971D08AF38003EF2CE /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
+		F6C10F111D09920300DEE51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 		607FACD21AFB9204008FA782 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				F6C10F111D09920300DEE51F /* GoogleService-Info.plist */,
 				F631A3941D08AD11003EF2CE /* View */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
@@ -100,6 +105,7 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
 				F631A3971D08AF38003EF2CE /* DAO.swift */,
+				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
 			);
 			name = Example;
 			path = Koloda;
@@ -185,7 +191,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 833JWEH774;
+						DevelopmentTeam = 585K33F6HA;
 					};
 				};
 			};
@@ -217,6 +223,7 @@
 				44B5EC2B1B660C9100895E3D /* CustomOverlayView.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				F6C10F121D09920300DEE51F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */,
 				F631A3981D08AF38003EF2CE /* DAO.swift in Sources */,
 				F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */,
 				446BFD091CB0184A00619E78 /* BackgroundKolodaAnimator.swift in Sources */,

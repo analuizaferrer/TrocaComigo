@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -28,13 +29,13 @@ class LoginViewController: UIViewController {
     @IBAction func login(sender: AnyObject) {
         let dao = DAO()
         
-        dao.login()
+        dao.login(email.text!, password: password.text!)
     }
     
     @IBAction func createAccount(sender: AnyObject) {
         let dao = DAO()
         
-        dao.createAccount()
+        dao.createAccount(email.text!, password: password.text!)
     }
     
 

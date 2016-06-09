@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dOg-Nm-ChF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gM7-DE-8Nk">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="433" y="910"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Account View Controller-->
         <scene sceneID="pW7-8w-C0x">
             <objects>
-                <viewController id="gM7-DE-8Nk" sceneMemberID="viewController">
+                <viewController id="gM7-DE-8Nk" customClass="CreateAccountViewController" customModule="Koloda_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4oP-Ir-bMq"/>
                         <viewControllerLayoutGuide type="bottom" id="l9x-Ju-q6u"/>
@@ -106,6 +106,9 @@
                                 <state key="normal" title="Sign up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUp:" destination="gM7-DE-8Nk" eventType="touchUpInside" id="fzP-p3-rGs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNg-Ca-m5G">
                                 <rect key="frame" x="141" y="510" width="38" height="30"/>
@@ -117,6 +120,11 @@
                         <color key="backgroundColor" red="0.93725490196078431" green="0.20784313725490197" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="email" destination="qpy-yO-QZX" id="Z4s-44-sBq"/>
+                        <outlet property="password" destination="CAb-gt-iaL" id="2is-b6-eMh"/>
+                        <outlet property="passwordConf" destination="bNI-hT-r8e" id="aji-Qv-3gY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbG-fH-fwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,7 +139,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ecT-RO-222"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FqG-vh-E7w">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eF0-BR-SPv">
