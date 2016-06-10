@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 class DAO {
-    
+
     let rootRef = FIRDatabase.database().reference()
     
     func login(username: String, password: String) {
@@ -36,5 +36,9 @@ class DAO {
             }
         })
         
+    }
+    
+    func signOut() {
+        try! FIRAuth.auth()!.signOut()
     }
 }
