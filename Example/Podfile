@@ -5,7 +5,7 @@ target 'Koloda_Example' do
   pod "Koloda", :path => "../"
 end
 
-pod 'Firebase'
+pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 
