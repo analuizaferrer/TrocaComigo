@@ -13,7 +13,7 @@ class DAO {
 
     let rootRef = FIRDatabase.database().reference()
     
-    let storage = FIRStorage.storage()
+    //let storage = FIRStorage.storage()
     
     func login(username: String, password: String) {
         FIRAuth.auth()?.signInWithEmail(username, password: password, completion: {

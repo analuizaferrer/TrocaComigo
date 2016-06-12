@@ -16,7 +16,7 @@ class Product {
     var title: String!
     var description: String!
     var condition: Condition!
-    var images: [NSObjectFileImage]!
+   // var images: [NSObjectFileImage]!
     var size: String!
     var brand: String!
     
