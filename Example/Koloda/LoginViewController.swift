@@ -29,19 +29,31 @@ class LoginViewController: UIViewController {
     @IBAction func login(sender: AnyObject) {
         let dao = DAO()
         
-       dao.login(email.text!, password: password.text!)
         
+        func loginCallback (user:FIRUser?, error:NSError?) {
+            if error == nil {
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                self.presentViewController(homeViewController, animated: true, completion: nil)
+                dao.registerUser("Ana", userID: "AoWn5e2J4kTaINJ5DCnZ5k3lSSF3")
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Ta errado fdp", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+
+                alert.addAction(cancel)
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+
+        }
         
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-            self.presentViewController(homeViewController, animated: true, completion: nil)
-       
+        dao.login(email.text!, password: password.text!, callback: loginCallback)
     }
     
     @IBAction func createAccount(sender: AnyObject) {
-        let dao = DAO()
-        
-        dao.createAccount(email.text!, password: password.text!)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
+        self.presentViewController(homeViewController, animated: true, completion: nil)
     }
     
 

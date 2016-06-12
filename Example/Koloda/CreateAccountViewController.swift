@@ -31,7 +31,7 @@ class CreateAccountViewController: UIViewController {
         if password.text == passwordConf.text {
             let dao = DAO()
             
-            dao.createAccount(email.text!, password: password.text!)
+          //  dao.createAccount(email.text!, password: password.text!)
 
         } else {
             print("Password confirmation failed.")
