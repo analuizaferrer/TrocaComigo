@@ -13,6 +13,8 @@ class DAO {
 
     let rootRef = FIRDatabase.database().reference()
     
+    let storage = FIRStorage.storage()
+    
     func login(username: String, password: String) {
         FIRAuth.auth()?.signInWithEmail(username, password: password, completion: {
             user, error in
@@ -22,7 +24,6 @@ class DAO {
                 print("User logged in!")
             }
         })
-        
     }
     
     func createAccount(username: String, password: String) {
@@ -38,7 +39,7 @@ class DAO {
         
     }
     
-    func signOut() {
+    func logOut() {
         try! FIRAuth.auth()!.signOut()
     }
 }

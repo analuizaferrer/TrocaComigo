@@ -196,10 +196,29 @@
             </objects>
             <point key="canvasLocation" x="1110" y="915"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="FqC-vR-gyS">
+            <objects>
+                <viewController id="QRv-HN-8c7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xjr-kB-wie"/>
+                        <viewControllerLayoutGuide type="bottom" id="pLL-wx-CSt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a48-Dr-OJ6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VUB-gh-Y6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1472" y="915"/>
+        </scene>
         <!--Background Animation View Controller-->
         <scene sceneID="Tzl-PZ-ig6">
             <objects>
-                <viewController id="dh2-Wx-deB" customClass="BackgroundAnimationViewController" customModule="Koloda_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" id="dh2-Wx-deB" customClass="BackgroundAnimationViewController" customModule="Koloda_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OPM-HU-f7U"/>
                         <viewControllerLayoutGuide type="bottom" id="gMg-MP-KSD"/>

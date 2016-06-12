@@ -29,7 +29,13 @@ class LoginViewController: UIViewController {
     @IBAction func login(sender: AnyObject) {
         let dao = DAO()
         
-        dao.login(email.text!, password: password.text!)
+       dao.login(email.text!, password: password.text!)
+        
+        
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+            self.presentViewController(homeViewController, animated: true, completion: nil)
+       
     }
     
     @IBAction func createAccount(sender: AnyObject) {
