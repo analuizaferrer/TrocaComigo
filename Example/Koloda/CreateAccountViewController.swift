@@ -19,10 +19,36 @@ class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var passwordConf: UITextField!
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        name.attributedPlaceholder = NSAttributedString(string:"name", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
+        email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
+        password.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
+        passwordConf.attributedPlaceholder = NSAttributedString(string:"confirm password", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
+        
+        let paddingName = UIView(frame: CGRectMake(0, 0, 20, self.name.frame.height))
+        name.leftView = paddingName
+        name.leftViewMode = UITextFieldViewMode.Always
+        
+        let paddingEmail = UIView(frame: CGRectMake(0, 0, 20, self.email.frame.height))
+        email.leftView = paddingEmail
+        email.leftViewMode = UITextFieldViewMode.Always
+        
+        let paddingPassword = UIView(frame: CGRectMake(0, 0, 20, self.password.frame.height))
+        password.leftView = paddingPassword
+        password.leftViewMode = UITextFieldViewMode.Always
+        
+        let paddingPasswordConf = UIView(frame: CGRectMake(0, 0, 20, self.passwordConf.frame.height))
+        passwordConf.leftView = paddingPasswordConf
+        passwordConf.leftViewMode = UITextFieldViewMode.Always
+        
     }
 
     override func didReceiveMemoryWarning() {

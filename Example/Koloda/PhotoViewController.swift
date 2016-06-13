@@ -128,7 +128,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             if (photos.count == 6) {
                 
-                galleryButton.enabled = false
+                //galleryButton.enabled = false
             
             }
         }
