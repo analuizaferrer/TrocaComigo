@@ -28,12 +28,12 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     var photoButtons = [UIButton]()
     
+    var confirmationView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 0.58, blue: 0.67, alpha: 1)
-        
-
         
         photoButtons.append(photoButton1)
         photoButtons.append(photoButton2)
@@ -41,6 +41,17 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         photoButtons.append(photoButton4)
         photoButtons.append(photoButton5)
         photoButtons.append(photoButton6)
+        
+        //CONFIRMATION VIEW
+        
+//        confirmationView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
+//        confirmationView.backgroundColor = UIColor.yellowColor()
+//        view.addSubview(confirmationView)
+//        
+//        let confirmButton = UIButton(frame: CGRectMake(100,400,50,50))
+//        let excludeButton = UIButton(frame: CGRectMake(200,400,50,50))
+//        
+//        confirmButton.setBackgroundImage(UIImage(named: "round"), forState: <#T##UIControlState#>)
 
     }
 
