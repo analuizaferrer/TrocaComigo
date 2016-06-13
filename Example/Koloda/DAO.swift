@@ -21,16 +21,8 @@ class DAO {
         self.rootRef.child("profile").child(userID).setValue(["name": name])
     }
     
-    func createAccount(name: String, username: String, password: String) {
-        FIRAuth.auth()?.createUserWithEmail(username, password: password, completion: {
-            user, error in
-            if error != nil {
-                //self.login(username, password: password)
-            } else {
-                print("User created")
-                self.registerUser(name, userID: (user?.uid)!)
-            }
-        })
+    func createAccount(name: String, username: String, password: String, callback: FIRAuthResultCallback) {
+        FIRAuth.auth()?.createUserWithEmail(username, password: password, completion: callback)
     }
     
     func logOut() {

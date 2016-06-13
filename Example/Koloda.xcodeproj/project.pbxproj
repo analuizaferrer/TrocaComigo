@@ -22,6 +22,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3951D08AE52003EF2CE /* LoginViewController.swift */; };
 		F631A3981D08AF38003EF2CE /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3971D08AF38003EF2CE /* DAO.swift */; };
+		F6479A321D0E562600F314C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6479A311D0E562600F314C2 /* ProfileViewController.swift */; };
 		F65796BF1D0B3D470085409C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796BE1D0B3D470085409C /* User.swift */; };
 		F65796C11D0B3FE70085409C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C01D0B3FE70085409C /* Product.swift */; };
 		F65796C31D0B40FE0085409C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C21D0B40FE0085409C /* Category.swift */; };
@@ -54,6 +55,7 @@
 		D6781607B5327BAF503C32E3 /* Koloda.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Koloda.podspec; path = ../Koloda.podspec; sourceTree = "<group>"; };
 		F631A3951D08AE52003EF2CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F631A3971D08AF38003EF2CE /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
+		F6479A311D0E562600F314C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F65796BE1D0B3D470085409C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F65796C01D0B3FE70085409C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F65796C21D0B40FE0085409C /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
 				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
+				F6479A311D0E562600F314C2 /* ProfileViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				F631A3981D08AF38003EF2CE /* DAO.swift in Sources */,
 				F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */,
 				446BFD091CB0184A00619E78 /* BackgroundKolodaAnimator.swift in Sources */,
+				F6479A321D0E562600F314C2 /* ProfileViewController.swift in Sources */,
 				440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */,
 				F65796C11D0B3FE70085409C /* Product.swift in Sources */,
 				44B5EC291B660C8500895E3D /* CustomOverlayView.swift in Sources */,
