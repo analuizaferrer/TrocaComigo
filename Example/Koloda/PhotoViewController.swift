@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //CAMERA
+    
+    var captureSession : AVCaptureSession?
+    var stillImageOutput : AVCaptureStillImageOutput?
+    var previewLayer : AVCaptureVideoPreviewLayer?
     
     @IBOutlet var photoLibrary: UIButton!
     @IBOutlet var camera: UIButton!
@@ -20,7 +27,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet var photoButton4: UIButton!
     @IBOutlet var photoButton5: UIButton!
     @IBOutlet var photoButton6: UIButton!
-    @IBOutlet var galleryButton: UIButton!
     
     var photo: UIImage?
     
@@ -29,6 +35,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var photoButtons = [UIButton]()
     
     var confirmationView: UIView!
+    
+    var confirmationImageView : UIImageView!
+    
+    var selectedPhoto = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +52,34 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         photoButtons.append(photoButton5)
         photoButtons.append(photoButton6)
         
+        var i = 0
+        for button in photoButtons {
+            button.tag = i
+            button.addTarget(self, action: #selector(PhotoViewController.selectedPhoto(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            i = i + 1
+        }
+        
         //CONFIRMATION VIEW
         
-//        confirmationView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
-//        confirmationView.backgroundColor = UIColor.yellowColor()
-//        view.addSubview(confirmationView)
-//        
-//        let confirmButton = UIButton(frame: CGRectMake(100,400,50,50))
-//        let excludeButton = UIButton(frame: CGRectMake(200,400,50,50))
-//        
-//        confirmButton.setBackgroundImage(UIImage(named: "round"), forState: <#T##UIControlState#>)
+        confirmationView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
+        confirmationView.backgroundColor = UIColor.yellowColor()
+        
+        let confirmButton = UIButton(frame: CGRectMake(200,500,50,50))
+        let excludeButton = UIButton(frame: CGRectMake(100,500,50,50))
+
+        confirmButton.setBackgroundImage(UIImage(named: "Round"), forState: .Normal)
+        confirmButton.addTarget(self, action: #selector(PhotoViewController.confirmPhoto), forControlEvents: UIControlEvents.TouchUpInside)
+        excludeButton.setBackgroundImage(UIImage(named: "Round"), forState: .Normal)
+        excludeButton.addTarget(self, action: #selector(PhotoViewController.excludePhoto), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        confirmationView.addSubview(confirmButton)
+        confirmationView.addSubview(excludeButton)
+        
+        confirmationImageView = UIImageView(frame: CGRectMake(0,0,view.frame.width, 450))
+        
+        confirmationImageView.image = UIImage(named: "quadrado photo")
+        
+        confirmationView.addSubview(confirmationImageView)
 
     }
 
@@ -107,8 +135,53 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
 
     }
+    
+    func refreshImages() {
+        var i = 0
+        for image in photos {
+            photoButtons[i].setBackgroundImage(image, forState: .Normal)
+            i = i + 1
+        }
+        while i < photoButtons.count {
+            photoButtons[i].setBackgroundImage(UIImage(named: "no-photo"), forState: .Normal)
+            i = i + 1
+        }
+        
+        
+    }
+    
 
     func arrowClicked() {
     
     }
+    
+    func confirmPhoto () {
+        confirmationView.removeFromSuperview()
+    }
+    
+    func excludePhoto() {
+        
+        photos.removeAtIndex(selectedPhoto)
+        
+        refreshImages()
+        confirmationView.removeFromSuperview()
+
+        
+    }
+    
+    func selectedPhoto (sender:UIButton) {
+        
+        if(sender.tag < photos.count)
+        {
+            selectedPhoto = sender.tag
+            
+            confirmationImageView.image = photos[selectedPhoto]
+            
+            view.addSubview(confirmationView)
+        
+        }
+        
+    }
+    
+
 }
