@@ -20,7 +20,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet var photoButton4: UIButton!
     @IBOutlet var photoButton5: UIButton!
     @IBOutlet var photoButton6: UIButton!
-    @IBOutlet var arrowButton: UIButton!
     @IBOutlet var galleryButton: UIButton!
     
     var photo: UIImage?
@@ -32,9 +31,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if photos.count == 0 {
-            arrowButton.hidden = true
-        }
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 0.58, blue: 0.67, alpha: 1)
+        
+
         
         photoButtons.append(photoButton1)
         photoButtons.append(photoButton2)
@@ -76,6 +75,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
         photo = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
         
+        if (photos.count == 0) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PhotoViewController.arrowClicked))
+        }
+        
         if (photos.count < 6) {
             
             imageDisplay.image = photo
@@ -91,9 +94,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
         
-        arrowButton.hidden = false
-        
-        
+
     }
 
+    func arrowClicked() {
+    
+    }
 }
