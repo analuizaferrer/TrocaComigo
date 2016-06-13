@@ -11,11 +11,13 @@ import AVFoundation
 
 class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //CAMERA
+    //AV FOUNDATION
     
-    var captureSession : AVCaptureSession?
-    var stillImageOutput : AVCaptureStillImageOutput?
-    var previewLayer : AVCaptureVideoPreviewLayer?
+    var session: AVCaptureSession!
+    var input: AVCaptureDeviceInput!
+    var output: AVCaptureStillImageOutput!
+    var previewLayer: AVCaptureVideoPreviewLayer?
+
     
     @IBOutlet var photoLibrary: UIButton!
     @IBOutlet var camera: UIButton!
@@ -40,6 +42,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     var selectedPhoto = 0
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,13 +65,15 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             i = i + 1
         }
         
+    
+        
         //CONFIRMATION VIEW
         
         confirmationView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
-        confirmationView.backgroundColor = UIColor.yellowColor()
+        confirmationView.backgroundColor = UIColor(red:1.00, green:0.58, blue:0.67, alpha:1.0)
         
-        let confirmButton = UIButton(frame: CGRectMake(200,500,50,50))
-        let excludeButton = UIButton(frame: CGRectMake(100,500,50,50))
+        let confirmButton = UIButton(frame: CGRectMake(238,558,72,72))
+        let excludeButton = UIButton(frame: CGRectMake(66,558,72,72))
 
         confirmButton.setBackgroundImage(UIImage(named: "Round"), forState: .Normal)
         confirmButton.addTarget(self, action: #selector(PhotoViewController.confirmPhoto), forControlEvents: UIControlEvents.TouchUpInside)
@@ -75,11 +83,17 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         confirmationView.addSubview(confirmButton)
         confirmationView.addSubview(excludeButton)
         
-        confirmationImageView = UIImageView(frame: CGRectMake(0,0,view.frame.width, 450))
+        confirmationImageView = UIImageView(frame: CGRectMake(0,64,375, 456))
         
         confirmationImageView.image = UIImage(named: "quadrado photo")
         
         confirmationView.addSubview(confirmationImageView)
+        
+        
+        //AV FOUNDATION
+        
+        
+        setupSession()
 
     }
 
@@ -90,12 +104,17 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func cameraAction(sender: UIButton) {
         
-        let picker = UIImagePickerController()
+        guard let connection = output.connectionWithMediaType(AVMediaTypeVideo) else { return }
+        connection.videoOrientation = .Portrait
         
-        picker.delegate = self
-        picker.sourceType = .Camera
-        
-        presentViewController(picker, animated: true, completion: nil)
+        output.captureStillImageAsynchronouslyFromConnection(connection) { (sampleBuffer, error) in
+            guard sampleBuffer != nil && error == nil else { return }
+            
+            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+            guard let image = UIImage(data: imageData) else { return }
+            
+//            self.presentActivityVCForImage(image)
+        }
         
     }
 
@@ -128,7 +147,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             if (photos.count == 6) {
                 
-                //galleryButton.enabled = false
+                photoLibrary.enabled = false
             
             }
         }
@@ -183,5 +202,55 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
+    //AV FOUNDATION
+    
+    func setupSession() {
+        session = AVCaptureSession()
+        session.sessionPreset = AVCaptureSessionPresetPhoto
+        
+        let camera = AVCaptureDevice
+            .defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        do { input = try AVCaptureDeviceInput(device: camera) } catch { return }
+        
+        output = AVCaptureStillImageOutput()
+        output.outputSettings = [ AVVideoCodecKey: AVVideoCodecJPEG ]
+        
+        guard session.canAddInput(input)
+            && session.canAddOutput(output) else { return }
+        
+        session.addInput(input)
+        session.addOutput(output)
+        
+        previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        
+        previewLayer!.videoGravity = AVLayerVideoGravityResizeAspect
+        previewLayer!.connection?.videoOrientation = .Portrait
+        
+        view.layer.addSublayer(previewLayer!)
+        
+        session.startRunning()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        setupSession()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        previewLayer?.frame = view.bounds
+    }
+    
+    func presentActivityVCForImage(image: UIImage) {
+        self.presentViewController(
+            UIActivityViewController(activityItems: [image], applicationActivities: nil),
+            animated: true,
+            completion: nil
+        )
+    }
 
 }
