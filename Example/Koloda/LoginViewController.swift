@@ -15,10 +15,26 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var password: UITextField!
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
+        password.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
+        
+        let paddingEmail = UIView(frame: CGRectMake(0, 0, 20, self.email.frame.height))
+        email.leftView = paddingEmail
+        email.leftViewMode = UITextFieldViewMode.Always
+        
+        let paddingPassword = UIView(frame: CGRectMake(0, 0, 20, self.password.frame.height))
+        password.leftView = paddingPassword
+        password.leftViewMode = UITextFieldViewMode.Always
+        
     }
 
     override func didReceiveMemoryWarning() {
