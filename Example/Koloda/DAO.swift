@@ -19,6 +19,9 @@ class DAO {
     
     func registerUser(name: String, userID: String) {
         self.rootRef.child("profile").child(userID).setValue(["name": name])
+        let child = self.rootRef.child("product").childByAutoId()
+        child.child("name").setValue("calça")
+        child.child("userid").setValue(userID)
     }
     
     func createAccount(name: String, username: String, password: String, callback: FIRAuthResultCallback) {

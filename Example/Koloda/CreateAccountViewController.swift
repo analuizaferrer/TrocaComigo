@@ -51,6 +51,7 @@ class CreateAccountViewController: UIViewController {
                     dao.registerUser(name.text!, userID: (user?.uid)!)
                     
                 } else {
+                    print("ERROOOOOOOOO \(error)")
                     let alert = UIAlertController(title: "Error", message: "Ta errado fdp", preferredStyle: UIAlertControllerStyle.Alert)
                     
                     let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
