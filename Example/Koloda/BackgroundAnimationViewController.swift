@@ -14,7 +14,7 @@ private let numberOfCards: UInt = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
-private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
+private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
 class BackgroundAnimationViewController: UIViewController {
 
