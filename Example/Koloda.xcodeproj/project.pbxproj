@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		1873DE5B1D08B2FF002DCCE3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */; };
 		191D14781525C400D3E86FEC /* Pods_Koloda_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5243B3EDBF06248559332C86 /* Pods_Koloda_Example.framework */; };
+		242530181D0EFE2C0009EF93 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530101D0EFD530009EF93 /* Montserrat-Black.otf */; };
+		242530191D0EFE2C0009EF93 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530111D0EFD530009EF93 /* Montserrat-Bold.otf */; };
+		2425301A1D0EFE2C0009EF93 /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530121D0EFD530009EF93 /* Montserrat-ExtraBold.otf */; };
+		2425301B1D0EFE2C0009EF93 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530131D0EFD530009EF93 /* Montserrat-Hairline.otf */; };
+		2425301C1D0EFE2C0009EF93 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530141D0EFD530009EF93 /* Montserrat-Light.otf */; };
+		2425301D1D0EFE2C0009EF93 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530151D0EFD530009EF93 /* Montserrat-Regular.otf */; };
+		2425301E1D0EFE2C0009EF93 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530161D0EFD530009EF93 /* Montserrat-SemiBold.otf */; };
+		2425301F1D0EFE2C0009EF93 /* Montserrat-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530171D0EFD540009EF93 /* Montserrat-UltraLight.otf */; };
+		242530201D0EFE2C0009EF93 /* GrandHotel-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2425300F1D0EFD3D0009EF93 /* GrandHotel-Regular.otf */; };
 		440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FB7661B51499A009FC9FC /* CustomKolodaView.swift */; };
 		440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */; };
 		4420661D1B44577500FD4CAD /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4420661B1B44577500FD4CAD /* OverlayView.xib */; };
@@ -34,6 +43,15 @@
 		093C6CC368001B8BAFD235CB /* Pods-Koloda_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1242FA2632AFB60821C100AF /* Pods-Koloda_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		2425300F1D0EFD3D0009EF93 /* GrandHotel-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GrandHotel-Regular.otf"; sourceTree = "<group>"; };
+		242530101D0EFD530009EF93 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
+		242530111D0EFD530009EF93 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		242530121D0EFD530009EF93 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
+		242530131D0EFD530009EF93 /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
+		242530141D0EFD530009EF93 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
+		242530151D0EFD530009EF93 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		242530161D0EFD530009EF93 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
+		242530171D0EFD540009EF93 /* Montserrat-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-UltraLight.otf"; sourceTree = "<group>"; };
 		440FB7661B51499A009FC9FC /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
 		440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAnimationViewController.swift; sourceTree = "<group>"; };
 		4420661C1B44577500FD4CAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OverlayView.xib; sourceTree = "<group>"; };
@@ -75,6 +93,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2425300E1D0EFD160009EF93 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				242530101D0EFD530009EF93 /* Montserrat-Black.otf */,
+				242530111D0EFD530009EF93 /* Montserrat-Bold.otf */,
+				242530121D0EFD530009EF93 /* Montserrat-ExtraBold.otf */,
+				242530131D0EFD530009EF93 /* Montserrat-Hairline.otf */,
+				242530141D0EFD530009EF93 /* Montserrat-Light.otf */,
+				242530151D0EFD530009EF93 /* Montserrat-Regular.otf */,
+				242530161D0EFD530009EF93 /* Montserrat-SemiBold.otf */,
+				242530171D0EFD540009EF93 /* Montserrat-UltraLight.otf */,
+				2425300F1D0EFD3D0009EF93 /* GrandHotel-Regular.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +146,7 @@
 				4420661B1B44577500FD4CAD /* OverlayView.xib */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				44B5EC2A1B660C9100895E3D /* CustomOverlayView.xib */,
+				2425300E1D0EFD160009EF93 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = Example;
@@ -246,6 +281,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242530181D0EFE2C0009EF93 /* Montserrat-Black.otf in Resources */,
+				242530191D0EFE2C0009EF93 /* Montserrat-Bold.otf in Resources */,
+				2425301A1D0EFE2C0009EF93 /* Montserrat-ExtraBold.otf in Resources */,
+				2425301B1D0EFE2C0009EF93 /* Montserrat-Hairline.otf in Resources */,
+				2425301C1D0EFE2C0009EF93 /* Montserrat-Light.otf in Resources */,
+				2425301D1D0EFE2C0009EF93 /* Montserrat-Regular.otf in Resources */,
+				2425301E1D0EFE2C0009EF93 /* Montserrat-SemiBold.otf in Resources */,
+				2425301F1D0EFE2C0009EF93 /* Montserrat-UltraLight.otf in Resources */,
+				242530201D0EFE2C0009EF93 /* GrandHotel-Regular.otf in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				4420661D1B44577500FD4CAD /* OverlayView.xib in Resources */,
 				44B5EC2B1B660C9100895E3D /* CustomOverlayView.xib in Resources */,
