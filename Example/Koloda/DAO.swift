@@ -17,10 +17,7 @@ class DAO {
     // Referência para o Storage
     let storage = FIRStorage.storage()
     
-    func login(username: String, password: String, callback:FIRAuthResultCallback) {
-        FIRAuth.auth()?.signInWithEmail(username, password: password, completion:callback)
-    }
-    
+    // registra o usuário no realtime database usando o id do authorization
     func registerUser(name: String, userID: String) {
         self.rootRef.child("profile").child(userID).setValue(["name": name])
     }
@@ -36,7 +33,11 @@ class DAO {
         FIRAuth.auth()?.createUserWithEmail(username, password: password, completion: callback)
     }
     
-    func logOut() {
+    func login(username: String, password: String, callback:FIRAuthResultCallback) {
+        FIRAuth.auth()?.signInWithEmail(username, password: password, completion:callback)
+    }
+
+    func logout() {
         try! FIRAuth.auth()!.signOut()
     }
 }
