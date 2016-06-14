@@ -11,7 +11,11 @@ import Firebase
 
 class DAO {
    
+    // Referência para o Realtime Database
     let rootRef = FIRDatabase.database().reference()
+    
+    // Referência para o Storage
+    let storage = FIRStorage.storage()
     
     func login(username: String, password: String, callback:FIRAuthResultCallback) {
         FIRAuth.auth()?.signInWithEmail(username, password: password, completion:callback)
