@@ -29,6 +29,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		F60896F71D11DF6700B8145D /* LikesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */; };
 		F630965B1D10AEB900936C46 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */; };
 		F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3951D08AE52003EF2CE /* LoginViewController.swift */; };
 		F631A3981D08AF38003EF2CE /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3971D08AF38003EF2CE /* DAO.swift */; };
@@ -71,6 +72,7 @@
 		A8A21A7254497CF03F2BBEA3 /* Pods-Koloda_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF2C9E50C19A9188464AE19E /* Pods-Koloda_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D6781607B5327BAF503C32E3 /* Koloda.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Koloda.podspec; path = ../Koloda.podspec; sourceTree = "<group>"; };
+		F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikesCollectionViewController.swift; sourceTree = "<group>"; };
 		F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F631A3951D08AE52003EF2CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F631A3971D08AF38003EF2CE /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
@@ -143,9 +145,6 @@
 				440FB7661B51499A009FC9FC /* CustomKolodaView.swift */,
 				44B5EC281B660C8500895E3D /* CustomOverlayView.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				4420661B1B44577500FD4CAD /* OverlayView.xib */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				44B5EC2A1B660C9100895E3D /* CustomOverlayView.xib */,
 				2425300E1D0EFD160009EF93 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -193,6 +192,9 @@
 		F631A3941D08AD11003EF2CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4420661B1B44577500FD4CAD /* OverlayView.xib */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				44B5EC2A1B660C9100895E3D /* CustomOverlayView.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 			);
 			name = View;
@@ -204,6 +206,7 @@
 				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
 				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
 				F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */,
+				F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				1873DE5B1D08B2FF002DCCE3 /* PhotoViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				F65796C31D0B40FE0085409C /* Category.swift in Sources */,
+				F60896F71D11DF6700B8145D /* LikesCollectionViewController.swift in Sources */,
 				4420661F1B4457E800FD4CAD /* ExampleOverlayView.swift in Sources */,
 				440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */,
 				F65796BF1D0B3D470085409C /* User.swift in Sources */,

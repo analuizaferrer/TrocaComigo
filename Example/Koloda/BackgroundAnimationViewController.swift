@@ -30,8 +30,11 @@ class BackgroundAnimationViewController: UIViewController {
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        
+      //  self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.14, green: 0.14, blue: 0.14, alpha: 1)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name:"GrandHotel-Regular", size: 27)!, NSForegroundColorAttributeName: UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)]
     }
-    
     
     //MARK: IBActions
     @IBAction func leftButtonTapped() {

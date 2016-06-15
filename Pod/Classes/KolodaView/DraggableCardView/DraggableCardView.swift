@@ -108,6 +108,8 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         configureContentView()
     }
     
+    
+    // Constraints da corzinha verde ou vermelha em cima da foto
     private func configureOverlayView() {
         if let overlay = self.overlayView {
             overlay.translatesAutoresizingMaskIntoConstraints = false
@@ -144,6 +146,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
                 attribute: NSLayoutAttribute.Leading,
                 multiplier: 1.0,
                 constant: 0)
+            
             addConstraints([width,height,top,leading])
         }
     }
@@ -158,7 +161,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
                 relatedBy: NSLayoutRelation.Equal,
                 toItem: self,
                 attribute: NSLayoutAttribute.Width,
-                multiplier: 1.0,
+                multiplier: 0.9,
                 constant: 0)
             let height = NSLayoutConstraint(
                 item: contentView,
@@ -182,10 +185,26 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
                 relatedBy: NSLayoutRelation.Equal,
                 toItem: self,
                 attribute: NSLayoutAttribute.Leading,
+                multiplier: 0.5,
+                constant: 0)
+            let centerX = NSLayoutConstraint (
+                item: contentView,
+                attribute: NSLayoutAttribute.CenterX,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: self,
+                attribute: NSLayoutAttribute.CenterX,
+                multiplier: 1.0,
+                constant: 0)
+            let centerY = NSLayoutConstraint (
+                item: contentView,
+                attribute: NSLayoutAttribute.CenterY,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: self,
+                attribute: NSLayoutAttribute.CenterY,
                 multiplier: 1.0,
                 constant: 0)
             
-            addConstraints([width,height,top,leading])
+            addConstraints([width,height,top,leading, centerX, centerY])
         }
     }
     

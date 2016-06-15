@@ -21,6 +21,10 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
+        
+        let user = UIImage(named: "user-fill")
+        let imageView = UIImageView(image: user)
+        self.navigationItem.titleView = imageView
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,27 +32,28 @@ class SettingsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func image(sender: AnyObject) {
+        print("o botao ta funfando")
+    }
     // MARK: - Table view data source
-
+//
 //    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
 //        return 0
 //    }
-//
+
 //    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        // #warning Incomplete implementation, return the number of rows
-//        return 0
+//        return 4
 //    }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
+//    
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+//
+//        // Configure the cell...
+//        return cell
+//    }
 
     /*
     // Override to support conditional editing of the table view.
