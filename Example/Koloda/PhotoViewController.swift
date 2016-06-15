@@ -114,7 +114,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             guard let image = UIImage(data: imageData) else { return }
             
 //            self.presentActivityVCForImage(image)
+            self.displayImage(image)
         }
+        
         
     }
 
@@ -133,6 +135,13 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
         photo = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
         
+        displayImage(photo!)
+        
+
+    }
+    
+    func displayImage (image: UIImage) {
+       
         if (photos.count == 0) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PhotoViewController.arrowClicked))
         }
@@ -148,10 +157,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             if (photos.count == 6) {
                 
                 photoLibrary.enabled = false
-            
+                
             }
         }
-        
 
     }
     
@@ -242,7 +250,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        previewLayer?.frame = view.bounds
+        previewLayer?.frame = CGRectMake(0, 64, view.frame.width, 456)
     }
     
     func presentActivityVCForImage(image: UIImage) {
