@@ -35,6 +35,8 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func image(sender: AnyObject) {
         print("o botao ta funfando")
     }
+    
+
     // MARK: - Table view data source
 //
 //    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -99,5 +101,4 @@ class SettingsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

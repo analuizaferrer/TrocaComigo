@@ -134,9 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				F65796BD1D0B3D2C0085409C /* Model */,
+				F631A3941D08AD11003EF2CE /* View */,
 				F65796BC1D0B3D190085409C /* Controller */,
 				F6C10F111D09920300DEE51F /* GoogleService-Info.plist */,
-				F631A3941D08AD11003EF2CE /* View */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
 				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,

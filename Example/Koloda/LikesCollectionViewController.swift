@@ -11,9 +11,22 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class LikesCollectionViewController: UICollectionViewController {
+    
+    private let leftAndRightPadding: CGFloat = 0.0
+    private let numberOfItensPerRow: CGFloat = 3.0
+    private let heightAdjustment: CGFloat = 30.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSizeMake(cellWidth, cellWidth)
+        
+        
+        let navIcon = UIImage(named: "heart-fill")
+        let navImage = UIImageView(image: navIcon)
+        self.navigationItem.titleView = navImage
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,9 +36,6 @@ class LikesCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         
-        let user = UIImage(named: "heart-fill")
-        let imageView = UIImageView(image: user)
-        self.navigationItem.titleView = imageView
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,20 +56,21 @@ class LikesCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return 1
     }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
     
-        // Configure the cell
+    private struct Storyboard {
+        static let CellIdentifier = "SwapsCell"
+        
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Storyboard.CellIdentifier, forIndexPath: indexPath) as UICollectionViewCell
     
         return cell
     }
