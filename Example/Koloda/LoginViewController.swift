@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                 self.presentViewController(homeViewController, animated: true, completion: nil)
-                dao.registerUser("Ana", userID: "AoWn5e2J4kTaINJ5DCnZ5k3lSSF3")
+//                dao.registerUser(email.text!, userID: user!.uid)
             } else {
                 let alert = UIAlertController(title: "Error", message: "Ta errado fdp", preferredStyle: UIAlertControllerStyle.Alert)
                 

@@ -22,15 +22,23 @@ class DAO {
         self.rootRef.child("profile").child(userID).setValue(["name": name])
     }
     
-    // função recebe tipo do produto (blusa, vestido, calça, etc) e id do usuário dono
-    func registerProduct(type: String, userID: String) { // bottom, top, footwear
+    // função registra infos do produto e id do usuário dono
+    func registerProduct(department: String, category: String, subcategories: [String], description: String, brand: String, size: String, condition: String, userID: String) {
         let child = self.rootRef.child("product").childByAutoId()
-//        child.child("department").child("women").child("top")
-//        child.child("description").setValue("bla bla bla calça legal")
-//        child.child("brand").setValue("C&A")
-//        child.child("size").setValue("M")
-//        child.child("condition").setValue("never used")
-        child.child("type").setValue(type)
+        child.child("department").setValue(department) // women, men or kids
+        child.child("category").setValue(category) // top, bottom, footwear, accessories, etc
+        if subcategories.count > 0 { // ex: pants
+            var cont: Int = 1
+            for subcategory in subcategories {
+                let sc: String = "subcategory" + String(cont)
+                child.child(sc).setValue(subcategory)
+                cont += 1
+            }
+        }
+        child.child("description").setValue(description)
+        child.child("brand").setValue(brand)
+        child.child("size").setValue(size)
+        child.child("condition").setValue(condition)
         child.child("userid").setValue(userID)
     }
     
