@@ -1,17 +1,15 @@
 //
-//  SettingsTableViewController.swift
+//  ProfileTableViewController.swift
 //  Koloda
 //
-//  Created by Helena Leitão on 14/06/16.
+//  Created by Helena Leitão on 16/06/16.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class ProfileTableViewController: UITableViewController {
 
-    @IBOutlet weak var profileImage: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,61 +17,39 @@ class SettingsTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
-        self.profileImage.clipsToBounds = true
-        
-        let user = UIImage(named: "user-fill")
-        let imageView = UIImageView(image: user)
-        self.navigationItem.titleView = imageView
-        
-        let dao = DAO()
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    
+        //self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name:"Montserrat-Light", size: 18)!, NSForegroundColorAttributeName: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)]
+        //self.navigationItem.titleView?.backgroundColor = UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)
+        //self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func image(sender: AnyObject) {
-        print("o botao ta funfando")
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case 1:
-            performSegueWithIdentifier("profile", sender: self)
-            break
-        case 2:
-            performSegueWithIdentifier("closet", sender: self)
-            break
-        case 3:
-            performSegueWithIdentifier("settings", sender: self)
-            break
-        default:
-            print("pmsdinv")
-        }
-    }
-    
-
     // MARK: - Table view data source
-//
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
 
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 4
-//    }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
+    }
 
-//    
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-//
-//        // Configure the cell...
-//        return cell
-//    }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
+    }
+
+    /*
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -119,4 +95,5 @@ class SettingsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 }

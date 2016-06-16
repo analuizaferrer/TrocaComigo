@@ -36,6 +36,7 @@
 		F65796BF1D0B3D470085409C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796BE1D0B3D470085409C /* User.swift */; };
 		F65796C11D0B3FE70085409C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C01D0B3FE70085409C /* Product.swift */; };
 		F65796C31D0B40FE0085409C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C21D0B40FE0085409C /* Category.swift */; };
+		F69155271D131355004710C6 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69155261D131355004710C6 /* ProfileTableViewController.swift */; };
 		F6C10F121D09920300DEE51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6C10F111D09920300DEE51F /* GoogleService-Info.plist */; };
 		F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		F65796BE1D0B3D470085409C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F65796C01D0B3FE70085409C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F65796C21D0B40FE0085409C /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F69155261D131355004710C6 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		F6C10F111D09920300DEE51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +209,7 @@
 				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
 				F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */,
 				F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */,
+				F69155261D131355004710C6 /* ProfileTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -257,7 +260,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 833JWEH774;
+						DevelopmentTeam = 585K33F6HA;
 					};
 				};
 			};
@@ -363,6 +366,7 @@
 				446BFD091CB0184A00619E78 /* BackgroundKolodaAnimator.swift in Sources */,
 				440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */,
 				F65796C11D0B3FE70085409C /* Product.swift in Sources */,
+				F69155271D131355004710C6 /* ProfileTableViewController.swift in Sources */,
 				F630965B1D10AEB900936C46 /* SettingsTableViewController.swift in Sources */,
 				44B5EC291B660C8500895E3D /* CustomOverlayView.swift in Sources */,
 				1873DE5B1D08B2FF002DCCE3 /* PhotoViewController.swift in Sources */,

@@ -23,8 +23,13 @@ class DAO {
     }
     
     // função recebe tipo do produto (blusa, vestido, calça, etc) e id do usuário dono
-    func registerProduct(type: String, userID: String) {
+    func registerProduct(type: String, userID: String) { // bottom, top, footwear
         let child = self.rootRef.child("product").childByAutoId()
+//        child.child("department").child("women").child("top")
+//        child.child("description").setValue("bla bla bla calça legal")
+//        child.child("brand").setValue("C&A")
+//        child.child("size").setValue("M")
+//        child.child("condition").setValue("never used")
         child.child("type").setValue(type)
         child.child("userid").setValue(userID)
     }
