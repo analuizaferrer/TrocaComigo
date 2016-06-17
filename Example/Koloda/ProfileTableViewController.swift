@@ -103,12 +103,8 @@ extension ProfileTableViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         if textField.tag == 0 {
             DAO().updateName(textField.text!)
-            globalUser.name = textField.text
-            DAOCache().saveUser()
         } else if textField.tag == 1 {
             DAO().updateLocation(textField.text!)
-            globalUser.location = textField.text
-            DAOCache().saveUser()
         }
     }
 }

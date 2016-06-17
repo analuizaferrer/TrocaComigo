@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var email: UITextField!
     
@@ -19,8 +19,16 @@ class LoginViewController: UIViewController {
         return true
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        email.delegate = self
+        password.delegate = self
         
         // change color of the placeholders
         email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])

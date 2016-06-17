@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -31,6 +31,7 @@ class SettingsTableViewController: UITableViewController {
         let user = UIImage(named: "user-fill")
         let imageView = UIImageView(image: user)
         self.navigationItem.titleView = imageView
+        
         
     }
     
@@ -55,7 +56,57 @@ class SettingsTableViewController: UITableViewController {
     }
 
     @IBAction func image(sender: AnyObject) {
-        print("o botao ta funfando")
+        
+        let alert = UIAlertController(title: "Change Profile Photo", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let removeCurrentPhoto = UIAlertAction(title: "Remove Current Photo", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
+            
+            self.profileImage.image = UIImage(named: "user-fill")
+        
+        })
+        alert.addAction(removeCurrentPhoto)
+        
+        let takePhoto = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
+            
+            let picker = UIImagePickerController()
+            
+            picker.delegate = self
+            picker.sourceType = .Camera
+            
+            self.presentViewController(picker, animated: true, completion: nil)
+            
+        })
+
+        alert.addAction(takePhoto)
+        
+        let chooseFromLibrary = UIAlertAction(title: "Choose From Library", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
+            
+            let picker = UIImagePickerController()
+            
+            picker.delegate = self
+            picker.sourceType = .PhotoLibrary
+            
+            self.presentViewController(picker, animated: true, completion: nil)
+            
+        })
+
+        alert.addAction(chooseFromLibrary)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(cancel)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
+        
+        self.profileImage.image = profilePhoto
+        
+        
+        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
