@@ -21,7 +21,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet var photoLibrary: UIButton!
     @IBOutlet var camera: UIButton!
-    @IBOutlet var imageDisplay: UIImageView!
     
     @IBOutlet var photoButton1: UIButton!
     @IBOutlet var photoButton2: UIButton!
@@ -75,15 +74,15 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let confirmButton = UIButton(frame: CGRectMake(238,558,72,72))
         let excludeButton = UIButton(frame: CGRectMake(66,558,72,72))
 
-        confirmButton.setBackgroundImage(UIImage(named: "Round"), forState: .Normal)
+        confirmButton.setBackgroundImage(UIImage(named: "check"), forState: .Normal)
         confirmButton.addTarget(self, action: #selector(PhotoViewController.confirmPhoto), forControlEvents: UIControlEvents.TouchUpInside)
-        excludeButton.setBackgroundImage(UIImage(named: "Round"), forState: .Normal)
+        excludeButton.setBackgroundImage(UIImage(named: "trash"), forState: .Normal)
         excludeButton.addTarget(self, action: #selector(PhotoViewController.excludePhoto), forControlEvents: UIControlEvents.TouchUpInside)
         
         confirmationView.addSubview(confirmButton)
         confirmationView.addSubview(excludeButton)
         
-        confirmationImageView = UIImageView(frame: CGRectMake(0,64,375, 456))
+        confirmationImageView = UIImageView(frame: CGRectMake(0,64,view.frame.width, 456))
         
         confirmationImageView.image = UIImage(named: "quadrado photo")
         
@@ -140,7 +139,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     }
     
-    func displayImage (image: UIImage) {
+    func displayImage (thisImage: UIImage) {
        
         if (photos.count == 0) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PhotoViewController.arrowClicked))
@@ -148,11 +147,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         if (photos.count < 6) {
             
-            imageDisplay.image = photo
+            photoButtons[photos.count].setBackgroundImage(thisImage, forState: .Normal)
             
-            photoButtons[photos.count].setBackgroundImage(photo, forState: .Normal)
-            
-            photos.append(photo!)
+            photos.append(thisImage)
             
             if (photos.count == 6) {
                 
@@ -250,7 +247,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        previewLayer?.frame = CGRectMake(0, 64, view.frame.width, 456)
+        previewLayer?.frame = CGRectMake(0, 64, view.frame.width, 455)
     }
     
     func presentActivityVCForImage(image: UIImage) {

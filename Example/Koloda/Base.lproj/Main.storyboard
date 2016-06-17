@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NAB-uX-TCJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L5w-Au-N6B">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -603,7 +603,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RT1-hj-mdt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4263.75" y="895.5"/>
+            <point key="canvasLocation" x="3631.5" y="820.5"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="Xm7-fr-06D">
@@ -685,34 +685,21 @@
                                     <action selector="photoLIbraryAction:" destination="L5w-Au-N6B" eventType="touchUpInside" id="ItB-BA-2Pr"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="quadrado photo" translatesAutoresizingMaskIntoConstraints="NO" id="Iat-8M-cAF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="456"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.58039215686274503" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="agG-E3-33M" firstAttribute="leading" secondItem="oMJ-zM-2DF" secondAttribute="trailing" constant="2" id="1Nb-M7-kv7"/>
                             <constraint firstItem="cdM-Dl-ic3" firstAttribute="top" secondItem="xaY-7y-yTy" secondAttribute="bottom" constant="30" id="1cB-qJ-weJ"/>
-                            <constraint firstItem="sDH-9f-m5M" firstAttribute="top" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="2" id="2v0-jL-Xp3"/>
                             <constraint firstItem="oMJ-zM-2DF" firstAttribute="leading" secondItem="wcG-JS-Znp" secondAttribute="trailing" constant="2" id="8N6-DA-sAn"/>
                             <constraint firstItem="cdM-Dl-ic3" firstAttribute="top" secondItem="mz8-9W-9Uc" secondAttribute="bottom" constant="18" id="9Zs-vf-UKK"/>
-                            <constraint firstItem="lpi-Gs-X8L" firstAttribute="top" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="2" id="BPt-UH-6nO"/>
                             <constraint firstItem="oMJ-zM-2DF" firstAttribute="leading" secondItem="wcG-JS-Znp" secondAttribute="trailing" constant="2" id="Fot-6f-Q1O"/>
-                            <constraint firstItem="Iat-8M-cAF" firstAttribute="leading" secondItem="Bst-cd-Tbh" secondAttribute="leading" id="H0t-dT-vaL"/>
                             <constraint firstItem="lpi-Gs-X8L" firstAttribute="leading" secondItem="Bst-cd-Tbh" secondAttribute="leading" id="Lm2-JE-fb6"/>
                             <constraint firstItem="sDH-9f-m5M" firstAttribute="leading" secondItem="WaR-fi-m6b" secondAttribute="trailing" constant="2" id="Ojy-eQ-884"/>
                             <constraint firstItem="xaY-7y-yTy" firstAttribute="leading" secondItem="Bst-cd-Tbh" secondAttribute="leading" constant="46" id="Ooa-Uw-c5f"/>
-                            <constraint firstItem="wcG-JS-Znp" firstAttribute="top" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="2" id="Q3K-Yn-mUL"/>
-                            <constraint firstItem="WaR-fi-m6b" firstAttribute="top" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="2" id="Ssa-C7-FHU"/>
                             <constraint firstItem="wcG-JS-Znp" firstAttribute="leading" secondItem="lpi-Gs-X8L" secondAttribute="trailing" constant="2" id="TsH-hD-7Rc"/>
-                            <constraint firstItem="agG-E3-33M" firstAttribute="top" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="2" id="a3A-L3-hQN"/>
                             <constraint firstAttribute="trailing" secondItem="sDH-9f-m5M" secondAttribute="trailing" constant="1" id="eMN-bk-mYn"/>
-                            <constraint firstAttribute="bottom" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="148" id="fqE-C1-kgC"/>
-                            <constraint firstItem="oMJ-zM-2DF" firstAttribute="top" secondItem="Iat-8M-cAF" secondAttribute="bottom" constant="2" id="g3U-cu-eDx"/>
                             <constraint firstItem="WaR-fi-m6b" firstAttribute="leading" secondItem="agG-E3-33M" secondAttribute="trailing" constant="2" id="gdz-gs-StO"/>
-                            <constraint firstAttribute="trailing" secondItem="Iat-8M-cAF" secondAttribute="trailing" constant="1" id="ghQ-bK-YZb"/>
                             <constraint firstItem="WaR-fi-m6b" firstAttribute="leading" secondItem="agG-E3-33M" secondAttribute="trailing" constant="2" id="lhE-4p-SUv"/>
-                            <constraint firstItem="Iat-8M-cAF" firstAttribute="top" secondItem="Bst-cd-Tbh" secondAttribute="top" constant="62" id="mXT-eI-doc"/>
                             <constraint firstItem="mz8-9W-9Uc" firstAttribute="centerX" secondItem="Bst-cd-Tbh" secondAttribute="centerX" id="nhe-PB-MoL"/>
                             <constraint firstItem="agG-E3-33M" firstAttribute="leading" secondItem="oMJ-zM-2DF" secondAttribute="trailing" constant="2" id="vN8-Ny-baM"/>
                         </constraints>
@@ -723,7 +710,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="camera" destination="mz8-9W-9Uc" id="WZf-KH-QiI"/>
-                        <outlet property="imageDisplay" destination="Iat-8M-cAF" id="pGM-Mm-klp"/>
                         <outlet property="photoButton1" destination="lpi-Gs-X8L" id="Uas-bf-A9j"/>
                         <outlet property="photoButton2" destination="wcG-JS-Znp" id="iS2-P9-hSY"/>
                         <outlet property="photoButton3" destination="oMJ-zM-2DF" id="YQc-vz-Bnf"/>
@@ -1513,7 +1499,6 @@
         <image name="pink" width="100" height="100"/>
         <image name="pizza" width="1800" height="1200"/>
         <image name="profile" width="200" height="200"/>
-        <image name="quadrado photo" width="375" height="456"/>
         <image name="shoot" width="1778" height="1778"/>
         <image name="user" width="23" height="27"/>
     </resources>
