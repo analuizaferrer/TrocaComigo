@@ -28,6 +28,16 @@ class DAO {
         }
     }
     
+    func registerUserPreferences(name: String, status: Bool) {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.rootRef.child("profile").child(user.uid).child("preferences").child(name).setValue(status.description)
+            print("entrou aqui porraaaaa")
+        } else {
+            // No user is signed in.
+            print("entrou aqui")
+        }
+    }
+    
     /* MARK: Function registerProduct
      Registers the product using the owners id */
     func registerProduct(department: String, categories: [String], description: String, brand: String, size: String, condition: String, userID: String) {
@@ -88,18 +98,43 @@ class DAO {
         }
     }
     
-//    func getName()->String {
-//        let name: String
-//        if let user = FIRAuth.auth()?.currentUser {
-//            self.rootRef.child("profile").child(user.uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-//                // Get user value
-//                let name = snapshot.value!["name"] as! String
-//            }) { (error) in
-//                print(error.localizedDescription)
-//            }
-//           return name
-//        } else {
-//            return "Name"
-//        }
-//    }
+    func getName(callback:(FIRDataSnapshot) -> Void)->Void {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.rootRef.child("profile").child(user.uid).child("name").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getLocation(callback:(FIRDataSnapshot) -> Void)->Void {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.rootRef.child("profile").child(user.uid).child("location").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getWomenPreferences(callback:(FIRDataSnapshot) -> Void)->Void {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.rootRef.child("profile").child(user.uid).child("preferences").child("women").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getMenPreferences(callback:(FIRDataSnapshot) -> Void)->Void {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.rootRef.child("profile").child(user.uid).child("preferences").child("men").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getKidsPreferences(callback:(FIRDataSnapshot) -> Void)->Void {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.rootRef.child("profile").child(user.uid).child("preferences").child("kids").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

@@ -22,29 +22,35 @@ class SettingsTableViewController: UITableViewController {
 
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
-//        
-//        if let user = FIRAuth.auth()?.currentUser {
-//            FIRDatabase.database().reference().child("profile").child(user.uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-//                // Get user value
-//               self.nameLabel.text = snapshot.value!["name"] as? String
-//            }) { (error) in
-//                print(error.localizedDescription)
-//            }
-//        } else {
-//            nameLabel.text = "Name"
-//        }
         
-       // self.nameLabel.text = DAO().getName()
+        let dao = DAO()
+        
+        dao.getName(callbackName)
+        dao.getLocation(callbackLocation)
         
         let user = UIImage(named: "user-fill")
         let imageView = UIImageView(image: user)
         self.navigationItem.titleView = imageView
         
     }
+    override func viewWillAppear(animated: Bool) {
+        let dao = DAO()
+        
+        dao.getName(callbackName)
+        dao.getLocation(callbackLocation)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func callbackName(snapshot: FIRDataSnapshot) {
+        self.nameLabel.text = snapshot.value! as? String
+    }
+    
+    func callbackLocation(snapshot: FIRDataSnapshot) {
+        self.locationLabel.text = snapshot.value! as? String
     }
 
     @IBAction func image(sender: AnyObject) {

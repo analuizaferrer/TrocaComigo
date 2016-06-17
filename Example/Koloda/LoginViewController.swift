@@ -34,7 +34,6 @@ class LoginViewController: UIViewController {
         let paddingPassword = UIView(frame: CGRectMake(0, 0, 20, self.password.frame.height))
         password.leftView = paddingPassword
         password.leftViewMode = UITextFieldViewMode.Always
-        
     }
 
     override func didReceiveMemoryWarning() {
