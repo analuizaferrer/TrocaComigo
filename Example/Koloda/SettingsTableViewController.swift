@@ -22,6 +22,19 @@ class SettingsTableViewController: UITableViewController {
 
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
+//        
+//        if let user = FIRAuth.auth()?.currentUser {
+//            FIRDatabase.database().reference().child("profile").child(user.uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+//                // Get user value
+//               self.nameLabel.text = snapshot.value!["name"] as? String
+//            }) { (error) in
+//                print(error.localizedDescription)
+//            }
+//        } else {
+//            nameLabel.text = "Name"
+//        }
+        
+       // self.nameLabel.text = DAO().getName()
         
         let user = UIImage(named: "user-fill")
         let imageView = UIImageView(image: user)

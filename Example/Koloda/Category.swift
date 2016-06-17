@@ -11,4 +11,9 @@ import Foundation
 class Category {
     var name: String!
     var subcategories: [Category]!
+    
+    init(name: String, subcategories: [Category]) {
+        self.name = name
+        self.subcategories = subcategories
+    }
 }

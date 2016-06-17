@@ -30,17 +30,18 @@ class DAO {
     
     /* MARK: Function registerProduct
      Registers the product using the owners id */
-    func registerProduct(department: String, category: String, subcategories: [String], description: String, brand: String, size: String, condition: String, userID: String) {
+    func registerProduct(department: String, categories: [String], description: String, brand: String, size: String, condition: String, userID: String) {
         let child = self.rootRef.child("product").childByAutoId()
         child.child("department").setValue(department) // women, men or kids
-        child.child("category").setValue(category) // top, bottom, footwear, accessories, etc
-        if subcategories.count > 0 { // ex: pants
-            var cont: Int = 1
-            for subcategory in subcategories {
-                let sc: String = "subcategory" + String(cont)
-                child.child(sc).setValue(subcategory)
-                cont += 1
-            }
+        switch categories.count {
+        case 3:
+            child.child("category").child(categories[0]).child(categories[1]).child(categories[2]).setValue(userID)
+            break
+        case 4:
+            child.child("category").child(categories[0]).child(categories[1]).child(categories[2]).child(categories[3]).setValue(userID)
+            break
+        default:
+            print("sod;nvsfv")
         }
         child.child("description").setValue(description)
         child.child("brand").setValue(brand)
@@ -86,4 +87,19 @@ class DAO {
             // No user is signed in.
         }
     }
+    
+//    func getName()->String {
+//        let name: String
+//        if let user = FIRAuth.auth()?.currentUser {
+//            self.rootRef.child("profile").child(user.uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+//                // Get user value
+//                let name = snapshot.value!["name"] as! String
+//            }) { (error) in
+//                print(error.localizedDescription)
+//            }
+//           return name
+//        } else {
+//            return "Name"
+//        }
+//    }
 }

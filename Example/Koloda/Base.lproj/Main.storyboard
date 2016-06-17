@@ -104,7 +104,7 @@
                                 <color key="textColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" clearsOnBeginEditing="YES" minimumFontSize="17" background="field-blank" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-AS-atq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" background="field-blank" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-AS-atq">
                                 <rect key="frame" x="37" y="293" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="2iG-zj-55x"/>
@@ -114,7 +114,7 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" background="field-blank" translatesAutoresizingMaskIntoConstraints="NO" id="0eO-NJ-aTw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" background="field-blank" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0eO-NJ-aTw">
                                 <rect key="frame" x="37" y="358" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="nME-kc-UyU"/>
@@ -484,7 +484,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" background="field-blank" translatesAutoresizingMaskIntoConstraints="NO" id="1B9-ji-eQw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" background="field-blank" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1B9-ji-eQw">
                                 <rect key="frame" x="38" y="248" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="nAi-aV-x71"/>
@@ -494,7 +494,7 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" background="field-blank" translatesAutoresizingMaskIntoConstraints="NO" id="qpy-yO-QZX">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" background="field-blank" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qpy-yO-QZX">
                                 <rect key="frame" x="38" y="313" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ZP0-hr-wrf"/>
@@ -504,7 +504,7 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" background="field-blank" translatesAutoresizingMaskIntoConstraints="NO" id="CAb-gt-iaL">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" background="field-blank" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CAb-gt-iaL">
                                 <rect key="frame" x="38" y="378" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="F34-jh-oNe"/>
@@ -514,7 +514,7 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" background="field-blank" translatesAutoresizingMaskIntoConstraints="NO" id="bNI-hT-r8e">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" background="field-blank" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bNI-hT-r8e">
                                 <rect key="frame" x="38" y="443" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Dzw-et-kL7"/>
