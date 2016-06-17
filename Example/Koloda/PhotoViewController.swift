@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -93,7 +94,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         
         setupSession()
-
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -256,6 +257,29 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             animated: true,
             completion: nil
         )
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "segueToDepartmentViewController") {
+            
+            let departmentVC = segue.destinationViewController as! DepartmentViewController
+            
+            for i in photos {
+                
+                
+                //Image into NSData format
+                let imageData:NSData = UIImagePNGRepresentation(i)!
+                
+                //Encoding
+                let strBase64:String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                
+                departmentVC.productImages.append(strBase64)
+                
+            }
+        
+        }
+        
     }
 
 }

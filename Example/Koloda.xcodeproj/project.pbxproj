@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182D0CC91D147DD9009CBBD2 /* DepartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */; };
 		1873DE5B1D08B2FF002DCCE3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */; };
 		191D14781525C400D3E86FEC /* Pods_Koloda_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5243B3EDBF06248559332C86 /* Pods_Koloda_Example.framework */; };
 		242530181D0EFE2C0009EF93 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530101D0EFD530009EF93 /* Montserrat-Black.otf */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		093C6CC368001B8BAFD235CB /* Pods-Koloda_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1242FA2632AFB60821C100AF /* Pods-Koloda_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentViewController.swift; sourceTree = "<group>"; };
 		1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		2425300F1D0EFD3D0009EF93 /* GrandHotel-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GrandHotel-Regular.otf"; sourceTree = "<group>"; };
 		242530101D0EFD530009EF93 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
+				182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */,
 				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,
 				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
 				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
@@ -363,6 +366,7 @@
 				F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */,
 				F631A3981D08AF38003EF2CE /* DAO.swift in Sources */,
 				F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */,
+				182D0CC91D147DD9009CBBD2 /* DepartmentViewController.swift in Sources */,
 				446BFD091CB0184A00619E78 /* BackgroundKolodaAnimator.swift in Sources */,
 				440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */,
 				F65796C11D0B3FE70085409C /* Product.swift in Sources */,
