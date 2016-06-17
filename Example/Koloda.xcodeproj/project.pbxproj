@@ -140,8 +140,6 @@
 				F65796BC1D0B3D190085409C /* Controller */,
 				F6C10F111D09920300DEE51F /* GoogleService-Info.plist */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
-				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,
 				446BFD081CB0184A00619E78 /* BackgroundKolodaAnimator.swift */,
 				4420661E1B4457E800FD4CAD /* ExampleOverlayView.swift */,
 				440FB7661B51499A009FC9FC /* CustomKolodaView.swift */,
@@ -205,6 +203,8 @@
 		F65796BC1D0B3D190085409C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
+				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,
 				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
 				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
 				F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */,

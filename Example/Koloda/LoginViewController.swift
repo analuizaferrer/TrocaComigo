@@ -22,9 +22,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // change color of the placeholders
         email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
         password.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
         
+        // indent placeholders
         let paddingEmail = UIView(frame: CGRectMake(0, 0, 20, self.email.frame.height))
         email.leftView = paddingEmail
         email.leftViewMode = UITextFieldViewMode.Always
@@ -47,12 +49,9 @@ class LoginViewController: UIViewController {
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                 self.presentViewController(homeViewController, animated: true, completion: nil)
-//                dao.registerUser(email.text!, userID: user!.uid)
             } else {
                 let alert = UIAlertController(title: "Error", message: "Ta errado fdp", preferredStyle: UIAlertControllerStyle.Alert)
-                
                 let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-
                 alert.addAction(cancel)
                 self.presentViewController(alert, animated: true, completion: nil)
             }

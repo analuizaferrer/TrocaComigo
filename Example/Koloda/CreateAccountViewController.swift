@@ -66,16 +66,15 @@ class CreateAccountViewController: UIViewController {
             
             func signUpCallback (user: FIRUser?, error: NSError?) {
                 if error == nil {
-                    
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                     self.presentViewController(homeViewController, animated: true, completion: nil)
                 
-                    dao.registerUser(name.text!, userID: (user?.uid)!)
+                    dao.registerUser(name.text!, location: "", userID: (user?.uid)!)
                     
                 } else {
                     let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertControllerStyle.Alert)
-                    let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let cancel = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(cancel)
                     self.presentViewController(alert, animated: true, completion: nil)
                 }

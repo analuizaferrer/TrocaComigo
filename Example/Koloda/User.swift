@@ -9,9 +9,5 @@
 import Foundation
 
 class User {
-    var name: String!
-    var email: String!
-   // var photo: NSObjectFileImage!
     
-
 }
