@@ -65,6 +65,4 @@ class LoginViewController: UIViewController {
         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
         self.presentViewController(homeViewController, animated: true, completion: nil)
     }
-    
-
 }

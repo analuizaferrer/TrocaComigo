@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182D0CC91D147DD9009CBBD2 /* DepartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */; };
 		1873DE5B1D08B2FF002DCCE3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */; };
 		191D14781525C400D3E86FEC /* Pods_Koloda_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5243B3EDBF06248559332C86 /* Pods_Koloda_Example.framework */; };
 		242530181D0EFE2C0009EF93 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530101D0EFD530009EF93 /* Montserrat-Black.otf */; };
@@ -36,6 +37,8 @@
 		F65796BF1D0B3D470085409C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796BE1D0B3D470085409C /* User.swift */; };
 		F65796C11D0B3FE70085409C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C01D0B3FE70085409C /* Product.swift */; };
 		F65796C31D0B40FE0085409C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C21D0B40FE0085409C /* Category.swift */; };
+		F65A46B51D148E99004EFCFE /* DAOCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65A46B41D148E99004EFCFE /* DAOCache.swift */; };
+		F65A46B71D148ED9004EFCFE /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65A46B61D148ED9004EFCFE /* User.plist */; };
 		F69155271D131355004710C6 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69155261D131355004710C6 /* ProfileTableViewController.swift */; };
 		F6C10F121D09920300DEE51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6C10F111D09920300DEE51F /* GoogleService-Info.plist */; };
 		F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */; };
@@ -44,6 +47,7 @@
 /* Begin PBXFileReference section */
 		093C6CC368001B8BAFD235CB /* Pods-Koloda_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1242FA2632AFB60821C100AF /* Pods-Koloda_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentViewController.swift; sourceTree = "<group>"; };
 		1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		2425300F1D0EFD3D0009EF93 /* GrandHotel-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GrandHotel-Regular.otf"; sourceTree = "<group>"; };
 		242530101D0EFD530009EF93 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		F65796BE1D0B3D470085409C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F65796C01D0B3FE70085409C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F65796C21D0B40FE0085409C /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F65A46B41D148E99004EFCFE /* DAOCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOCache.swift; sourceTree = "<group>"; };
+		F65A46B61D148ED9004EFCFE /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		F69155261D131355004710C6 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		F6C10F111D09920300DEE51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
+				182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */,
 				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,
 				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
 				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
@@ -221,6 +228,8 @@
 				F65796BE1D0B3D470085409C /* User.swift */,
 				F65796C01D0B3FE70085409C /* Product.swift */,
 				F65796C21D0B40FE0085409C /* Category.swift */,
+				F65A46B41D148E99004EFCFE /* DAOCache.swift */,
+				F65A46B61D148ED9004EFCFE /* User.plist */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -290,6 +299,7 @@
 				242530181D0EFE2C0009EF93 /* Montserrat-Black.otf in Resources */,
 				242530191D0EFE2C0009EF93 /* Montserrat-Bold.otf in Resources */,
 				2425301A1D0EFE2C0009EF93 /* Montserrat-ExtraBold.otf in Resources */,
+				F65A46B71D148ED9004EFCFE /* User.plist in Resources */,
 				2425301B1D0EFE2C0009EF93 /* Montserrat-Hairline.otf in Resources */,
 				2425301C1D0EFE2C0009EF93 /* Montserrat-Light.otf in Resources */,
 				2425301D1D0EFE2C0009EF93 /* Montserrat-Regular.otf in Resources */,
@@ -363,6 +373,7 @@
 				F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */,
 				F631A3981D08AF38003EF2CE /* DAO.swift in Sources */,
 				F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */,
+				182D0CC91D147DD9009CBBD2 /* DepartmentViewController.swift in Sources */,
 				446BFD091CB0184A00619E78 /* BackgroundKolodaAnimator.swift in Sources */,
 				440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */,
 				F65796C11D0B3FE70085409C /* Product.swift in Sources */,
@@ -376,6 +387,7 @@
 				4420661F1B4457E800FD4CAD /* ExampleOverlayView.swift in Sources */,
 				440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */,
 				F65796BF1D0B3D470085409C /* User.swift in Sources */,
+				F65A46B51D148E99004EFCFE /* DAOCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

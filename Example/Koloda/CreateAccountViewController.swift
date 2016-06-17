@@ -82,7 +82,6 @@ class CreateAccountViewController: UIViewController {
             }
             
             dao.createAccount(name.text!, username: email.text!, password: password.text!, callback: signUpCallback)
-
         } else {
             let alert = UIAlertController(title: "Error", message: "Passwords don't match.", preferredStyle: UIAlertControllerStyle.Alert)
             

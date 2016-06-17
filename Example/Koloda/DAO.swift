@@ -97,7 +97,7 @@ class DAO {
             // No user is signed in.
         }
     }
-    
+
     func getName(callback:(FIRDataSnapshot) -> Void)->Void {
         if let user = FIRAuth.auth()?.currentUser {
             self.rootRef.child("profile").child(user.uid).child("name").observeSingleEventOfType(.Value, withBlock: callback) { (error) in

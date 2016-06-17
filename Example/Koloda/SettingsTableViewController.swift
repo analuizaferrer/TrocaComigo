@@ -33,13 +33,14 @@ class SettingsTableViewController: UITableViewController {
         self.navigationItem.titleView = imageView
         
     }
+    
     override func viewWillAppear(animated: Bool) {
         let dao = DAO()
         
         dao.getName(callbackName)
         dao.getLocation(callbackLocation)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
