@@ -18,7 +18,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var input: AVCaptureDeviceInput!
     var output: AVCaptureStillImageOutput!
     var previewLayer: AVCaptureVideoPreviewLayer?
-
     
     @IBOutlet var photoLibrary: UIButton!
     @IBOutlet var camera: UIButton!
@@ -64,9 +63,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             button.addTarget(self, action: #selector(PhotoViewController.selectedPhoto(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             i = i + 1
         }
-        
     
-        
         //CONFIRMATION VIEW
         
         confirmationView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
@@ -82,11 +79,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         confirmationView.addSubview(confirmButton)
         confirmationView.addSubview(excludeButton)
-        
         confirmationImageView = UIImageView(frame: CGRectMake(0,64,view.frame.width, 456))
-        
         confirmationImageView.image = UIImage(named: "quadrado photo")
-        
         confirmationView.addSubview(confirmationImageView)
         
         
@@ -94,7 +88,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         
         setupSession()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,7 +96,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func cameraAction(sender: UIButton) {
-        
         guard let connection = output.connectionWithMediaType(AVMediaTypeVideo) else { return }
         connection.videoOrientation = .Portrait
         
@@ -116,49 +108,33 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //            self.presentActivityVCForImage(image)
             self.displayImage(image)
         }
-        
-        
     }
 
     @IBAction func photoLIbraryAction(sender: UIButton) {
-        
         let picker = UIImagePickerController()
-        
         picker.delegate = self
         picker.sourceType = .PhotoLibrary
-        
         presentViewController(picker, animated: true, completion: nil)
-        
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-    
         photo = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
-        
         displayImage(photo!)
-        
-
     }
     
     func displayImage (thisImage: UIImage) {
-       
         if (photos.count == 0) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PhotoViewController.arrowClicked))
         }
         
         if (photos.count < 6) {
-            
             photoButtons[photos.count].setBackgroundImage(thisImage, forState: .Normal)
-            
             photos.append(thisImage)
             
             if (photos.count == 6) {
-                
                 photoLibrary.enabled = false
-                
             }
         }
-
     }
     
     func refreshImages() {
@@ -171,13 +147,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             photoButtons[i].setBackgroundImage(UIImage(named: "no-photo"), forState: .Normal)
             i = i + 1
         }
-        
-        
     }
     
-
     func arrowClicked() {
-    
+        performSegueWithIdentifier("segueToDepartmentViewController", sender: self)
     }
     
     func confirmPhoto () {
@@ -185,13 +158,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func excludePhoto() {
-        
         photos.removeAtIndex(selectedPhoto)
-        
         refreshImages()
         confirmationView.removeFromSuperview()
-
-        
     }
     
     func selectedPhoto (sender:UIButton) {
@@ -266,7 +235,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let departmentVC = segue.destinationViewController as! DepartmentViewController
             
             for i in photos {
-                
                 
                 //Image into NSData format
                 let imageData:NSData = UIImagePNGRepresentation(i)!
