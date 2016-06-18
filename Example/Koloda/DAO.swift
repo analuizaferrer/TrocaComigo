@@ -40,24 +40,15 @@ class DAO {
     
     /* MARK: Function registerProduct
      Registers the product using the owners id */
-    func registerProduct(department: String, categories: [String], description: String, brand: String, size: String, condition: String, userID: String) {
+    func registerProduct(category: String, subcategory: String, description: String, brand: String, size: String, condition: String, userID: String) {
         let child = self.rootRef.child("product").childByAutoId()
-        child.child("department").setValue(department) // women, men or kids
-        switch categories.count {
-        case 3:
-            child.child("category").child(categories[0]).child(categories[1]).child(categories[2]).setValue(userID)
-            break
-        case 4:
-            child.child("category").child(categories[0]).child(categories[1]).child(categories[2]).child(categories[3]).setValue(userID)
-            break
-        default:
-            print("sod;nvsfv")
-        }
+        child.child("category").child(category).setValue(subcategory)
         child.child("description").setValue(description)
         child.child("brand").setValue(brand)
         child.child("size").setValue(size)
         child.child("condition").setValue(condition)
         child.child("userid").setValue(userID)
+        print("registered")
     }
     
     /* MARK: Function createAccount
@@ -112,6 +103,13 @@ class DAO {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func getID()->String {
+        if let user = FIRAuth.auth()!.currentUser {
+            return user.uid
+        }
+        return "user not found"
     }
     
     func getWomenPreferences(callback:(FIRDataSnapshot) -> Void)->Void {

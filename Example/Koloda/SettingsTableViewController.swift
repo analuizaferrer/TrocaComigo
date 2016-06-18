@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         
         let removeCurrentPhoto = UIAlertAction(title: "Remove Current Photo", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
             
-            self.profileImage.image = UIImage(named: "user-fill")
+            self.profileImage.image = UIImage(named: "profile")
         
         })
         alert.addAction(removeCurrentPhoto)
