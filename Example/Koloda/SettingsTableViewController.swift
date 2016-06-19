@@ -142,4 +142,16 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
             cell.layoutMargins = UIEdgeInsetsZero
         }
     }
+    
+    func encodeProfilePhoto (profilePhoto: UIImage) -> String {
+    
+        //Image into NSData format
+        let imageData:NSData = UIImagePNGRepresentation(profilePhoto)!
+    
+        //Encoding
+        let strBase64:String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        
+        return strBase64
+
+    }
 }

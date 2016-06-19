@@ -11,9 +11,26 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class ClosetCollectionViewController: UICollectionViewController {
-
+    
+    private let leftAndRightPadding: CGFloat = 0.0
+    private let numberOfItensPerRow: CGFloat = 3.0
+    private let heightAdjustment: CGFloat = 30.0
+    
+    let teste1 = UIImage(named: "pizza")
+    let teste2 = UIImage(named: "pizza")
+    let teste3 = UIImage(named: "pizza")
+    
+    var products: [UIImage] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //TESTE
+        products = [teste1!,teste2!,teste3!]
+        
+        let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSizeMake(cellWidth, cellWidth)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,21 +61,23 @@ class ClosetCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return products.count
+    }
+    
+    private struct Storyboard {
+        static let CellIdentifier = "closetCell"
+        
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-    
-        // Configure the cell
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("closetCell", forIndexPath: indexPath) as! ClosetCollectionViewCell
+        
+        let thisProduct = products[indexPath.row]
+        
+        cell.productImageView.image = thisProduct
     
         return cell
     }
