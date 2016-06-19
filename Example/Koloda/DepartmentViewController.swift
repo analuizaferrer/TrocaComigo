@@ -10,7 +10,7 @@ import UIKit
 
 class DepartmentViewController: UIViewController {
     
-    var productImages = [String]()
+    var productImages = [NSData]()
     var category: String!
 
     override func viewDidLoad() {

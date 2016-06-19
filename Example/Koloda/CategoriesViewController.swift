@@ -10,7 +10,7 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
 
-    var productImages: [String]!
+    var productImages: [NSData]!
     var category: String!
     var subcategory: String!
     

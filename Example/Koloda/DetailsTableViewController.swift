@@ -11,7 +11,7 @@ import Firebase
 
 class DetailsTableViewController: UITableViewController {
 
-    var productImages: [String]!
+    var productImages: [NSData]!
     var category: String!
     var subcategory: String!
     var userid: String!
@@ -55,11 +55,18 @@ class DetailsTableViewController: UITableViewController {
         
         self.userid = dao.getID()
         if userid != "user not found" {
-            dao.registerProduct(self.category, subcategory: self.subcategory, description: self.descriptionText.text, brand: self.brand.text!, size: self.size.text!, condition: self.condition.text!, userID: userid)
-            print("product sent to registration")
+            dao.registerProduct(self.category, subcategory: self.subcategory, description: self.descriptionText.text, brand: self.brand.text!, size: self.size.text!, condition: self.condition.text!, userID: userid, images: self.productImages)
         }
-        print("product was not sent to registration")
         self.performSegueWithIdentifier("backToCloset", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "backToCloset") {
+            
+            let closetVC = segue.destinationViewController as! ClosetCollectionViewController
+      
+            closetVC.productImages = self.productImages
+        }
     }
     
 }

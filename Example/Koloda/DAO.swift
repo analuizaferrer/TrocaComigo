@@ -40,15 +40,37 @@ class DAO {
     
     /* MARK: Function registerProduct
      Registers the product using the owners id */
-    func registerProduct(category: String, subcategory: String, description: String, brand: String, size: String, condition: String, userID: String) {
-        let child = self.rootRef.child("product").childByAutoId()
+    func registerProduct(category: String, subcategory: String, description: String, brand: String, size: String, condition: String, userID: String, images: [NSData]) {
+        let key = self.rootRef.child("product").childByAutoId().key
+        let child = self.rootRef.child("product").child(key)
+        print(key)
         child.child("category").child(category).setValue(subcategory)
         child.child("description").setValue(description)
         child.child("brand").setValue(brand)
         child.child("size").setValue(size)
         child.child("condition").setValue(condition)
         child.child("userid").setValue(userID)
-        print("registered")
+        if images.count > 0 {
+            let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+            var cont = 1
+            for image in images {
+                
+                //let dictionary
+                
+                let imageRef = storageRef.child(userID).child("products").child(key).child("image\(cont)")
+                
+                _ = imageRef.putData(image, metadata: nil) { metadata, error in
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                    } else {
+                        // Metadata contains file metadata such as size, content-type, and download URL.
+                        _ = metadata!.downloadURL
+                    }
+                }
+                
+                cont += 1
+            }
+        }
     }
     
     /* MARK: Function createAccount

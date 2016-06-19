@@ -20,30 +20,45 @@ class ClosetCollectionViewController: UICollectionViewController {
     let teste2 = UIImage(named: "pizza")
     let teste3 = UIImage(named: "pizza")
     
-    var products: [UIImage] = []
+    var products: [UIImage]! = []
+    
+    var productImages: [NSData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //TESTE
-        products = [teste1!,teste2!,teste3!]
-        
-        let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSizeMake(cellWidth, cellWidth)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        //TESTE
+        var cont: Int = 0
+        if productImages != nil {
+            print("entrou")
+            for data in productImages {
+                print(cont)
+                let image: UIImage = UIImage(data: data)!
+                products.append(image)
+                cont += 1
+            }
+        }
+        //products = [teste1!,teste2!,teste3!]
+        
+        let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSizeMake(cellWidth, cellWidth)
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Register cell classes
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        // Do any additional setup after loading the view.
+
     }
 
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {

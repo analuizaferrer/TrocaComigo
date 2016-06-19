@@ -240,10 +240,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 let imageData:NSData = UIImagePNGRepresentation(i)!
                 
                 //Encoding
-                let strBase64:String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                //let strBase64:String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
                 
-                departmentVC.productImages.append(strBase64)
-                
+                departmentVC.productImages.append(imageData)
             }
         
         }
