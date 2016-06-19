@@ -17,12 +17,18 @@ class DetailsTableViewController: UITableViewController {
     var userid: String!
   
     @IBOutlet weak var descriptionText: UITextView!
-    
     @IBOutlet weak var brand: UITextField!
-    
     @IBOutlet weak var size: UITextField!
-    
     @IBOutlet weak var condition: UITextField!
+    
+    // changes sections' header atributtes
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.textLabel!.textColor = UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)
+        header.textLabel!.font = UIFont(name: "Montserrat-Regular", size: 14)
+        header.textLabel!.frame = header.frame
+        header.textLabel!.textAlignment = NSTextAlignment.Left
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

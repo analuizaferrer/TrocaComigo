@@ -31,8 +31,9 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		CE4940D71D17347E004242C9 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4940D61D17347E004242C9 /* SettingsTableViewController.swift */; };
 		F60896F71D11DF6700B8145D /* LikesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */; };
-		F630965B1D10AEB900936C46 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */; };
+		F630965B1D10AEB900936C46 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630965A1D10AEB900936C46 /* UserTableViewController.swift */; };
 		F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3951D08AE52003EF2CE /* LoginViewController.swift */; };
 		F631A3981D08AF38003EF2CE /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3971D08AF38003EF2CE /* DAO.swift */; };
 		F65796BF1D0B3D470085409C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796BE1D0B3D470085409C /* User.swift */; };
@@ -80,10 +81,11 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8C6AF94B3192C604963C53B3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A8A21A7254497CF03F2BBEA3 /* Pods-Koloda_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE4940D61D17347E004242C9 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CF2C9E50C19A9188464AE19E /* Pods-Koloda_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D6781607B5327BAF503C32E3 /* Koloda.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Koloda.podspec; path = ../Koloda.podspec; sourceTree = "<group>"; };
 		F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikesCollectionViewController.swift; sourceTree = "<group>"; };
-		F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F630965A1D10AEB900936C46 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		F631A3951D08AE52003EF2CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F631A3971D08AF38003EF2CE /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		F65796BE1D0B3D470085409C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -217,18 +219,19 @@
 		F65796BC1D0B3D190085409C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F6A5F8CA1D15C0F7006DC1FB /* DetailsTableViewController.swift */,
-				F6A5F8C81D15C0EC006DC1FB /* CategoriesViewController.swift */,
-				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
-				182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */,
 				440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */,
-				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
-				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
-				F630965A1D10AEB900936C46 /* SettingsTableViewController.swift */,
-				F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */,
-				F69155261D131355004710C6 /* ProfileTableViewController.swift */,
-				F6A5F8CC1D15CBFE006DC1FB /* ClosetCollectionViewController.swift */,
+				F6A5F8C81D15C0EC006DC1FB /* CategoriesViewController.swift */,
 				186B8CA11D16149F00303D92 /* ClosetCollectionViewCell.swift */,
+				F6A5F8CC1D15CBFE006DC1FB /* ClosetCollectionViewController.swift */,
+				F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */,
+				182D0CC81D147DD9009CBBD2 /* DepartmentViewController.swift */,
+				F6A5F8CA1D15C0F7006DC1FB /* DetailsTableViewController.swift */,
+				F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */,
+				F631A3951D08AE52003EF2CE /* LoginViewController.swift */,
+				1873DE5A1D08B2FF002DCCE3 /* PhotoViewController.swift */,
+				F69155261D131355004710C6 /* ProfileTableViewController.swift */,
+				F630965A1D10AEB900936C46 /* UserTableViewController.swift */,
+				CE4940D61D17347E004242C9 /* SettingsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -392,7 +395,7 @@
 				440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */,
 				F65796C11D0B3FE70085409C /* Product.swift in Sources */,
 				F69155271D131355004710C6 /* ProfileTableViewController.swift in Sources */,
-				F630965B1D10AEB900936C46 /* SettingsTableViewController.swift in Sources */,
+				F630965B1D10AEB900936C46 /* UserTableViewController.swift in Sources */,
 				F6A5F8CD1D15CBFE006DC1FB /* ClosetCollectionViewController.swift in Sources */,
 				44B5EC291B660C8500895E3D /* CustomOverlayView.swift in Sources */,
 				1873DE5B1D08B2FF002DCCE3 /* PhotoViewController.swift in Sources */,
@@ -403,6 +406,7 @@
 				F6A5F8CB1D15C0F7006DC1FB /* DetailsTableViewController.swift in Sources */,
 				440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */,
 				F65796BF1D0B3D470085409C /* User.swift in Sources */,
+				CE4940D71D17347E004242C9 /* SettingsTableViewController.swift in Sources */,
 				F65A46B51D148E99004EFCFE /* DAOCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

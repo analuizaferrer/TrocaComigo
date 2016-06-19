@@ -24,6 +24,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         password.resignFirstResponder()
         return true
     }
+
+    
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        if email.text == nil {
+//            email.placeholder = "email"
+//        } else {
+//            email.placeholder = nil
+//        }
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let paddingPassword = UIView(frame: CGRectMake(0, 0, 20, self.password.frame.height))
         password.leftView = paddingPassword
         password.leftViewMode = UITextFieldViewMode.Always
+        
     }
 
     override func didReceiveMemoryWarning() {

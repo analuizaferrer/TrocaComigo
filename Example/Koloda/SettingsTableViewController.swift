@@ -2,156 +2,102 @@
 //  SettingsTableViewController.swift
 //  Koloda
 //
-//  Created by Helena Leitão on 14/06/16.
+//  Created by Bia Lemos on 6/19/16.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SettingsTableViewController: UITableViewController {
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.textLabel!.textColor = UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)
+        header.textLabel!.font = UIFont(name: "Montserrat-Regular", size: 14)
+        header.textLabel!.frame = header.frame
+        header.textLabel!.textAlignment = NSTextAlignment.Left
+    }
 
-    @IBOutlet weak var profileImage: UIImageView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var locationLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
-        self.profileImage.clipsToBounds = true
-        
-        let dao = DAO()
-        
-        dao.getName(callbackName)
-        dao.getLocation(callbackLocation)
-        
-        let user = UIImage(named: "user-fill")
-        let imageView = UIImageView(image: user)
-        self.navigationItem.titleView = imageView
-        
-        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        let dao = DAO()
-        
-        dao.getName(callbackName)
-        dao.getLocation(callbackLocation)
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func callbackName(snapshot: FIRDataSnapshot) {
-        self.nameLabel.text = snapshot.value! as? String
-    }
-    
-    func callbackLocation(snapshot: FIRDataSnapshot) {
-        self.locationLabel.text = snapshot.value! as? String
-    }
 
-    @IBAction func image(sender: AnyObject) {
-        
-        let alert = UIAlertController(title: "Change Profile Photo", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        let removeCurrentPhoto = UIAlertAction(title: "Remove Current Photo", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
-            
-            self.profileImage.image = UIImage(named: "profile")
-        
-        })
-        alert.addAction(removeCurrentPhoto)
-        
-        let takePhoto = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
-            
-            let picker = UIImagePickerController()
-            
-            picker.delegate = self
-            picker.sourceType = .Camera
-            
-            self.presentViewController(picker, animated: true, completion: nil)
-            
-        })
+    // MARK: - Table view data source
 
-        alert.addAction(takePhoto)
-        
-        let chooseFromLibrary = UIAlertAction(title: "Choose From Library", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
-            
-            let picker = UIImagePickerController()
-            
-            picker.delegate = self
-            picker.sourceType = .PhotoLibrary
-            
-            self.presentViewController(picker, animated: true, completion: nil)
-            
-        })
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
-        alert.addAction(chooseFromLibrary)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-        alert.addAction(cancel)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
+    /*
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        return cell
     }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let profilePhoto = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
-        
-        self.profileImage.image = profilePhoto
-        
-        
-        
+    */
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case 1:
-            performSegueWithIdentifier("profile", sender: self)
-            break
-        case 2:
-            performSegueWithIdentifier("closet", sender: self)
-            break
-        case 3:
-            performSegueWithIdentifier("settings", sender: self)
-            break
-        default:
-            print("pmsdinv")
-        }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
     }
-    
-    override func viewDidLayoutSubviews() {
-        if self.tableView.respondsToSelector(Selector("setSeparatorInset:")) {
-            self.tableView.separatorInset = UIEdgeInsetsZero
-        }
-        if self.tableView.respondsToSelector(Selector("setLayoutMargins:")) {
-            self.tableView.layoutMargins = UIEdgeInsetsZero
-        }
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if cell.respondsToSelector(Selector("setSeparatorInset:")) {
-            cell.separatorInset = UIEdgeInsetsZero
-        }
-        if cell.respondsToSelector(Selector("setLayoutMargins:")) {
-            cell.layoutMargins = UIEdgeInsetsZero
-        }
-    }
-    
-    func encodeProfilePhoto (profilePhoto: UIImage) -> String {
-    
-        //Image into NSData format
-        let imageData:NSData = UIImagePNGRepresentation(profilePhoto)!
-    
-        //Encoding
-        let strBase64:String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        
-        return strBase64
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
     }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
