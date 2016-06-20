@@ -67,7 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                 self.presentViewController(homeViewController, animated: true, completion: nil)
             } else {
-                let alert = UIAlertController(title: "Error", message: "Ta errado fdp", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
                 let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
                 alert.addAction(cancel)
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -83,4 +83,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
         self.presentViewController(homeViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func forgotPasswordButtonAction(sender: AnyObject) {
+        
+        //FIRAuth.sendPasswordResetWithEmail(<#T##FIRAuth#>)
+        
+    }
+    
 }

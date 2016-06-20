@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class CreateAccountViewController: UIViewController {
 
@@ -69,15 +70,38 @@ class CreateAccountViewController: UIViewController {
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                     self.presentViewController(homeViewController, animated: true, completion: nil)
-                
                     dao.registerUser(name.text!, location: "", userID: (user?.uid)!)
                     
                 } else {
-                    let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    var errorMessage = ""
+                    
+                    let errorCode = FIRAuthErrorCode(rawValue: (error?.code)!)!
+                    switch (errorCode) {
+                    case .ErrorCodeEmailAlreadyInUse:
+                        errorMessage = "E-mail already in use"
+                    case .ErrorCodeInvalidEmail:
+                        errorMessage = "Invalid e-mail"
+                    case .ErrorCodeWrongPassword:
+                        errorMessage = "Wrong password"
+                    case .ErrorCodeWeakPassword:
+                        errorMessage = "Weak password"
+                    case .ErrorCodeOperationNotAllowed:
+                        errorMessage = "Operation not allowed"
+                    // case . CONTINUE
+                    default:
+                        print(errorCode.rawValue)
+                        errorMessage = "Error"
+                    }
+
+
+                    let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
                     let cancel = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(cancel)
+                    
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
+                
                 
             }
             
