@@ -32,21 +32,39 @@ class ProfileTableViewController: UITableViewController {
         nameField.delegate = self
         locationField.delegate = self
         
-        let dao = DAO()
-        dao.getName(callbackName)
-        dao.getLocation(callbackLocation)
-        dao.getWomenPreferences(callbackWomen)
-        dao.getMenPreferences(callbackMen)
-        dao.getKidsPreferences(callbackKids)
+//        let dao = DAO()
+//        dao.getName(callbackName)
+//        dao.getLocation(callbackLocation)
+//        dao.getWomenPreferences(callbackWomen)
+//        dao.getMenPreferences(callbackMen)
+//        dao.getKidsPreferences(callbackKids)
+        
+        DAOCache().loadUser()
+        
+        if User.singleton.name != nil {
+            self.nameField.text = User.singleton.name
+        }
+        if User.singleton.location != nil {
+            self.locationField.text = User.singleton.location
+        }
+        if User.singleton.womenPreference != nil {
+            self.switchWomen.setOn(User.singleton.womenPreference, animated: true)
+        }
+        if User.singleton.menPreference != nil {
+            self.switchMen.setOn(User.singleton.menPreference, animated: true)
+        }
+        if User.singleton.kidsPreference != nil {
+            self.switchKids.setOn(User.singleton.kidsPreference, animated: true)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
-        let dao = DAO()
-        dao.getName(callbackName)
-        dao.getLocation(callbackLocation)
-        dao.getWomenPreferences(callbackWomen)
-        dao.getMenPreferences(callbackMen)
-        dao.getKidsPreferences(callbackKids)
+//        let dao = DAO()
+//        dao.getName(callbackName)
+//        dao.getLocation(callbackLocation)
+//        dao.getWomenPreferences(callbackWomen)
+//        dao.getMenPreferences(callbackMen)
+//        dao.getKidsPreferences(callbackKids)
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +78,6 @@ class ProfileTableViewController: UITableViewController {
     
     func callbackLocation(snapshot: FIRDataSnapshot) {
         self.locationField.text = snapshot.value! as? String
-        
     }
     
     func callbackWomen(snapshot: FIRDataSnapshot) {
@@ -90,16 +107,22 @@ class ProfileTableViewController: UITableViewController {
     @IBAction func womenSwitchDidChange(sender: AnyObject) {
         let dao = DAO()
         dao.registerUserPreferences("women", status: switchWomen.on)
+        User.singleton.womenPreference = switchWomen.on
+        DAOCache().saveUser()
     }
     
     @IBAction func menSwitchDidChange(sender: AnyObject) {
         let dao = DAO()
         dao.registerUserPreferences("men", status: switchMen.on)
+        User.singleton.menPreference = switchMen.on
+        DAOCache().saveUser()
     }
     
     @IBAction func kidsSwitchDidChange(sender: AnyObject) {
         let dao = DAO()
         dao.registerUserPreferences("kids", status: switchKids.on)
+        User.singleton.kidsPreference = switchKids.on
+        DAOCache().saveUser()
     }
     
 }
@@ -109,8 +132,12 @@ extension ProfileTableViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         if textField.tag == 0 {
             DAO().updateName(textField.text!)
+            User.singleton.name = textField.text
+            DAOCache().saveUser()
         } else if textField.tag == 1 {
             DAO().updateLocation(textField.text!)
+            User.singleton.location = textField.text
+            DAOCache().saveUser()
         }
     }
 }

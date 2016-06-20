@@ -23,10 +23,19 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
         
-        let dao = DAO()
+//        let dao = DAO()
+//        
+//        dao.getName(callbackName)
+//        dao.getLocation(callbackLocation)
         
-        dao.getName(callbackName)
-        dao.getLocation(callbackLocation)
+        DAOCache().loadUser()
+        
+        if User.singleton.name != nil {
+            self.nameLabel.text = User.singleton.name
+        }
+        if User.singleton.location != nil {
+            self.locationLabel.text = User.singleton.location
+        }
         
         let user = UIImage(named: "user-fill")
         let imageView = UIImageView(image: user)
@@ -36,10 +45,10 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     override func viewWillAppear(animated: Bool) {
-        let dao = DAO()
-        
-        dao.getName(callbackName)
-        dao.getLocation(callbackLocation)
+//        let dao = DAO()
+//        
+//        dao.getName(callbackName)
+//        dao.getLocation(callbackLocation)
     }
     
     override func didReceiveMemoryWarning() {

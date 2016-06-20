@@ -43,13 +43,14 @@ class DAO {
     func registerProduct(category: String, subcategory: String, description: String, brand: String, size: String, condition: String, userID: String, images: [NSData]) {
         let key = self.rootRef.child("product").childByAutoId().key
         let child = self.rootRef.child("product").child(key)
-        print(key)
+        
         child.child("category").child(category).setValue(subcategory)
         child.child("description").setValue(description)
         child.child("brand").setValue(brand)
         child.child("size").setValue(size)
         child.child("condition").setValue(condition)
         child.child("userid").setValue(userID)
+        
         if images.count > 0 {
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
             var cont = 1
@@ -70,6 +71,15 @@ class DAO {
                 
                 cont += 1
             }
+        }
+    }
+    
+    func getImages(callback: (NSData?, NSError?)->Void) {
+        if let user = FIRAuth.auth()?.currentUser {
+            print("entrou")
+            let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+            let imageRef = storageRef.child(user.uid).child("products").child("-KKacdyymB9POaPtLcHQ").child("image1")
+            imageRef.dataWithMaxSize(18752503, completion: callback)
         }
     }
     

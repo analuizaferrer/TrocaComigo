@@ -35,17 +35,10 @@ class ClosetCollectionViewController: UICollectionViewController {
     
     override func viewDidAppear(animated: Bool) {
         //TESTE
-        var cont: Int = 0
-        if productImages != nil {
-            print("entrou")
-            for data in productImages {
-                print(cont)
-                let image: UIImage = UIImage(data: data)!
-                products.append(image)
-                cont += 1
-            }
-        }
         //products = [teste1!,teste2!,teste3!]
+        
+        let dao = DAO()
+        dao.getImages(callback)
         
         let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -61,6 +54,16 @@ class ClosetCollectionViewController: UICollectionViewController {
 
     }
 
+    func callback(data: NSData?, error: NSError?) {
+        if error == nil {
+            let image: UIImage = UIImage(data: data!)!
+            products.append(image)
+            print(products.count)
+        } else {
+            print(error)
+        }
+    }
+    
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
     }
     

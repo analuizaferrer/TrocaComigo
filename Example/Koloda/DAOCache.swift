@@ -12,13 +12,11 @@ import Foundation
 class DAOCache {
     
     private func getPath()->String {
-        
         let rootPath: String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
         let plistPath = rootPath.stringByAppendingString("/User.plist")
         let fileManager: NSFileManager = NSFileManager.defaultManager()
         
         if !fileManager.fileExistsAtPath(plistPath) {
-            
             let bundlePath: String? = NSBundle.mainBundle().pathForResource("User", ofType: "plist")
             
             if let bundle = bundlePath {
@@ -36,8 +34,7 @@ class DAOCache {
         return plistPath
     }
     
-    func saveUser () {
-    
+    func saveUser() {
         let plistPath = self.getPath()
         let user = User.singleton
         
@@ -48,13 +45,14 @@ class DAOCache {
         dict["womenPreference"] = user.womenPreference
         dict["menPreference"] = user.menPreference
         dict["kidsPreference"] = user.kidsPreference
+        //dict["product"] = user.products
+        // foto do perfil
+        // fotos dos produtos
         
         dict.writeToFile(plistPath, atomically: true)
-        
     }
     
     func loadUser() {
-        
         let plistPath = getPath()
         let user = User.singleton
         
@@ -65,12 +63,5 @@ class DAOCache {
         user.womenPreference = dict?.valueForKey("womenPreference") as! Bool!
         user.menPreference = dict?.valueForKey("menPreference") as! Bool!
         user.kidsPreference = dict?.valueForKey("kidsPreference") as! Bool!
-
-    
     }
-    
-    
-    
-    
-    
 }

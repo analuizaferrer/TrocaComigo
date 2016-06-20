@@ -14,12 +14,11 @@ class User {
     var womenPreference: Bool!
     var menPreference: Bool!
     var kidsPreference: Bool!
+    var products: [Product]!
     
     static let singleton = User()
     
     private init() {
         
     }
-    
-    
 }
