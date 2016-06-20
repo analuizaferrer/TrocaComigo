@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class CreateAccountViewController: UIViewController {
 
@@ -69,15 +70,32 @@ class CreateAccountViewController: UIViewController {
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                     self.presentViewController(homeViewController, animated: true, completion: nil)
-                
                     dao.registerUser(name.text!, location: "", userID: (user?.uid)!)
                     
                 } else {
+                    let errorCode = FIRAuthErrorCode(rawValue: (error?.code)!)!
+                    switch (errorCode) {
+                    case .ErrorCodeEmailAlreadyInUse:
+                        print("Handle email already in use")
+                    case FIRAuthErrorCode.ErrorCodeInvalidEmail:
+                        print("Handle invalid email")
+                    case .ErrorCodeWrongPassword:
+                        print("Handle wrong password")
+                    case .ErrorCodeWeakPassword:
+                        print("Handle weak password")
+                    // case . CONTINUE
+                    default:
+                        print("Handle default situation")
+                    }
+
+
                     let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertControllerStyle.Alert)
                     let cancel = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(cancel)
+                    
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
+                
                 
             }
             
