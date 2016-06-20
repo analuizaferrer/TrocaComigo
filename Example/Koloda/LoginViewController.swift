@@ -84,4 +84,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
         self.presentViewController(homeViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func forgotPasswordButtonAction(sender: AnyObject) {
+        
+        //FIRAuth.sendPasswordResetWithEmail(<#T##FIRAuth#>)
+        
+    }
+    
 }

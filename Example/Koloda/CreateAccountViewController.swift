@@ -90,6 +90,7 @@ class CreateAccountViewController: UIViewController {
                         errorMessage = "Operation not allowed"
                     // case . CONTINUE
                     default:
+                        print(errorCode.rawValue)
                         errorMessage = "Error"
                     }
 
