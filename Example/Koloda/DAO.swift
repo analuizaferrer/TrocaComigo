@@ -31,10 +31,8 @@ class DAO {
     func registerUserPreferences(name: String, status: Bool) {
         if let user = FIRAuth.auth()?.currentUser {
             self.rootRef.child("profile").child(user.uid).child("preferences").child(name).setValue(status.description)
-            print("entrou aqui porraaaaa")
         } else {
             // No user is signed in.
-            print("entrou aqui")
         }
     }
     
@@ -43,7 +41,7 @@ class DAO {
     func registerProduct(category: String, subcategory: String, description: String, brand: String, size: String, condition: String, userID: String, images: [NSData]) {
         let key = self.rootRef.child("product").childByAutoId().key
         let child = self.rootRef.child("product").child(key)
-        
+
         child.child("category").child(category).setValue(subcategory)
         child.child("description").setValue(description)
         child.child("brand").setValue(brand)
@@ -70,6 +68,27 @@ class DAO {
                 }
                 
                 cont += 1
+            }
+        }
+        let product = Product(category: category, subcategory: subcategory, description: description, condition: condition, size: size, brand: brand, images: images)
+        print(images.count)
+    
+        User.singleton.products.append(product)
+        DAOCache().saveUser()
+    }
+    
+    func registerProfilePic(imageData: NSData) {
+        if let user = FIRAuth.auth()?.currentUser {
+            let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+            let imageRef = storageRef.child(user.uid).child("profile").child("image")
+          
+            _ = imageRef.putData(imageData, metadata: nil) { metadata, error in
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                } else {
+                    // Metadata contains file metadata such as size, content-type, and download URL.
+                    _ = metadata!.downloadURL
+                }
             }
         }
     }

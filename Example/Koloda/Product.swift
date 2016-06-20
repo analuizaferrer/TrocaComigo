@@ -15,13 +15,15 @@ class Product {
     var condition: String!
     var size: String!
     var brand: String!
+    var images: [NSData]!
     
-    init(category: String, subcategory: String, description: String, condition: String, size: String, brand: String) {
+    init(category: String, subcategory: String, description: String, condition: String, size: String, brand: String, images: [NSData]) {
         self.category = category
         self.subcategory = subcategory
         self.description = description
         self.condition = condition
         self.size = size
         self.brand = brand
+        self.images = images
     }
 }

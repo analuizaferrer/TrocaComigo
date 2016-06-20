@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class User {
     var name: String!
@@ -14,7 +15,8 @@ class User {
     var womenPreference: Bool!
     var menPreference: Bool!
     var kidsPreference: Bool!
-    var products: [Product]!
+    var profilePic: UIImage?
+    var products = [Product]()
     
     static let singleton = User()
     

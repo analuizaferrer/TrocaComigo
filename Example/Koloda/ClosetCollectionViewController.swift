@@ -20,12 +20,21 @@ class ClosetCollectionViewController: UICollectionViewController {
     let teste2 = UIImage(named: "pizza")
     let teste3 = UIImage(named: "pizza")
     
-    var products: [UIImage]! = []
+    var productArray: [UIImage]! = []
     
     var productImages: [NSData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(User.singleton.products.count)
+        
+        let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSizeMake(cellWidth, cellWidth)
+        
+        // Register cell classes
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,35 +43,31 @@ class ClosetCollectionViewController: UICollectionViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        //TESTE
-        //products = [teste1!,teste2!,teste3!]
-        
-        let dao = DAO()
-        dao.getImages(callback)
-        
-        let cellWidth = (CGRectGetWidth((collectionView?.frame)!) - leftAndRightPadding) / numberOfItensPerRow
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSizeMake(cellWidth, cellWidth)
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
         // Do any additional setup after loading the view.
-
     }
-
-    func callback(data: NSData?, error: NSError?) {
-        if error == nil {
-            let image: UIImage = UIImage(data: data!)!
-            products.append(image)
-            print(products.count)
-        } else {
-            print(error)
+    
+    override func viewWillAppear(animated: Bool) {
+        productArray.removeAll()
+        
+        if User.singleton.products.count > 0 {
+            
+            for product in User.singleton.products {
+                let image = UIImage(data: product.images[0])
+                productArray.append(image!)
+            }
+            self.collectionView?.reloadData()
         }
     }
+
+//    func callback(data: NSData?, error: NSError?) {
+//        if error == nil {
+//            let image: UIImage = UIImage(data: data!)!
+//            product.append(image)
+//            print(product.count)
+//        } else {
+//            print(error)
+//        }
+//    }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
     }
@@ -81,7 +86,7 @@ class ClosetCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return products.count
+        return productArray.count
     }
     
     private struct Storyboard {
@@ -93,7 +98,7 @@ class ClosetCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("closetCell", forIndexPath: indexPath) as! ClosetCollectionViewCell
         
-        let thisProduct = products[indexPath.row]
+        let thisProduct = productArray[indexPath.row]
         
         cell.productImageView.image = thisProduct
     
