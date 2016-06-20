@@ -73,23 +73,28 @@ class CreateAccountViewController: UIViewController {
                     dao.registerUser(name.text!, location: "", userID: (user?.uid)!)
                     
                 } else {
+                    
+                    var errorMessage = ""
+                    
                     let errorCode = FIRAuthErrorCode(rawValue: (error?.code)!)!
                     switch (errorCode) {
                     case .ErrorCodeEmailAlreadyInUse:
-                        print("Handle email already in use")
-                    case FIRAuthErrorCode.ErrorCodeInvalidEmail:
-                        print("Handle invalid email")
+                        errorMessage = "E-mail already in use"
+                    case .ErrorCodeInvalidEmail:
+                        errorMessage = "Invalid e-mail"
                     case .ErrorCodeWrongPassword:
-                        print("Handle wrong password")
+                        errorMessage = "Wrong password"
                     case .ErrorCodeWeakPassword:
-                        print("Handle weak password")
+                        errorMessage = "Weak password"
+                    case .ErrorCodeOperationNotAllowed:
+                        errorMessage = "Operation not allowed"
                     // case . CONTINUE
                     default:
-                        print("Handle default situation")
+                        errorMessage = "Error"
                     }
 
 
-                    let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
                     let cancel = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(cancel)
                     
