@@ -19,15 +19,10 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
-        
-//        let dao = DAO()
-//        
-//        dao.getName(callbackName)
-//        dao.getLocation(callbackLocation)
-        
+      
         DAOCache().loadUser()
         
         if User.singleton.name != nil {
@@ -41,14 +36,19 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         let imageView = UIImageView(image: user)
         self.navigationItem.titleView = imageView
         
-        
+        if User.singleton.profilePic != nil {
+            profileImage.image = User.singleton.profilePic
+        }
+
+        if(profileImage.image != "profile") {
+            let imageData: NSData = UIImagePNGRepresentation(profileImage.image!)!
+            DAO().registerProfilePic(imageData)
+            User.singleton.profilePic = profileImage.image
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
-//        let dao = DAO()
-//        
-//        dao.getName(callbackName)
-//        dao.getLocation(callbackLocation)
+        DAOCache().saveUser()
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,6 +71,8 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         let removeCurrentPhoto = UIAlertAction(title: "Remove Current Photo", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
             
             self.profileImage.image = UIImage(named: "profile")
+            User.singleton.profilePic = self.profileImage.image
+            DAOCache().saveUser()
         
         })
         alert.addAction(removeCurrentPhoto)
@@ -114,7 +116,8 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         
         self.profileImage.image = profilePhoto
         
-        
+        User.singleton.profilePic = profilePhoto
+        DAOCache().saveUser()
         
     }
     

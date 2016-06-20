@@ -65,14 +65,4 @@ class DetailsTableViewController: UITableViewController {
         }
         self.performSegueWithIdentifier("backToCloset", sender: self)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "backToCloset") {
-            
-            let closetVC = segue.destinationViewController as! ClosetCollectionViewController
-      
-            closetVC.productImages = self.productImages
-        }
-    }
-    
 }

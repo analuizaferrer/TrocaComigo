@@ -209,9 +209,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        setupSession()
-        
     }
     
     override func viewDidLayoutSubviews() {

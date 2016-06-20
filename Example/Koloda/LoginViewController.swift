@@ -36,10 +36,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         email.delegate = self
         password.delegate = self
-        
+    
         // change color of the placeholders
         email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
         password.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
@@ -52,7 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let paddingPassword = UIView(frame: CGRectMake(0, 0, 20, self.password.frame.height))
         password.leftView = paddingPassword
         password.leftViewMode = UITextFieldViewMode.Always
-        
     }
 
     override func didReceiveMemoryWarning() {
