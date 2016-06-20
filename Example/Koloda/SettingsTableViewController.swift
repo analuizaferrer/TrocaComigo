@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
+    // changes sections' header atributtes
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel!.textColor = UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)

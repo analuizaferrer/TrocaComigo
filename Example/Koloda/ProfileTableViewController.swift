@@ -127,7 +127,7 @@ class ProfileTableViewController: UITableViewController {
     
 }
 
-extension ProfileTableViewController: UITextFieldDelegate {
+extension ProfileTableViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         textField.resignFirstResponder()
         if textField.tag == 0 {
