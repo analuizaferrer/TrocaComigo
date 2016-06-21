@@ -9,8 +9,8 @@
 import UIKit
 import Koloda
 
-private let overlayRightImageName = "overlay_like"
-private let overlayLeftImageName = "overlay_skip"
+private let overlayRightImageName = "overlay-like"
+private let overlayLeftImageName = "overlay-skip"
 
 class CustomOverlayView: OverlayView {
 
@@ -33,8 +33,6 @@ class CustomOverlayView: OverlayView {
             default:
                 overlayImageView.image = nil
             }
-            
         }
     }
-
 }

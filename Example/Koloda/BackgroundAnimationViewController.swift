@@ -10,7 +10,7 @@ import UIKit
 import Koloda
 import pop
 
-private let numberOfCards: UInt = 5
+private var numberOfCards: UInt = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
@@ -23,6 +23,9 @@ class BackgroundAnimationViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DAOCache().loadUser()
+        numberOfCards = UInt(User.singleton.products.count)
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -59,7 +62,7 @@ extension BackgroundAnimationViewController: KolodaViewDelegate {
     }
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
+       // UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {
@@ -90,7 +93,13 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     }
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
-        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
+        let data = User.singleton.products[Int(index)].images[0]
+        let image = UIImage(data: data)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        imageView.layer.cornerRadius = 15.0
+        imageView.clipsToBounds = true
+        return imageView
     }
     
     func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
