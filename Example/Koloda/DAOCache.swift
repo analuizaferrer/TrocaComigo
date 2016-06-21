@@ -92,6 +92,7 @@ class DAOCache {
         
         }
         
+        dict["id"] = user.id
         dict["Products"] = products
         dict["name"] = user.name
         dict["location"] = user.location
@@ -107,7 +108,11 @@ class DAOCache {
         let plistPath = getPath()
         let user = User.singleton
         
-        let dict = NSMutableDictionary(contentsOfFile: plistPath) //quando chama isso aqui, esta deixando TUDO nil
+        let dict = NSMutableDictionary(contentsOfFile: plistPath)
+        
+        if dict?.valueForKey("id") != nil {
+            user.id = dict?.valueForKey("id") as! String
+        }
         
         if dict?.valueForKey("name") != nil {
             user.name = dict?.valueForKey("name") as! String!

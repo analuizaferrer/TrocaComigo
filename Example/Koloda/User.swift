@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class User {
+    var id: String!
     var name: String!
     var location: String!
     var womenPreference: Bool!
