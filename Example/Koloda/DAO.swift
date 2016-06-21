@@ -26,6 +26,7 @@ class DAO {
         if location != "" {
             self.rootRef.child("profile").child(userID).child("location").setValue(location)
         }
+        User.singleton.id = userID
     }
     
     func registerUserPreferences(name: String, status: Bool) {

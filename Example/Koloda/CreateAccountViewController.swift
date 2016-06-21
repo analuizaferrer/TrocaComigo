@@ -70,8 +70,20 @@ class CreateAccountViewController: UIViewController {
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                     self.presentViewController(homeViewController, animated: true, completion: nil)
+                    
                     dao.registerUser(name.text!, location: "", userID: (user?.uid)!)
                     
+                    let uniqueUser = User.singleton
+                    uniqueUser.id = user?.uid
+                    uniqueUser.name = name.text
+                    uniqueUser.location = nil
+                    uniqueUser.kidsPreference = nil
+                    uniqueUser.menPreference = nil
+                    uniqueUser.womenPreference = nil
+                    uniqueUser.profilePic = nil
+                    uniqueUser.products.removeAll()
+                    
+                    DAOCache().saveUser()
                 } else {
                     
                     var errorMessage = ""

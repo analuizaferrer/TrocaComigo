@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var password: UITextField!
@@ -24,22 +24,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         password.resignFirstResponder()
         return true
     }
-
     
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        if email.text == nil {
-//            email.placeholder = "email"
-//        } else {
-//            email.placeholder = nil
-//        }
-//    }
+    
+    //    func textFieldDidBeginEditing(textField: UITextField) {
+    //        if email.text == nil {
+    //            email.placeholder = "email"
+    //        } else {
+    //            email.placeholder = nil
+    //        }
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         email.delegate = self
         password.delegate = self
-    
+        
         // change color of the placeholders
         email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
         password.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
@@ -53,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         password.leftView = paddingPassword
         password.leftViewMode = UITextFieldViewMode.Always
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -66,28 +66,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                 self.presentViewController(homeViewController, animated: true, completion: nil)
-            } else {
-                let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
-                let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-                alert.addAction(cancel)
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-
+                
+                let uniqueUser = User.singleton
+                if uniqueUser.id != nil {
+                    if uniqueUser.id != user?.uid {
+                        uniqueUser.id = user?.uid
+                        uniqueUser.name = nil
+                        uniqueUser.location = nil
+                        uniqueUser.kidsPreference = nil
+                        uniqueUser.menPreference = nil
+                        uniqueUser.womenPreference = nil
+                        uniqueUser.profilePic = nil
+                        uniqueUser.products.removeAll()
+                        DAOCache().saveUser()
+                    }
+                }
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
+            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(cancel)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         
-        dao.login(email.text!, password: password.text!, callback: loginCallback)
     }
     
-    @IBAction func createAccount(sender: AnyObject) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
-        self.presentViewController(homeViewController, animated: true, completion: nil)
-    }
+    dao.login(email.text!, password: password.text!, callback: loginCallback)
+}
+
+@IBAction func createAccount(sender: AnyObject) {
+    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
+    self.presentViewController(homeViewController, animated: true, completion: nil)
+}
+
+@IBAction func forgotPasswordButtonAction(sender: AnyObject) {
     
-    @IBAction func forgotPasswordButtonAction(sender: AnyObject) {
-        
-        //FIRAuth.sendPasswordResetWithEmail(<#T##FIRAuth#>)
-        
-    }
+    //FIRAuth.sendPasswordResetWithEmail(<#T##FIRAuth#>)
     
+}
+
 }

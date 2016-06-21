@@ -23,33 +23,27 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
         
-        
-        DAOCache().loadUser()
-        
+        let user = UIImage(named: "user-fill")
+        let imageView = UIImageView(image: user)
+        self.navigationItem.titleView = imageView
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         if User.singleton.name != nil {
             self.nameLabel.text = User.singleton.name
         }
+       
         if User.singleton.location != nil {
             self.locationLabel.text = User.singleton.location
         }
         
-        let user = UIImage(named: "user-fill")
-        let imageView = UIImageView(image: user)
-        self.navigationItem.titleView = imageView
-        
         if User.singleton.profilePic != nil {
             profileImage.image = User.singleton.profilePic
         }
-
-        if(profileImage.image != "profile") {
-            let imageData: NSData = UIImagePNGRepresentation(profileImage.image!)!
-            DAO().registerProfilePic(imageData)
-            User.singleton.profilePic = profileImage.image
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        DAOCache().saveUser()
+        
+        let imageData: NSData = UIImagePNGRepresentation(profileImage.image!)!
+        DAO().registerProfilePic(imageData)
+        User.singleton.profilePic = profileImage.image
     }
     
     override func didReceiveMemoryWarning() {

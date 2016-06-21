@@ -20,14 +20,18 @@ class SwapViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.myClothe.layer.cornerRadius = self.myClothe.frame.height / 2
+        self.myClothe.contentMode = UIViewContentMode.ScaleAspectFill
+        self.myClothe.layer.cornerRadius = self.myClothe.frame.size.width / 2
+        self.myClothe.layer.masksToBounds = false
         self.myClothe.clipsToBounds = true
         
-        self.yourClothe.layer.cornerRadius = self.yourClothe.frame.size.height / 2
+        self.yourClothe.contentMode = UIViewContentMode.ScaleAspectFill
+        self.yourClothe.layer.cornerRadius = self.yourClothe.frame.size.width / 2
         self.yourClothe.clipsToBounds = true
 
         // Do any additional setup after loading the view.
@@ -50,3 +54,4 @@ class SwapViewController: UIViewController {
     */
 
 }
+
