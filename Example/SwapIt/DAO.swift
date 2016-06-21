@@ -223,4 +223,15 @@ class DAO {
         
     }
     
+    func generateProductsArray(callback:(FIRDataSnapshot)->Void)->Void {
+        
+        self.rootRef.child("product").queryOrderedByChild("teste").observeEventType(.ChildAdded, withBlock: { snapshot in
+            print (snapshot.key)
+            
+            callback(snapshot)
+            
+        })
+        
+    }
+    
 }

@@ -23,13 +23,18 @@ class BackgroundAnimationViewController: UIViewController {
     
     var matchProduct = ""
     
+    var productsArray: [String] = []
+    let randomProductsArray: [String] = []
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
         
-        print("Match Product: \(matchProduct) End of Match Product")
+        DAO().generateProductsArray(self.callbackProductsArray)
+        
+        generateRandomProductsArray()
         
         DAOCache().loadUser()
         numberOfCards = UInt(User.singleton.products.count)
@@ -64,6 +69,21 @@ class BackgroundAnimationViewController: UIViewController {
         self.matchProduct = (snapshot.value! as? String)!
         
         print("callback funcionando")
+    }
+    
+    func callbackProductsArray (snapshot: FIRDataSnapshot) {
+        
+        self.productsArray.append(snapshot.key as! String)
+        print(snapshot.key)
+    }
+    
+    func generateRandomProductsArray () {
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(self.productsArray.count)))
+        print (randomIndex)
+//        let array = ["Frodo", "sam", "wise", "gamgee"]
+//        let randomIndex = Int(arc4random_uniform(UInt32(array.count)))
+//        print(array[randomIndex])
     }
 }
 
