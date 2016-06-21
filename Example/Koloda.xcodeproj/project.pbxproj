@@ -20,6 +20,7 @@
 		2425301E1D0EFE2C0009EF93 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530161D0EFD530009EF93 /* Montserrat-SemiBold.otf */; };
 		2425301F1D0EFE2C0009EF93 /* Montserrat-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 242530171D0EFD540009EF93 /* Montserrat-UltraLight.otf */; };
 		242530201D0EFE2C0009EF93 /* GrandHotel-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2425300F1D0EFD3D0009EF93 /* GrandHotel-Regular.otf */; };
+		245A5AB61D19C00700079264 /* SwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A5AB51D19C00700079264 /* SwapViewController.swift */; };
 		440FB7671B51499A009FC9FC /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FB7661B51499A009FC9FC /* CustomKolodaView.swift */; };
 		440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */; };
 		4420661D1B44577500FD4CAD /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4420661B1B44577500FD4CAD /* OverlayView.xib */; };
@@ -63,6 +64,7 @@
 		242530151D0EFD530009EF93 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		242530161D0EFD530009EF93 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		242530171D0EFD540009EF93 /* Montserrat-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-UltraLight.otf"; sourceTree = "<group>"; };
+		245A5AB51D19C00700079264 /* SwapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapViewController.swift; sourceTree = "<group>"; };
 		440FB7661B51499A009FC9FC /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
 		440FB7681B515995009FC9FC /* BackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAnimationViewController.swift; sourceTree = "<group>"; };
 		4420661C1B44577500FD4CAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OverlayView.xib; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				F69155261D131355004710C6 /* ProfileTableViewController.swift */,
 				F630965A1D10AEB900936C46 /* UserTableViewController.swift */,
 				CE4940D61D17347E004242C9 /* SettingsTableViewController.swift */,
+				245A5AB51D19C00700079264 /* SwapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				F60896F71D11DF6700B8145D /* LikesCollectionViewController.swift in Sources */,
 				4420661F1B4457E800FD4CAD /* ExampleOverlayView.swift in Sources */,
+				245A5AB61D19C00700079264 /* SwapViewController.swift in Sources */,
 				F6A5F8CB1D15C0F7006DC1FB /* DetailsTableViewController.swift in Sources */,
 				440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */,
 				F65796BF1D0B3D470085409C /* User.swift in Sources */,

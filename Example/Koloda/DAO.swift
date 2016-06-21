@@ -78,6 +78,25 @@ class DAO {
         DAOCache().saveUser()
     }
     
+    
+    // REGISTER LIKES
+    func registerLikes(likedUserID: String, likedProductID: String) {
+        
+        let user = FIRAuth.auth()?.currentUser
+        
+        print("Entrou na funcao")
+        
+//        self.rootRef.child("profile").queryOrderedByChild(likedUserID)
+//            .observeEventType(.ChildAdded, withBlock: { snapshot in
+//                print(snapshot.key)
+//                print("achoooooo")
+//                
+//            })
+        
+        self.rootRef.child("profile").child(likedUserID).child("likes").child((user?.uid)!).setValue(likedProductID)
+        
+    }
+    
     func registerProfilePic(imageData: NSData) {
         if let user = FIRAuth.auth()?.currentUser {
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
