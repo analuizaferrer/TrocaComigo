@@ -205,4 +205,21 @@ class DAO {
             }
         }
     }
+    
+    // SEARCH FOR MATCH (searches if the user whose product you like already likes a product of yours)
+    func searchForMatch(ownerID: String, callback:(FIRDataSnapshot) -> Void)->Void {
+        
+        let user = FIRAuth.auth()?.currentUser
+        
+        self.rootRef.child("profile").child(user!.uid).child("likes").queryOrderedByChild(ownerID).observeEventType(.ChildAdded, withBlock: { snapshot in
+                print(snapshot.key)
+            
+                callback(snapshot)
+            
+                print("achoooooo owner")
+            
+            })
+        
+    }
+    
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Koloda
 import pop
+import Firebase
 
 private var numberOfCards: UInt = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -20,9 +21,15 @@ class BackgroundAnimationViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    var matchProduct = ""
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
+        
+        print("Match Product: \(matchProduct) End of Match Product")
         
         DAOCache().loadUser()
         numberOfCards = UInt(User.singleton.products.count)
@@ -51,6 +58,12 @@ class BackgroundAnimationViewController: UIViewController {
     
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
+    }
+    
+    func callbackMatchProduct(snapshot: FIRDataSnapshot) {
+        self.matchProduct = (snapshot.value! as? String)!
+        
+        print("callback funcionando")
     }
 }
 
