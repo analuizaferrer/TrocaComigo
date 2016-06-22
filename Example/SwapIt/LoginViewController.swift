@@ -82,6 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 DAO().generateProductsArray({ products in
                     print(products[2].id)
+            
                 })
                 
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

@@ -140,7 +140,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func refreshImages() {
         var i = 0
         for image in photos {
-            photoButtons[i].setBackgroundImage(image, forState: .Normal)
+            photoButtons[i].setImage(image, forState: .Normal)
             i = i + 1
         }
         while i < photoButtons.count {
