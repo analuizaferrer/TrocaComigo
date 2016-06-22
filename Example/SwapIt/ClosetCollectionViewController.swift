@@ -100,6 +100,7 @@ class ClosetCollectionViewController: UICollectionViewController {
         
         let thisProduct = productArray[indexPath.row]
         
+        cell.productImageView.contentMode = UIViewContentMode.ScaleAspectFill
         cell.productImageView.image = thisProduct
     
         return cell

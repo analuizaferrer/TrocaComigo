@@ -73,7 +73,6 @@ class DAO {
             }
         }
         let product = Product(category: category, subcategory: subcategory, description: description, condition: condition, size: size, brand: brand, images: images)
-        print(images.count)
     
         User.singleton.products.append(product)
         DAOCache().saveUser()
