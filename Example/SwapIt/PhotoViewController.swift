@@ -29,11 +29,20 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet var photoButton5: UIButton!
     @IBOutlet var photoButton6: UIButton!
     
+    @IBOutlet var photoImage1: UIImageView!
+    @IBOutlet var photoImage2: UIImageView!
+    @IBOutlet var photoImage3: UIImageView!
+    @IBOutlet var photoImage4: UIImageView!
+    @IBOutlet var photoImage5: UIImageView!
+    @IBOutlet var photoImage6: UIImageView!
+    
+    
     var photo: UIImage?
     
     var photos = [UIImage]()
     
     var photoButtons = [UIButton]()
+    var photoImages = [UIImageView]()
     
     var confirmationView: UIView!
     
@@ -56,6 +65,17 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         photoButtons.append(photoButton4)
         photoButtons.append(photoButton5)
         photoButtons.append(photoButton6)
+        
+        photoImages.append(photoImage1)
+        photoImages.append(photoImage2)
+        photoImages.append(photoImage3)
+        photoImages.append(photoImage4)
+        photoImages.append(photoImage5)
+        photoImages.append(photoImage6)
+        
+        for i in photoImages {
+            i.image = UIImage(named: "no-photo")
+        }
         
         var i = 0
         for button in photoButtons {
@@ -128,7 +148,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         
         if (photos.count < 6) {
-            photoButtons[photos.count].setBackgroundImage(thisImage, forState: .Normal)
+            photoImages[photos.count].image = thisImage
+            photoImages[photos.count].contentMode = UIViewContentMode.ScaleAspectFill
+            photoImages[photos.count].clipsToBounds = true
             photos.append(thisImage)
             
             if (photos.count == 6) {
@@ -140,11 +162,13 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func refreshImages() {
         var i = 0
         for image in photos {
-            photoButtons[i].setImage(image, forState: .Normal)
+            photoImages[i].image = image
+            photoImages[i].contentMode = UIViewContentMode.ScaleAspectFill
+            photoImages[i].clipsToBounds = true
             i = i + 1
         }
         while i < photoButtons.count {
-            photoButtons[i].setBackgroundImage(UIImage(named: "no-photo"), forState: .Normal)
+            photoImages[i].image = UIImage(named: "no-photo")
             i = i + 1
         }
     }
@@ -170,6 +194,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             selectedPhoto = sender.tag
             
             confirmationImageView.image = photos[selectedPhoto]
+            confirmationImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            confirmationImageView.clipsToBounds = true
             
             view.addSubview(confirmationView)
         
