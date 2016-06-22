@@ -17,7 +17,7 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
-class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSource {
+class BackgroundAnimationViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
@@ -35,10 +35,11 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
 //            
 //        }
         
+        print("entrou no view did load do koloda")
+        
         productsArray.shuffle()
         
         DAOCache().loadUser()
-        numberOfCards = UInt(User.singleton.products.count)
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -67,10 +68,16 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     func callbackMatchProduct(snapshot: FIRDataSnapshot) {
         self.matchProduct = (snapshot.value! as? String)!
     }
+}
+
+extension BackgroundAnimationViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         kolodaView.resetCurrentCardIndex()
     }
+}
+
+extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
        // UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
@@ -104,7 +111,7 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
         guard imagesArray.count != 0 else {
             return UIView()
         }
-        
+        print("veio pro delegate do koloda")
         let data = imagesArray[Int(index)]
         let image = UIImage(data: data)
         let imageView = UIImageView(image: image)

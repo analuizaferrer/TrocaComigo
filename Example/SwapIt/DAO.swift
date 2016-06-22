@@ -116,7 +116,7 @@ class DAO {
     func getImages(ids: [String], callback:([NSData]) -> Void) -> Void  {
         var images: [NSData] = []
         let loadImagesGroup = dispatch_group_create()
-        
+        print("entrou na funçào das imagens com id de user \(User.singleton.id)")
         if let user = FIRAuth.auth()?.currentUser {
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
             for id in ids {
@@ -124,6 +124,7 @@ class DAO {
                 dispatch_group_enter(loadImagesGroup)
                 imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
                     if error == nil {
+                        print("deu append nas fotos")
                         images.append(data!)
                     }
                     dispatch_group_leave(loadImagesGroup)
