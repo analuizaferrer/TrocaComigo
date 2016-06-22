@@ -37,6 +37,7 @@
 		F630965B1D10AEB900936C46 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630965A1D10AEB900936C46 /* UserTableViewController.swift */; };
 		F631A3961D08AE52003EF2CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3951D08AE52003EF2CE /* LoginViewController.swift */; };
 		F631A3981D08AF38003EF2CE /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631A3971D08AF38003EF2CE /* DAO.swift */; };
+		F63F71411D1B34B300791500 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F63F71401D1B34B300791500 /* Default-568h@2x.png */; };
 		F65796BF1D0B3D470085409C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796BE1D0B3D470085409C /* User.swift */; };
 		F65796C11D0B3FE70085409C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65796C01D0B3FE70085409C /* Product.swift */; };
 		F65A46B51D148E99004EFCFE /* DAOCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65A46B41D148E99004EFCFE /* DAOCache.swift */; };
@@ -89,6 +90,7 @@
 		F630965A1D10AEB900936C46 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		F631A3951D08AE52003EF2CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F631A3971D08AF38003EF2CE /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
+		F63F71401D1B34B300791500 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F65796BE1D0B3D470085409C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F65796C01D0B3FE70085409C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F65A46B41D148E99004EFCFE /* DAOCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOCache.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				F63F71401D1B34B300791500 /* Default-568h@2x.png */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -319,6 +322,7 @@
 				2425301C1D0EFE2C0009EF93 /* Montserrat-Light.otf in Resources */,
 				2425301D1D0EFE2C0009EF93 /* Montserrat-Regular.otf in Resources */,
 				2425301E1D0EFE2C0009EF93 /* Montserrat-SemiBold.otf in Resources */,
+				F63F71411D1B34B300791500 /* Default-568h@2x.png in Resources */,
 				2425301F1D0EFE2C0009EF93 /* Montserrat-UltraLight.otf in Resources */,
 				242530201D0EFE2C0009EF93 /* GrandHotel-Regular.otf in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,

@@ -16,6 +16,7 @@ class Product {
     var condition: String!
     var size: String!
     var brand: String!
+    var userid: String!
     var images: [NSData]?
     
     init(category: String, subcategory: String, description: String, condition: String, size: String, brand: String, images: [NSData]) {
@@ -36,6 +37,7 @@ class Product {
         self.condition = dict["condition"] as! String
         self.size = dict["size"] as! String
         self.brand = dict["brand"] as! String
+        self.userid = dict["userid"] as! String
     }
 }
 

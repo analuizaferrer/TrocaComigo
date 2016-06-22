@@ -97,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             print("entrou no segundo for")
                             imagesArray.append(image)
                         }
-                        
+                        print("veio pra ca")
                         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                         self.presentViewController(homeViewController, animated: true, completion: nil)

@@ -85,14 +85,6 @@ class DAO {
         let user = FIRAuth.auth()?.currentUser
         
         print("Entrou na funcao")
-        
-//        self.rootRef.child("profile").queryOrderedByChild(likedUserID)
-//            .observeEventType(.ChildAdded, withBlock: { snapshot in
-//                print(snapshot.key)
-//                print("achoooooo")
-//                
-//            })
-        
         self.rootRef.child("profile").child(likedUserID).child("likes").child((user?.uid)!).setValue(likedProductID)
         
     }
@@ -117,18 +109,27 @@ class DAO {
         var images: [NSData] = []
         let loadImagesGroup = dispatch_group_create()
         print("entrou na funçào das imagens com id de user \(User.singleton.id)")
-        if let user = FIRAuth.auth()?.currentUser {
+        
+        if (FIRAuth.auth()?.currentUser) != nil {
+            print("current user")
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
             for id in ids {
-                let imageRef = storageRef.child(user.uid).child("products").child(id).child("image1")
-                dispatch_group_enter(loadImagesGroup)
-                imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
-                    if error == nil {
-                        print("deu append nas fotos")
-                        images.append(data!)
+                print(id)
+                for product in productsArray {
+                    if product.id == id {
+                        let userid = product.userid
+                        let imageRef = storageRef.child(userid).child("products").child(id).child("image1")
+                        dispatch_group_enter(loadImagesGroup)
+                        imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
+                            if error == nil {
+                                print("deu append nas fotos")
+                                images.append(data!)
+                            }
+                            dispatch_group_leave(loadImagesGroup)
+                        })
+
                     }
-                    dispatch_group_leave(loadImagesGroup)
-                })
+                }
             }
         }
         
@@ -253,11 +254,16 @@ class DAO {
             for (index, value) in snapshot.value as! [String : AnyObject] {
                 let productDict = value as! [String : AnyObject]
                 let product : Product = Product(dict: productDict, index: index)
-                products.append(product)
+                
+                print("id1: \(FIRAuth.auth()?.currentUser?.uid)")
+                print("id2: \(product.userid)")
+                
+                if FIRAuth.auth()?.currentUser?.uid != product.userid {
+                    print("entrou no if")
+                    products.append(product)
+                }
             }
-            
             callback(products)
         })
     }
-
 }

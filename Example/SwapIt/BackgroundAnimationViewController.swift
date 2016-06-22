@@ -53,11 +53,13 @@ class BackgroundAnimationViewController: UIViewController {
     }
     
     //MARK: IBActions
-    @IBAction func leftButtonTapped() {
+    @IBAction func leftButtonTapped() { // dislke
+        print("baksodjbhkfdiewpfdhskbvjosfkfjvckbhisdpaoj")
         kolodaView?.swipe(SwipeResultDirection.Left)
     }
     
-    @IBAction func rightButtonTapped() {
+    @IBAction func rightButtonTapped() { // like self.rootRef.child("profile").child(idDonoProduto).child("likes").child(idUsuario).setValue(idProduto)
+       print("baksodjbhkfdiewpfdhskbvjosfkfjvckbhisdpaoj")
         kolodaView?.swipe(SwipeResultDirection.Right)
     }
     
@@ -108,6 +110,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
+         print("veio pro delegate do koloda")
         guard imagesArray.count != 0 else {
             return UIView()
         }
