@@ -77,10 +77,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         uniqueUser.womenPreference = nil
                         uniqueUser.profilePic = nil
                         uniqueUser.products.removeAll()
-                        DAOCache().saveUser()
+                        
+                        DAO().saveUserInfoToSingleton({ user in
+                            DAOCache().saveUser()
+                        })
+                        
                     }
+                    
                 }
                 
+                else {
+                    
+                    DAO().saveUserInfoToSingleton({ user in
+                        DAOCache().saveUser()
+                    })
+                    
+                }
+                
+
                 dao.generateProductsArray({ products in
                     var productsIDs: [String] = []
                     

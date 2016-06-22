@@ -258,5 +258,23 @@ class DAO {
             callback(products)
         })
     }
+    
+    func saveUserInfoToSingleton(callback:(User) -> Void) -> Void {
+        
+        let thisUser = FIRAuth.auth()?.currentUser
+        
+        self.rootRef.child("profile").child(thisUser!.uid).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            print(snapshot)
+            User.singleton.id = snapshot.key
+            
+            print(snapshot.value!["name"])
+            
+            User.singleton.name = snapshot.value!["name"] as! String
+            User.singleton.location = snapshot.value!["location"] as! String
+        
+        })
+        
+    }
 
 }
