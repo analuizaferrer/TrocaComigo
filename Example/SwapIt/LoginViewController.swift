@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+var productsArray: [String] = []
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var email: UITextField!
@@ -63,10 +65,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         func loginCallback (user:FIRUser?, error:NSError?) {
             if error == nil {
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                self.presentViewController(homeViewController, animated: true, completion: nil)
-                
                 let uniqueUser = User.singleton
                 if uniqueUser.id != nil {
                     if uniqueUser.id != user?.uid {
@@ -81,28 +79,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         DAOCache().saveUser()
                     }
                 }
-        } else {
-            let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
-            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            alert.addAction(cancel)
-            self.presentViewController(alert, animated: true, completion: nil)
+                
+                DAO().generateProductsArray({ products in
+                    print(products[2].id)
+                })
+                
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                self.presentViewController(homeViewController, animated: true, completion: nil)
+
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
+                let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+                alert.addAction(cancel)
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
         }
-        
+        dao.login(email.text!, password: password.text!, callback: loginCallback)
     }
     
-    dao.login(email.text!, password: password.text!, callback: loginCallback)
-}
-
-@IBAction func createAccount(sender: AnyObject) {
-    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
-    self.presentViewController(homeViewController, animated: true, completion: nil)
-}
-
-@IBAction func forgotPasswordButtonAction(sender: AnyObject) {
+    @IBAction func createAccount(sender: AnyObject) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
+        self.presentViewController(homeViewController, animated: true, completion: nil)
+    }
     
-    //FIRAuth.sendPasswordResetWithEmail(<#T##FIRAuth#>)
-    
-}
-
+    @IBAction func forgotPasswordButtonAction(sender: AnyObject) {
+        DAO().resetPassword()
+    }
 }

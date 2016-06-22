@@ -17,22 +17,19 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
-class BackgroundAnimationViewController: UIViewController {
+class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSource {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var matchProduct = ""
     
-    var productsArray: [String] = []
     let randomProductsArray: [String] = []
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
-        
-        DAO().generateProductsArray(self.callbackProductsArray)
+        //DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
         
         generateRandomProductsArray()
         
@@ -46,8 +43,6 @@ class BackgroundAnimationViewController: UIViewController {
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-        
-      //  self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.14, green: 0.14, blue: 0.14, alpha: 1)
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name:"GrandHotel-Regular", size: 27)!, NSForegroundColorAttributeName: UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)]
     }
@@ -67,28 +62,12 @@ class BackgroundAnimationViewController: UIViewController {
     
     func callbackMatchProduct(snapshot: FIRDataSnapshot) {
         self.matchProduct = (snapshot.value! as? String)!
-        
-        print("callback funcionando")
-    }
-    
-    func callbackProductsArray (snapshot: FIRDataSnapshot) {
-        
-        self.productsArray.append(snapshot.key as! String)
-        print(snapshot.key)
     }
     
     func generateRandomProductsArray () {
-        
-        let randomIndex = Int(arc4random_uniform(UInt32(self.productsArray.count)))
+        let randomIndex = Int(arc4random_uniform(UInt32(productsArray.count)))
         print (randomIndex)
-//        let array = ["Frodo", "sam", "wise", "gamgee"]
-//        let randomIndex = Int(arc4random_uniform(UInt32(array.count)))
-//        print(array[randomIndex])
     }
-}
-
-//MARK: KolodaViewDelegate
-extension BackgroundAnimationViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         kolodaView.resetCurrentCardIndex()
@@ -116,25 +95,24 @@ extension BackgroundAnimationViewController: KolodaViewDelegate {
         animation.springSpeed = frameAnimationSpringSpeed
         return animation
     }
-}
-
-//MARK: KolodaViewDataSource
-extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(koloda: KolodaView) -> UInt {
         return numberOfCards
     }
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
-        let data = User.singleton.products[Int(index)].images[0]
+        print(index)
+        //print(productsArray[Int(index)])
+        let data = User.singleton.products[Int(index)].images![0]
         let image = UIImage(data: data)
         let imageView = UIImageView(image: image)
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
         imageView.layer.cornerRadius = 15.0
         imageView.clipsToBounds = true
+        
         return imageView
     }
-    
+
     func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
         return NSBundle.mainBundle().loadNibNamed("CustomOverlayView",
             owner: self, options: nil)[0] as? OverlayView

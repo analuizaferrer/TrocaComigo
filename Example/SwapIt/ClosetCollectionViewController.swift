@@ -52,7 +52,7 @@ class ClosetCollectionViewController: UICollectionViewController {
         if User.singleton.products.count > 0 {
             
             for product in User.singleton.products {
-                let image = UIImage(data: product.images[0])
+                let image = UIImage(data: product.images![0])
                 productArray.append(image!)
             }
             self.collectionView?.reloadData()

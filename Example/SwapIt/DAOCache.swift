@@ -81,7 +81,7 @@ class DAOCache {
                 productDict["brand"] = p.brand
             }
             
-            for image in p.images {
+            for image in p.images! {
                 imageDict["image\(cont)"] = image
                 cont += 1
             }
