@@ -93,18 +93,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     })
                     
                 }
-                
 
                 dao.generateProductsArray({ products in
+                    print("entrou no callback")
                     var productsIDs: [String] = []
                     
                     for product in products {
+                        print("entrou no for")
                         productsArray.append(product)
                         productsIDs.append(product.id!)
                     }
                     
                     dao.getImages(productsIDs, callback: { images in
+                        print("entrou no segundo callback")
                         for image in images {
+                            print("entrou no segundo for")
                             imagesArray.append(image)
                         }
                         
