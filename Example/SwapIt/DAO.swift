@@ -114,11 +114,34 @@ class DAO {
         }
     }
     
-    func getImages(productID: String, callback: (NSData?, NSError?)->Void) {
+    func getImages(ids: [String], callback:([NSData]) -> Void) -> Void  {
+        var images: [NSData] = []
+        let loadImagesGroup = dispatch_group_create()
+        
         if let user = FIRAuth.auth()?.currentUser {
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
-            let imageRef = storageRef.child(user.uid).child("products").child(productID).child("image1")
-            imageRef.dataWithMaxSize(18752503, completion: callback)
+            for id in ids {
+                let imageRef = storageRef.child(user.uid).child("products").child(id).child("image1")
+                dispatch_group_enter(loadImagesGroup)
+                imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
+                    if error == nil {
+                        images.append(data!)
+                    }
+                    dispatch_group_leave(loadImagesGroup)
+                })
+            }
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
+            dispatch_async(dispatch_get_main_queue()) {
+                guard ok else {
+                    callback([])
+                    return
+                }
+                callback(images)
+            }
         }
     }
     

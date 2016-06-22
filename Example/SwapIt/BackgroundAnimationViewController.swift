@@ -23,15 +23,19 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     
     var matchProduct = ""
     
-    let randomProductsArray: [String] = []
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
         
-        generateRandomProductsArray()
+//        for i in productsArray {
+//            
+//            print(i.id)
+//            
+//        }
+        
+        productsArray.shuffle()
         
         DAOCache().loadUser()
         numberOfCards = UInt(User.singleton.products.count)
@@ -62,11 +66,6 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     
     func callbackMatchProduct(snapshot: FIRDataSnapshot) {
         self.matchProduct = (snapshot.value! as? String)!
-    }
-    
-    func generateRandomProductsArray () {
-        let randomIndex = Int(arc4random_uniform(UInt32(productsArray.count)))
-        print (randomIndex)
     }
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
@@ -100,10 +99,13 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
         return numberOfCards
     }
     
+    
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
-        print(index)
-        //print(productsArray[Int(index)])
-        let data = User.singleton.products[Int(index)].images![0]
+        guard imagesArray.count != 0 else {
+            return UIView()
+        }
+        
+        let data = imagesArray[Int(index)]
         let image = UIImage(data: data)
         let imageView = UIImageView(image: image)
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -116,5 +118,30 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
         return NSBundle.mainBundle().loadNibNamed("CustomOverlayView",
             owner: self, options: nil)[0] as? OverlayView
+    }
+    
+    
+}
+
+extension CollectionType {
+    /// Return a copy of `self` with its elements shuffled
+    func shuffle() -> [Generator.Element] {
+        var list = Array(self)
+        list.shuffleInPlace()
+        return list
+    }
+}
+
+extension MutableCollectionType where Index == Int {
+    /// Shuffle the elements of `self` in-place.
+    mutating func shuffleInPlace() {
+        // empty and single-element collections don't shuffle
+        if count < 2 { return }
+        
+        for i in 0..<count - 1 {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            guard i != j else { continue }
+            swap(&self[i], &self[j])
+        }
     }
 }

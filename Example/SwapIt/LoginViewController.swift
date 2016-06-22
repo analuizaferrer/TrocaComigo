@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 
-var productsArray: [String] = []
+var productsArray: [Product] = []
+var imagesArray: [NSData] = []
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -80,14 +81,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 
-                DAO().generateProductsArray({ products in
-                    print(products[2].id)
+                dao.generateProductsArray({ products in
+                    var productsIDs: [String] = []
+                    
+                    for product in products {
+                        productsArray.append(product)
+                        productsIDs.append(product.id!)
+                    }
+                    
+                    dao.getImages(productsIDs, callback: { images in
+                        for image in images {
+                            imagesArray.append(image)
+                        }
+                        
+                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                        self.presentViewController(homeViewController, animated: true, completion: nil)
+                    })
                 })
                 
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                self.presentViewController(homeViewController, animated: true, completion: nil)
-
             } else {
                 let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
                 let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
