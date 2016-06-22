@@ -259,4 +259,5 @@ class DAO {
             callback(products)
         })
     }
+
 }
