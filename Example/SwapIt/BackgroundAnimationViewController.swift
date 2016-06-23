@@ -23,6 +23,8 @@ class BackgroundAnimationViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    var productDetailsView : UIView!
+    
     var matchProduct = ""
     
     //MARK: Lifecycle
@@ -44,6 +46,28 @@ class BackgroundAnimationViewController: UIViewController {
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name:"GrandHotel-Regular", size: 27)!, NSForegroundColorAttributeName: UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)]
+        
+        
+        //PRODUCT DETAILS VIEW
+        
+        productDetailsView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
+        productDetailsView.backgroundColor = UIColor.whiteColor()
+        
+        let confirmButton = UIButton(frame: CGRectMake(238,558,72,72))
+        let excludeButton = UIButton(frame: CGRectMake(66,558,72,72))
+        
+        confirmButton.setBackgroundImage(UIImage(named: "check"), forState: .Normal)
+        confirmButton.addTarget(self, action: #selector(PhotoViewController.confirmPhoto), forControlEvents: UIControlEvents.TouchUpInside)
+        excludeButton.setBackgroundImage(UIImage(named: "trash"), forState: .Normal)
+        excludeButton.addTarget(self, action: #selector(PhotoViewController.excludePhoto), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        confirmationView.addSubview(confirmButton)
+        confirmationView.addSubview(excludeButton)
+        confirmationImageView = UIImageView(frame: CGRectMake(0,64,view.frame.width, 456))
+        confirmationImageView.image = UIImage(named: "quadrado photo")
+        confirmationView.addSubview(confirmationImageView)
+
+        
     }
     
     //MARK: IBActions
