@@ -48,7 +48,6 @@ class BackgroundAnimationViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func leftButtonTapped() { // dislke
-        print("baksodjbhkfdiewpfdhskbvjosfkfjvckbhisdpaoj")
         kolodaView?.swipe(SwipeResultDirection.Left)
     }
     
@@ -127,6 +126,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func koloda(koloda: KolodaView, didSwipeCardAtIndex index: UInt, inDirection direction: SwipeResultDirection) {
         if direction == .Right {
+            
             DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
             DAO().searchForMatch(currentOwnerId, callback: { snapshot in
                 
