@@ -48,7 +48,6 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
-            <string>Montserrat-Light</string>
         </mutableArray>
         <mutableArray key="Montserrat-Regular.otf">
             <string>Montserrat-Regular</string>
@@ -354,35 +353,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="egd-G9-3k6">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="backToLogin" id="W9o-RE-i8B">
-                                        <rect key="frame" x="0.0" y="419.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9o-RE-i8B" id="Gv0-8J-yVX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZS-hc-HPP">
-                                                    <rect key="frame" x="0.0" y="4" width="375" height="36"/>
-                                                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
-                                                    <color key="textColor" red="0.26274509800000001" green="0.7725490196" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="pZS-hc-HPP" secondAttribute="bottom" constant="3.5" id="2vZ-p2-PBG"/>
-                                                <constraint firstItem="pZS-hc-HPP" firstAttribute="top" secondItem="Gv0-8J-yVX" secondAttribute="top" constant="4" id="KWH-zZ-HEy"/>
-                                                <constraint firstItem="pZS-hc-HPP" firstAttribute="leading" secondItem="Gv0-8J-yVX" secondAttribute="leading" id="e8h-hY-ZsF"/>
-                                                <constraint firstAttribute="trailing" secondItem="pZS-hc-HPP" secondAttribute="trailing" id="siP-lk-9HC"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="jBz-3h-xLf" kind="unwind" unwindAction="prepareForUnwind:" id="LDj-6e-2Xc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="8rS-er-6IK" id="Aru-79-8mP"/>
@@ -400,7 +370,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Io-Z8-fi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="jBz-3h-xLf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1183.5" y="741.5"/>
         </scene>
@@ -532,37 +501,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zgv-Mi-Aep">
-                                <rect key="frame" x="0.0" y="521" width="64" height="64"/>
+                                <rect key="frame" x="0.0" y="521" width="61" height="60"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Lu-sG-RiI">
-                                <rect key="frame" x="63" y="521" width="64" height="64"/>
+                                <rect key="frame" x="63" y="521" width="61" height="60"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1is-80-CNK">
-                                <rect key="frame" x="126" y="521" width="64" height="64"/>
+                                <rect key="frame" x="126" y="521" width="61" height="60"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wo5-gS-FYi">
-                                <rect key="frame" x="189" y="521" width="64" height="64"/>
+                                <rect key="frame" x="189" y="521" width="61" height="60"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtD-fg-Iff">
-                                <rect key="frame" x="252" y="521" width="64" height="64"/>
+                                <rect key="frame" x="252" y="521" width="61" height="60"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lWD-XU-hGC">
-                                <rect key="frame" x="314" y="521" width="64" height="64"/>
+                                <rect key="frame" x="314" y="521" width="61" height="60"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpi-Gs-X8L">
+                                <rect key="frame" x="0.0" y="521" width="61" height="60"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMJ-zM-2DF">
-                                <rect key="frame" x="126" y="521" width="64" height="64"/>
+                                <rect key="frame" x="126" y="521" width="61" height="60"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcG-JS-Znp">
-                                <rect key="frame" x="63" y="521" width="64" height="64"/>
+                                <rect key="frame" x="63" y="521" width="61" height="60"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agG-E3-33M">
-                                <rect key="frame" x="189" y="521" width="64" height="64"/>
+                                <rect key="frame" x="189" y="521" width="61" height="60"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaR-fi-m6b">
-                                <rect key="frame" x="252" y="521" width="64" height="64"/>
+                                <rect key="frame" x="252" y="521" width="61" height="60"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDH-9f-m5M">
-                                <rect key="frame" x="316" y="521" width="64" height="64"/>
+                                <rect key="frame" x="316" y="521" width="61" height="60"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz8-9W-9Uc">
                                 <rect key="frame" x="163" y="598" width="50" height="50"/>
@@ -577,13 +553,6 @@
                                 <connections>
                                     <action selector="photoLIbraryAction:" destination="L5w-Au-N6B" eventType="touchUpInside" id="ItB-BA-2Pr"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpi-Gs-X8L">
-                                <rect key="frame" x="0.0" y="521" width="64" height="64"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.58039215686274503" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
