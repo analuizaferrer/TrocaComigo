@@ -85,7 +85,7 @@ class DAO {
         print("entrou na funçao")
         let user = FIRAuth.auth()?.currentUser
         
-        let idLike = "\(user!.uid)" + "\(likedProductID)"
+        let idLike = "\(user!.uid)" + " " + "\(likedProductID)"
         
         let timestamp: String = NSDate().getCurrentShortDate()
         print(timestamp)
@@ -285,12 +285,22 @@ class DAO {
         
         let user = FIRAuth.auth()?.currentUser
         
-        
-        self.rootRef.child("profile").child(user!.uid).child("likes").queryStartingAtValue(ownerID).observeSingleEventOfType(.Value, withBlock: { snapshot in
-            print(snapshot)
-            print("achoooooo owner")
-            callback(snapshot)
-        })
+        self.rootRef.child("profile").child(user!.uid).child("likes").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+            //print("ola: ", snapshot)
+            
+            
+            for (item, value) in snapshot.value as! [String : AnyObject] {
+                let fullID = String(value)
+                let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
+                print(fullNameArr[0])
+                if fullNameArr[0] == ownerID {
+                    self.rootRef.child("profile").child(user!.uid).child("likes").child(item).removeValue()
+                    //self.rootRef.child("profile").child(ownerID).child("likes").child()
+                    print("it's a swap!!")
+                    
+                }
+            }
+        }
     }
     
     func generateProductsArray(callback:([Product]) -> Void) -> Void {
