@@ -22,6 +22,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @IBAction func prepareForLogin(segue: UIStoryboardSegue) {
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         email.resignFirstResponder()
         password.resignFirstResponder()
