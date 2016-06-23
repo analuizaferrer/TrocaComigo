@@ -18,12 +18,16 @@ private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 private var currentProductId = productsArray[0].id
 private var currentOwnerId = productsArray[0].userid
+private var currentIndex = 0
 
-class BackgroundAnimationViewController: UIViewController {
+class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    //PRODUCT DETAILS VIEW
+    
     var productDetailsView : UIView!
+    var detailsPageControl : UIPageControl!
     
     var matchProduct = ""
     
@@ -46,28 +50,11 @@ class BackgroundAnimationViewController: UIViewController {
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name:"GrandHotel-Regular", size: 27)!, NSForegroundColorAttributeName: UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)]
-        
-        
-        //PRODUCT DETAILS VIEW
-        
-        productDetailsView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
-        productDetailsView.backgroundColor = UIColor.whiteColor()
-//        
-//        let confirmButton = UIButton(frame: CGRectMake(238,558,72,72))
-//        let excludeButton = UIButton(frame: CGRectMake(66,558,72,72))
-//        
-//        confirmButton.setBackgroundImage(UIImage(named: "check"), forState: .Normal)
-//        confirmButton.addTarget(self, action: #selector(PhotoViewController.confirmPhoto), forControlEvents: UIControlEvents.TouchUpInside)
-//        excludeButton.setBackgroundImage(UIImage(named: "trash"), forState: .Normal)
-//        excludeButton.addTarget(self, action: #selector(PhotoViewController.excludePhoto), forControlEvents: UIControlEvents.TouchUpInside)
-//        
-//        confirmationView.addSubview(confirmButton)
-//        confirmationView.addSubview(excludeButton)
-//        confirmationImageView = UIImageView(frame: CGRectMake(0,64,view.frame.width, 456))
-//        confirmationImageView.image = UIImage(named: "quadrado photo")
-//        confirmationView.addSubview(confirmationImageView)
-//
-//        
+    }
+    
+    func leaveDetails () {
+        productDetailsView.removeFromSuperview()
+        self.navigationController?.navigationBarHidden = false
     }
     
     //MARK: IBActions
@@ -100,8 +87,74 @@ extension BackgroundAnimationViewController: KolodaViewDelegate {
 
 extension BackgroundAnimationViewController: KolodaViewDataSource {
     
+    func configurePageControl() {
+        self.detailsPageControl.numberOfPages = 6
+        self.detailsPageControl.currentPage = 0
+        self.detailsPageControl.tintColor = UIColor.cyanColor()
+        self.detailsPageControl.pageIndicatorTintColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        self.detailsPageControl.currentPageIndicatorTintColor = UIColor(red: 0.25, green: 0.75, blue: 0.76, alpha: 1)
+        self.detailsPageControl.layer.position.y = 355
+        productDetailsView.addSubview(detailsPageControl)
+    }
+    
+    func configureProductDetailsView() {
+        
+        var i = 0
+        
+        while (productsArray[i].id != productsIDs[currentIndex]) {
+            i+=1
+        }
+        
+        productDetailsView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
+        productDetailsView.backgroundColor = UIColor.whiteColor()
+        
+        detailsPageControl = UIPageControl(frame: CGRectMake(0,0,view.frame.width, view.frame.width))
+        configurePageControl()
+        
+        let leaveDetailsViewButton = UIButton(frame: CGRectMake(20,20,40,40))
+        leaveDetailsViewButton.setBackgroundImage(UIImage(named: "down"), forState: .Normal)
+        leaveDetailsViewButton.addTarget(self, action: #selector(BackgroundAnimationViewController.leaveDetails), forControlEvents: UIControlEvents.TouchUpInside)
+        productDetailsView.addSubview(leaveDetailsViewButton)
+        
+        let brandLabel = UILabel(frame: CGRectMake(20, 393,335, 20))
+        brandLabel.text = ("BRAND \(productsArray[i].brand)")
+        productDetailsView.addSubview(brandLabel)
+        
+        let sizeLabel = UILabel(frame: CGRectMake(20, 413,335, 20))
+        sizeLabel.text = ("SIZE \(productsArray[i].size)")
+        productDetailsView.addSubview(sizeLabel)
+        
+        let usageLabel = UILabel(frame: CGRectMake(20, 433,335, 20))
+        usageLabel.text = ("USAGE \(productsArray[i].condition)")
+        productDetailsView.addSubview(usageLabel)
+        
+        let descriptionLabel = UILabel(frame: CGRectMake(20, 465,335, 60))
+        descriptionLabel.text = (productsArray[i].description)
+        productDetailsView.addSubview(descriptionLabel)
+        
+        let likeButton = UIButton(frame: CGRectMake(238,570,72,72))
+        likeButton.setBackgroundImage(UIImage(named:"heart-round-fill"), forState: .Normal)
+        likeButton.addTarget(self, action: #selector(BackgroundAnimationViewController.rightButtonTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        productDetailsView.addSubview(likeButton)
+        
+        let rejectButton = UIButton(frame: CGRectMake(66,570,72,72))
+        rejectButton.setBackgroundImage(UIImage(named:"deny-fill"), forState: .Normal)
+        rejectButton.addTarget(self, action: #selector(BackgroundAnimationViewController.leftButtonTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        productDetailsView.addSubview(rejectButton)
+        
+        i = 0
+        
+    }
+
+    
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
        // UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
+            
+        
+        self.navigationController?.navigationBarHidden = true
+        configureProductDetailsView()
+        view.addSubview(productDetailsView)
+
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {
@@ -131,6 +184,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
         if imagesArray.count > Int(index) {
             print("entrou no if do koloda")
             let data = imagesArray[Int(index)]
+            currentIndex = Int(index)
             let image = UIImage(data: data)
             let imageView = UIImageView(image: image)
             imageView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -156,6 +210,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
                 
             })
         }
+        
     }
 }
 

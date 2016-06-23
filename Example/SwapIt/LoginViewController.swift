@@ -11,6 +11,7 @@ import Firebase
 
 var productsArray: [Product] = []
 var imagesArray: [NSData] = []
+var productsIDs: [String] = []
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -91,7 +92,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                 dao.generateProductsArray({ products in
                     print("entrou no callback")
-                    var productsIDs: [String] = []
                     
                     for product in products {
                         print("entrou no for")

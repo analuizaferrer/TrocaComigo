@@ -129,11 +129,11 @@ class ProfileTableViewController: UITableViewController {
         if indexPath.section == 2 {
             let alert = UIAlertController(title: "Are you sure you want to log out?", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             
-            let removeCurrentProduct = UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
-                self.performSegueWithIdentifier("unwindLogin", sender: self)
+            let exitAccount = UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
+                self.performSegueWithIdentifier("backToLogin", sender: self)
             })
             
-            alert.addAction(removeCurrentProduct)
+            alert.addAction(exitAccount)
             
             let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             alert.addAction(cancel)
