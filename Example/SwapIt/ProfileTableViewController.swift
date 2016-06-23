@@ -125,6 +125,25 @@ class ProfileTableViewController: UITableViewController {
         DAOCache().saveUser()
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 2 {
+            let alert = UIAlertController(title: "Are you sure you want to log out?", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            let removeCurrentProduct = UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
+                self.performSegueWithIdentifier("unwindLogin", sender: self)
+            })
+            
+            alert.addAction(removeCurrentProduct)
+            
+            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(cancel)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
 }
 
 extension ProfileTableViewController : UITextFieldDelegate {

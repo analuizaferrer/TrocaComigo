@@ -20,7 +20,7 @@ class ClosetCollectionViewController: UICollectionViewController {
     let teste2 = UIImage(named: "pizza")
     let teste3 = UIImage(named: "pizza")
     
-    var productArray: [UIImage]! = []
+    var productArrayCloset: [UIImage]! = []
     
     var productImages: [NSData]!
     
@@ -47,15 +47,27 @@ class ClosetCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        productArray.removeAll()
+        productArrayCloset.removeAll()
         
         if User.singleton.products.count > 0 {
             
-            for product in User.singleton.products {
-                let image = UIImage(data: product.images![0])
-                productArray.append(image!)
+            for i in closetArray {
+                
+                let image = UIImage(data: i)
+                productArrayCloset.append(image!)
+                
             }
+            
             self.collectionView?.reloadData()
+            
+            
+//            for product in User.singleton.products {
+//                
+//                let image = UIImage(data: product.images![0])
+//                productArray.append(image!)
+//                
+//            }
+//            self.collectionView?.reloadData()
         }
     }
 
@@ -86,7 +98,7 @@ class ClosetCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return productArray.count
+        return productArrayCloset.count
     }
     
     private struct Storyboard {
@@ -98,7 +110,7 @@ class ClosetCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("closetCell", forIndexPath: indexPath) as! ClosetCollectionViewCell
         
-        let thisProduct = productArray[indexPath.row]
+        let thisProduct = productArrayCloset[indexPath.row]
         
         cell.productImageView.contentMode = UIViewContentMode.ScaleAspectFill
         cell.productImageView.image = thisProduct

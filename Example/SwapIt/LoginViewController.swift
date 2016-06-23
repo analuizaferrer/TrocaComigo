@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 
-var productsArray: [String] = []
+var productsArray: [Product] = []
+var imagesArray: [NSData] = []
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -76,19 +77,46 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         uniqueUser.womenPreference = nil
                         uniqueUser.profilePic = nil
                         uniqueUser.products.removeAll()
-                        DAOCache().saveUser()
+                        
+                        DAO().saveUserInfoToSingleton({ user in
+                            DAOCache().saveUser()
+                        })
+                        
                     }
+                    
                 }
                 
-                DAO().generateProductsArray({ products in
-                    print(products[2].id)
-            
+                else {
+                    
+                    DAO().saveUserInfoToSingleton({ user in
+                        DAOCache().saveUser()
+                    })
+                    
+                }
+
+                dao.generateProductsArray({ products in
+                    print("entrou no callback")
+                    var productsIDs: [String] = []
+                    
+                    for product in products {
+                        print("entrou no for")
+                        productsArray.append(product)
+                        productsIDs.append(product.id!)
+                    }
+                    
+                    dao.getImages(productsIDs, callback: { images in
+                        print("entrou no segundo callback")
+                        for image in images {
+                            print("entrou no segundo for")
+                            imagesArray.append(image)
+                        }
+                        print("veio pra ca")
+                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                        self.presentViewController(homeViewController, animated: true, completion: nil)
+                    })
                 })
                 
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                self.presentViewController(homeViewController, animated: true, completion: nil)
-
             } else {
                 let alert = UIAlertController(title: "Error", message: "Incorrect e-mail or password.", preferredStyle: UIAlertControllerStyle.Alert)
                 let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)

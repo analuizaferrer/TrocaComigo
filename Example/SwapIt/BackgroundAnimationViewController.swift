@@ -16,25 +16,24 @@ private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
+private var currentProductId = productsArray[0].id
+private var currentOwnerId = productsArray[0].userid
 
-class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSource {
+class BackgroundAnimationViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var matchProduct = ""
     
-    let randomProductsArray: [String] = []
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
+        print("entrou no view did load do koloda")
         
-        generateRandomProductsArray()
+//        productsArray.shuffle()
         
         DAOCache().loadUser()
-        numberOfCards = UInt(User.singleton.products.count)
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -48,12 +47,14 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     }
     
     //MARK: IBActions
-    @IBAction func leftButtonTapped() {
+    @IBAction func leftButtonTapped() { // dislke
+        print("baksodjbhkfdiewpfdhskbvjosfkfjvckbhisdpaoj")
         kolodaView?.swipe(SwipeResultDirection.Left)
     }
     
-    @IBAction func rightButtonTapped() {
+    @IBAction func rightButtonTapped() { // like self.rootRef.child("profile").child(idDonoProduto).child("likes").child(idUsuario).setValue(idProduto)
         kolodaView?.swipe(SwipeResultDirection.Right)
+        DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
     }
     
     @IBAction func undoButtonTapped() {
@@ -63,15 +64,16 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     func callbackMatchProduct(snapshot: FIRDataSnapshot) {
         self.matchProduct = (snapshot.value! as? String)!
     }
-    
-    func generateRandomProductsArray () {
-        let randomIndex = Int(arc4random_uniform(UInt32(productsArray.count)))
-        print (randomIndex)
-    }
+}
+
+extension BackgroundAnimationViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         kolodaView.resetCurrentCardIndex()
     }
+}
+
+extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
        // UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
@@ -101,20 +103,55 @@ class BackgroundAnimationViewController: UIViewController, KolodaViewDelegate, K
     }
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
-        print(index)
-        //print(productsArray[Int(index)])
-        let data = User.singleton.products[Int(index)].images![0]
-        let image = UIImage(data: data)
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = UIViewContentMode.ScaleAspectFill
-        imageView.layer.cornerRadius = 15.0
-        imageView.clipsToBounds = true
+        if imagesArray.count > Int(index) {
+            print("entrou no if do koloda")
+            let data = imagesArray[Int(index)]
+            let image = UIImage(data: data)
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = UIViewContentMode.ScaleAspectFill
+            imageView.layer.cornerRadius = 15.0
+            imageView.clipsToBounds = true
+            
+            return imageView
+        }
         
-        return imageView
+        return UIView()
     }
 
     func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
         return NSBundle.mainBundle().loadNibNamed("CustomOverlayView",
             owner: self, options: nil)[0] as? OverlayView
+    }
+    
+    func koloda(koloda: KolodaView, didSwipeCardAtIndex index: UInt, inDirection direction: SwipeResultDirection) {
+        if direction == .Right {
+            DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
+            DAO().searchForMatch(currentOwnerId, callback: { snapshot in
+                
+            })
+        }
+    }
+}
+
+extension CollectionType {
+    /// Return a copy of `self` with its elements shuffled
+    func shuffle() -> [Generator.Element] {
+        var list = Array(self)
+        list.shuffleInPlace()
+        return list
+    }
+}
+
+extension MutableCollectionType where Index == Int {
+    /// Shuffle the elements of `self` in-place.
+    mutating func shuffleInPlace() {
+        // empty and single-element collections don't shuffle
+        if count < 2 { return }
+        
+        for i in 0..<count - 1 {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            guard i != j else { continue }
+            swap(&self[i], &self[j])
+        }
     }
 }

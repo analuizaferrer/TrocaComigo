@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+var closetArray : [NSData] = []
+
 class UserTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
@@ -16,6 +18,8 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var locationLabel: UILabel!
+    
+    var closetImageIds : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,28 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         let user = UIImage(named: "user-fill")
         let imageView = UIImageView(image: user)
         self.navigationItem.titleView = imageView
+        
+        generateClosetImageIDArray()
+        
+        
+        
+    }
+    
+    func generateClosetImageIDArray () {
+        
+        for i in User.singleton.products {
+            closetImageIds.append(i.id!)
+        }
+        
+        DAO().getClosetImages(closetImageIds, callback: { images in
+            for image in images {
+                closetArray.append(image)
+                print("appending 2")
+            }
+            
+        })
+
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,12 +143,20 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         switch indexPath.row {
         case 1:
             performSegueWithIdentifier("profile", sender: self)
             break
         case 2:
-            performSegueWithIdentifier("closet", sender: self)
+            
+            if closetArray.count == User.singleton.products.count {
+                
+                self.performSegueWithIdentifier("closet", sender: self)
+                
+            }
+                
+            
             break
         case 3:
             performSegueWithIdentifier("settings", sender: self)

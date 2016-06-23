@@ -84,17 +84,12 @@ class DAO {
         
         let user = FIRAuth.auth()?.currentUser
         
+        let idLike = "\(user!.uid)" + "\(likedProductID)"
+        
+        let timestamp: String = "\(NSDate().timeIntervalSince1970 * 1000)"
+        
         print("Entrou na funcao")
-        
-//        self.rootRef.child("profile").queryOrderedByChild(likedUserID)
-//            .observeEventType(.ChildAdded, withBlock: { snapshot in
-//                print(snapshot.key)
-//                print("achoooooo")
-//                
-//            })
-        
-        self.rootRef.child("profile").child(likedUserID).child("likes").child((user?.uid)!).setValue(likedProductID)
-        
+        self.rootRef.child("profile").child(likedUserID).child("likes").child(idLike).setValue(timestamp)
     }
     
     func registerProfilePic(imageData: NSData) {
@@ -113,13 +108,87 @@ class DAO {
         }
     }
     
-    func getImages(productID: String, callback: (NSData?, NSError?)->Void) {
-        if let user = FIRAuth.auth()?.currentUser {
+    func getImages(ids: [String], callback:([NSData]) -> Void) -> Void  {
+        var images: [NSData] = []
+        let loadImagesGroup = dispatch_group_create()
+        print("entrou na funçào das imagens com id de user \(User.singleton.id)")
+        
+        if (FIRAuth.auth()?.currentUser) != nil {
+            print("current user")
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
-            let imageRef = storageRef.child(user.uid).child("products").child(productID).child("image1")
-            imageRef.dataWithMaxSize(18752503, completion: callback)
+            for id in ids {
+                print(id)
+                for product in productsArray {
+                    if product.id == id {
+                        let userid = product.userid
+                        let imageRef = storageRef.child(userid).child("products").child(id).child("image1")
+                        dispatch_group_enter(loadImagesGroup)
+                        imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
+                            if error == nil {
+                                print("deu append nas fotos")
+                                images.append(data!)
+                            }
+                            dispatch_group_leave(loadImagesGroup)
+                        })
+
+                    }
+                }
+            }
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
+            dispatch_async(dispatch_get_main_queue()) {
+                guard ok else {
+                    callback([])
+                    return
+                }
+                callback(images)
+            }
         }
     }
+    
+    func getClosetImages(ids: [String], callback:([NSData]) -> Void) -> Void  {
+        var images: [NSData] = []
+        let loadImagesGroup = dispatch_group_create()
+
+        let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+        for id in ids {
+            print(id)
+            for product in User.singleton.products {
+                if product.id == id {
+                        let userid = product.userid
+                        let imageRef = storageRef.child(userid).child("products").child(id).child("image1")
+                    print("OK")
+                        dispatch_group_enter(loadImagesGroup)
+                        imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
+                            if error == nil {
+                                images.append(data!)
+                                print("ta appending")
+                            }
+                            dispatch_group_leave(loadImagesGroup)
+                        })
+                        
+                    }
+                }
+            }
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
+            dispatch_async(dispatch_get_main_queue()) {
+                guard ok else {
+                    callback([])
+                    return
+                }
+                callback(images)
+            }
+        }
+    }
+
+
     
     /* MARK: Function createAccount
      Gets the email and password typed by the user and saves on the database */
@@ -214,11 +283,12 @@ class DAO {
         
         let user = FIRAuth.auth()?.currentUser
         
-        self.rootRef.child("profile").child(user!.uid).child("likes").queryOrderedByChild(ownerID).observeEventType(.ChildAdded, withBlock: { snapshot in
-                print(snapshot.key)
-                callback(snapshot)
-                print("achoooooo owner")
-            })
+        
+        self.rootRef.child("profile").child(user!.uid).child("likes").queryStartingAtValue(ownerID).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print(snapshot.value)
+            print("achoooooo owner")
+            callback(snapshot)
+        })
     }
     
     func generateProductsArray(callback:([Product]) -> Void) -> Void {
@@ -229,10 +299,36 @@ class DAO {
             for (index, value) in snapshot.value as! [String : AnyObject] {
                 let productDict = value as! [String : AnyObject]
                 let product : Product = Product(dict: productDict, index: index)
-                products.append(product)
+                
+                print("id1: \(FIRAuth.auth()?.currentUser?.uid)")
+                print("id2: \(product.userid)")
+                
+                if FIRAuth.auth()?.currentUser?.uid != product.userid {
+                    print("entrou no if")
+                    products.append(product)
+                } else {
+                    User.singleton.products.append(product)
+                }
             }
-            
             callback(products)
         })
+    }
+
+    func saveUserInfoToSingleton(callback:(User) -> Void) -> Void {
+        
+        let thisUser = FIRAuth.auth()?.currentUser
+        
+        self.rootRef.child("profile").child(thisUser!.uid).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            print(snapshot)
+            User.singleton.id = snapshot.key
+            
+            print(snapshot.value!["name"])
+            
+            User.singleton.name = snapshot.value!["name"] as! String
+            User.singleton.location = snapshot.value!["location"] as! String
+        
+        })
+        
     }
 }
