@@ -32,7 +32,7 @@ class BackgroundAnimationViewController: UIViewController {
         super.viewDidLoad()
         
         print("entrou no view did load do koloda")
-        
+        print(productsArray[0].id)
 //        productsArray.shuffle()
         
         DAOCache().loadUser()
@@ -72,12 +72,13 @@ class BackgroundAnimationViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func leftButtonTapped() { // dislke
-        print("baksodjbhkfdiewpfdhskbvjosfkfjvckbhisdpaoj")
         kolodaView?.swipe(SwipeResultDirection.Left)
     }
     
     @IBAction func rightButtonTapped() { // like self.rootRef.child("profile").child(idDonoProduto).child("likes").child(idUsuario).setValue(idProduto)
         kolodaView?.swipe(SwipeResultDirection.Right)
+        print(currentOwnerId)
+        print(currentProductId)
         DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
     }
     
@@ -149,6 +150,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func koloda(koloda: KolodaView, didSwipeCardAtIndex index: UInt, inDirection direction: SwipeResultDirection) {
         if direction == .Right {
+            
             DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
             DAO().searchForMatch(currentOwnerId, callback: { snapshot in
                 

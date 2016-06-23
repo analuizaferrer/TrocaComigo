@@ -48,6 +48,7 @@
 		F6A5F8CD1D15CBFE006DC1FB /* ClosetCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5F8CC1D15CBFE006DC1FB /* ClosetCollectionViewController.swift */; };
 		F6C10F121D09920300DEE51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6C10F111D09920300DEE51F /* GoogleService-Info.plist */; };
 		F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */; };
+		F6FD01231D1C3C1000FB34FB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD01221D1C3C1000FB34FB /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		F6A5F8CC1D15CBFE006DC1FB /* ClosetCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosetCollectionViewController.swift; sourceTree = "<group>"; };
 		F6C10F111D09920300DEE51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		F6FD01221D1C3C1000FB34FB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				F65796C01D0B3FE70085409C /* Product.swift */,
 				F65A46B41D148E99004EFCFE /* DAOCache.swift */,
 				F65A46B61D148ED9004EFCFE /* User.plist */,
+				F6FD01221D1C3C1000FB34FB /* Extensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				4420661F1B4457E800FD4CAD /* ExampleOverlayView.swift in Sources */,
 				245A5AB61D19C00700079264 /* SwapViewController.swift in Sources */,
 				F6A5F8CB1D15C0F7006DC1FB /* DetailsTableViewController.swift in Sources */,
+				F6FD01231D1C3C1000FB34FB /* Extensions.swift in Sources */,
 				440FB7691B515995009FC9FC /* BackgroundAnimationViewController.swift in Sources */,
 				F65796BF1D0B3D470085409C /* User.swift in Sources */,
 				CE4940D71D17347E004242C9 /* SettingsTableViewController.swift in Sources */,
