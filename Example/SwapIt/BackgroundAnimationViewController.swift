@@ -19,11 +19,12 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 private var currentProductId = productsArray[0].id
 private var currentOwnerId = productsArray[0].userid
 
-class BackgroundAnimationViewController: UIViewController {
+class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var productDetailsView : UIView!
+    var detailsPageControl : UIPageControl!
     
     var matchProduct = ""
     
@@ -53,21 +54,30 @@ class BackgroundAnimationViewController: UIViewController {
         productDetailsView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
         productDetailsView.backgroundColor = UIColor.whiteColor()
         
-        let confirmButton = UIButton(frame: CGRectMake(238,558,72,72))
-        let excludeButton = UIButton(frame: CGRectMake(66,558,72,72))
+        detailsPageControl = UIPageControl(frame: CGRectMake(0,0,view.frame.width,500))
+        configurePageControl()
         
-        confirmButton.setBackgroundImage(UIImage(named: "check"), forState: .Normal)
-        confirmButton.addTarget(self, action: #selector(PhotoViewController.confirmPhoto), forControlEvents: UIControlEvents.TouchUpInside)
-        excludeButton.setBackgroundImage(UIImage(named: "trash"), forState: .Normal)
-        excludeButton.addTarget(self, action: #selector(PhotoViewController.excludePhoto), forControlEvents: UIControlEvents.TouchUpInside)
+        let leaveDetailsViewButton = UIButton(frame: CGRectMake(0,0,72,72))
         
-        confirmationView.addSubview(confirmButton)
-        confirmationView.addSubview(excludeButton)
-        confirmationImageView = UIImageView(frame: CGRectMake(0,64,view.frame.width, 456))
-        confirmationImageView.image = UIImage(named: "quadrado photo")
-        confirmationView.addSubview(confirmationImageView)
+        leaveDetailsViewButton.setBackgroundImage(UIImage(named: "close"), forState: .Normal)
+        leaveDetailsViewButton.addTarget(self, action: #selector(BackgroundAnimationViewController.leaveDetails), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        productDetailsView.addSubview(leaveDetailsViewButton)
 
         
+    }
+    
+    func leaveDetails () {
+        productDetailsView.removeFromSuperview()
+    }
+    
+    func configurePageControl() {
+        self.detailsPageControl.numberOfPages = 6
+        self.detailsPageControl.currentPage = 0
+        self.detailsPageControl.tintColor = UIColor.cyanColor()
+        self.detailsPageControl.pageIndicatorTintColor = UIColor.blackColor()
+        self.detailsPageControl.currentPageIndicatorTintColor = UIColor.greenColor()
+        productDetailsView.addSubview(detailsPageControl)
     }
     
     //MARK: IBActions
@@ -102,6 +112,9 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
        // UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
+            
+        view.addSubview(productDetailsView)
+
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {
