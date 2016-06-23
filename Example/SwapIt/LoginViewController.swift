@@ -81,17 +81,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         DAO().saveUserInfoToSingleton({ user in
                             DAOCache().saveUser()
                         })
-                        
                     }
-                    
-                }
-                
-                else {
+                } else {
                     
                     DAO().saveUserInfoToSingleton({ user in
                         DAOCache().saveUser()
                     })
-                    
                 }
 
                 dao.generateProductsArray({ products in
@@ -111,6 +106,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             imagesArray.append(image)
                         }
                         print("veio pra ca")
+                        
                         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
                         self.presentViewController(homeViewController, animated: true, completion: nil)

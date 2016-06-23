@@ -81,7 +81,7 @@ class DAO {
     
     // REGISTER LIKES
     func registerLikes(likedUserID: String, likedProductID: String) {
-        
+        print("entrou na funçao")
         let user = FIRAuth.auth()?.currentUser
         
         let idLike = "\(user!.uid)" + "\(likedProductID)"
@@ -89,7 +89,7 @@ class DAO {
         let timestamp: String = "\(NSDate().timeIntervalSince1970 * 1000)"
         
         print("Entrou na funcao")
-        self.rootRef.child("profile").child(likedUserID).child("likes").child(idLike).setValue(timestamp)
+        self.rootRef.child("profile").child(likedUserID).child("likes").child(timestamp).setValue(idLike)
     }
     
     func registerProfilePic(imageData: NSData) {
