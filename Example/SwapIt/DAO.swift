@@ -149,6 +149,47 @@ class DAO {
         }
     }
     
+    func getClosetImages(ids: [String], callback:([NSData]) -> Void) -> Void  {
+        var images: [NSData] = []
+        let loadImagesGroup = dispatch_group_create()
+
+        let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+        for id in ids {
+            print(id)
+            for product in User.singleton.products {
+                if product.id == id {
+                        let userid = product.userid
+                        let imageRef = storageRef.child(userid).child("products").child(id).child("image1")
+                    print("OK")
+                        dispatch_group_enter(loadImagesGroup)
+                        imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
+                            if error == nil {
+                                images.append(data!)
+                                print("ta appending")
+                            }
+                            dispatch_group_leave(loadImagesGroup)
+                        })
+                        
+                    }
+                }
+            }
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
+            dispatch_async(dispatch_get_main_queue()) {
+                guard ok else {
+                    callback([])
+                    return
+                }
+                callback(images)
+            }
+        }
+    }
+
+
+    
     /* MARK: Function createAccount
      Gets the email and password typed by the user and saves on the database */
     func createAccount(name: String, username: String, password: String, callback: FIRAuthResultCallback) {
@@ -242,11 +283,12 @@ class DAO {
         
         let user = FIRAuth.auth()?.currentUser
         
-        self.rootRef.child("profile").child(user!.uid).child("likes").queryOrderedByChild(ownerID).observeEventType(.ChildAdded, withBlock: { snapshot in
-                print(snapshot.key)
-                callback(snapshot)
-                print("achoooooo owner")
-            })
+        
+        self.rootRef.child("profile").child(user!.uid).child("likes").queryStartingAtValue(ownerID).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print(snapshot.value)
+            print("achoooooo owner")
+            callback(snapshot)
+        })
     }
     
     func generateProductsArray(callback:([Product]) -> Void) -> Void {
@@ -264,6 +306,8 @@ class DAO {
                 if FIRAuth.auth()?.currentUser?.uid != product.userid {
                     print("entrou no if")
                     products.append(product)
+                } else {
+                    User.singleton.products.append(product)
                 }
             }
             callback(products)

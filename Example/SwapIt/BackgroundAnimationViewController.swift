@@ -103,17 +103,19 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     }
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
-        guard imagesArray.count != 0 else {
-            return UIView()
+        if imagesArray.count > Int(index) {
+            print("entrou no if do koloda")
+            let data = imagesArray[Int(index)]
+            let image = UIImage(data: data)
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = UIViewContentMode.ScaleAspectFill
+            imageView.layer.cornerRadius = 15.0
+            imageView.clipsToBounds = true
+            
+            return imageView
         }
-        let data = imagesArray[Int(index)]
-        let image = UIImage(data: data)
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = UIViewContentMode.ScaleAspectFill
-        imageView.layer.cornerRadius = 15.0
-        imageView.clipsToBounds = true
         
-        return imageView
+        return UIView()
     }
 
     func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
@@ -121,7 +123,14 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             owner: self, options: nil)[0] as? OverlayView
     }
     
-    
+    func koloda(koloda: KolodaView, didSwipeCardAtIndex index: UInt, inDirection direction: SwipeResultDirection) {
+        if direction == .Right {
+            DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
+            DAO().searchForMatch(currentOwnerId, callback: { snapshot in
+                
+            })
+        }
+    }
 }
 
 extension CollectionType {
