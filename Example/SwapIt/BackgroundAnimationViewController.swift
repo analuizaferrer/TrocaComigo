@@ -16,6 +16,8 @@ private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
+private var currentProductId = productsArray[0].id
+private var currentOwnerId = productsArray[0].userid
 
 class BackgroundAnimationViewController: UIViewController {
 
@@ -27,17 +29,9 @@ class BackgroundAnimationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //DAO().searchForMatch("AoWn5e2J4kTaINJ5DCnZ5k3lSSF3", callback: self.callbackMatchProduct)
-        
-//        for i in productsArray {
-//            
-//            print(i.id)
-//            
-//        }
-        
         print("entrou no view did load do koloda")
         
-        productsArray.shuffle()
+//        productsArray.shuffle()
         
         DAOCache().loadUser()
         
@@ -59,8 +53,8 @@ class BackgroundAnimationViewController: UIViewController {
     }
     
     @IBAction func rightButtonTapped() { // like self.rootRef.child("profile").child(idDonoProduto).child("likes").child(idUsuario).setValue(idProduto)
-       print("baksodjbhkfdiewpfdhskbvjosfkfjvckbhisdpaoj")
         kolodaView?.swipe(SwipeResultDirection.Right)
+        DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
     }
     
     @IBAction func undoButtonTapped() {
@@ -108,13 +102,10 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
         return numberOfCards
     }
     
-    
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
-         print("veio pro delegate do koloda")
         guard imagesArray.count != 0 else {
             return UIView()
         }
-        print("veio pro delegate do koloda")
         let data = imagesArray[Int(index)]
         let image = UIImage(data: data)
         let imageView = UIImageView(image: image)
