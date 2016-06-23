@@ -30,7 +30,7 @@ class BackgroundAnimationViewController: UIViewController {
         super.viewDidLoad()
         
         print("entrou no view did load do koloda")
-        
+        print(productsArray[0].id)
 //        productsArray.shuffle()
         
         DAOCache().loadUser()
@@ -54,6 +54,8 @@ class BackgroundAnimationViewController: UIViewController {
     
     @IBAction func rightButtonTapped() { // like self.rootRef.child("profile").child(idDonoProduto).child("likes").child(idUsuario).setValue(idProduto)
         kolodaView?.swipe(SwipeResultDirection.Right)
+        print(currentOwnerId)
+        print(currentProductId)
         DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
     }
     
