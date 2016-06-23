@@ -111,18 +111,23 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
          print("veio pro delegate do koloda")
-        guard imagesArray.count != 0 else {
-            return UIView()
-        }
         print("veio pro delegate do koloda")
-        let data = imagesArray[Int(index)]
-        let image = UIImage(data: data)
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = UIViewContentMode.ScaleAspectFill
-        imageView.layer.cornerRadius = 15.0
-        imageView.clipsToBounds = true
+        print(index)
         
-        return imageView
+        
+        if imagesArray.count > Int(index) {
+            let data = imagesArray[Int(index)]
+            let image = UIImage(data: data)
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = UIViewContentMode.ScaleAspectFill
+            imageView.layer.cornerRadius = 15.0
+            imageView.clipsToBounds = true
+            
+            return imageView
+        }
+
+        
+        return UIView()
     }
 
     func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
