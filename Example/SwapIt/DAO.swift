@@ -284,40 +284,64 @@ class DAO {
     func searchForMatch(ownerID: String, callback:(FIRDataSnapshot) -> Void)->Void {
         
         let user = FIRAuth.auth()?.currentUser
-        
-        self.rootRef.child("profile").child(user!.uid).child("likes").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
-            //print("ola: ", snapshot)
-            
+
+        self.rootRef.child("profile").child(user!.uid).observeEventType(.Value, withBlock: { (snapshot: FIRDataSnapshot) in
             
             for (item, value) in snapshot.value as! [String : AnyObject] {
-                let fullID = String(value)
-                let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
-                print(fullNameArr[0])
-                if fullNameArr[0] == ownerID {
-                    self.rootRef.child("profile").child(user!.uid).child("likes").child(item).removeValue()
-                    //self.rootRef.child("profile").child(ownerID).child("likes").child()
-                    print("it's a swap!!")
+                if item == "likes" {
+                    let likesDict = value as! [String : AnyObject]
+                    for (timestamp, like) in likesDict {
+                        let fullID = String(like)
+                        let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
+                        print(fullNameArr[0])
                     
+                        if fullNameArr[0] == ownerID {
+                            self.rootRef.child("profile").child(user!.uid).child("likes").child(timestamp).removeValue()
+                        
+                            print("it's a swap!!")
+                        }
+                    }
                 }
             }
-        }
+        })
     }
     
     func generateProductsArray(callback:([Product]) -> Void) -> Void {
         
+        let user = FIRAuth.auth()?.currentUser
+        
         self.rootRef.child("product").observeSingleEventOfType(.Value, withBlock: { snapshot in
+           
             var products : [Product] = []
             
             for (index, value) in snapshot.value as! [String : AnyObject] {
+               
+                var productDidEnterArray = false
                 let productDict = value as! [String : AnyObject]
                 let product : Product = Product(dict: productDict, index: index)
                 
-                print("id1: \(FIRAuth.auth()?.currentUser?.uid)")
-                print("id2: \(product.userid)")
+                // CONSERTAR!
                 
-                if FIRAuth.auth()?.currentUser?.uid != product.userid {
-                    print("entrou no if")
-                    products.append(product)
+                if user?.uid != product.userid {
+                  
+                    self.rootRef.child("profile").child(product.userid).observeEventType(.Value, withBlock: { snapshot in
+                      
+                        for (_, value) in snapshot.value as! [String : AnyObject] {
+                           
+                            let fullID = String(value)
+                            let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
+                            
+                            if (fullNameArr[0] == user?.uid && fullNameArr[1] == product.id) {
+                               print("usuário já deu like nesse produto!")
+                            } else {
+                                products.append(product)
+                                productDidEnterArray = true
+                            }
+                        }
+                    })
+                    if !productDidEnterArray {
+                        products.append(product)
+                    }
                 } else {
                     User.singleton.products.append(product)
                 }
