@@ -69,25 +69,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let dao = DAO()
         
         func loginCallback (user:FIRUser?, error:NSError?) {
+          
             if error == nil {
+               
                 let uniqueUser = User.singleton
                 if uniqueUser.id != nil {
+                   
                     if uniqueUser.id != user?.uid {
+                        
                         uniqueUser.id = user?.uid
                         uniqueUser.name = nil
                         uniqueUser.location = nil
                         uniqueUser.profilePic = nil
                         uniqueUser.products.removeAll()
+                        DAOCache().saveUser()
                         
-                        DAO().saveUserInfoToSingleton({ user in
-                            DAOCache().saveUser()
-                        })
+                        DAO().saveUserInfoToSingleton({ user in })
                     }
                 } else {
-                    
-                    DAO().saveUserInfoToSingleton({ user in
-                        DAOCache().saveUser()
-                    })
+                    DAO().saveUserInfoToSingleton({ user in })
                 }
 
                 dao.generateProductsArray({ products in

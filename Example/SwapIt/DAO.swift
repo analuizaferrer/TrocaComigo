@@ -128,7 +128,6 @@ class DAO {
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
             
             for id in ids {
-                print(id)
                 
                 for product in productsArray {
                     
@@ -145,7 +144,6 @@ class DAO {
                             }
                             dispatch_group_leave(loadImagesGroup)
                         })
-
                     }
                 }
             }
@@ -282,7 +280,7 @@ class DAO {
                         if fullNameArr[0] == ownerID {
                             self.rootRef.child("profile").child(user!.uid).child("likes").child(timestamp).removeValue()
                         
-                            print("it's a swap!!")
+                            self.registerSwap((user?.uid)!, id2: ownerID)
                         }
                     }
                 }
@@ -290,11 +288,19 @@ class DAO {
         })
     }
     
+    func registerSwap(id1: String, id2: String) {
+        
+        let swap = "\(id1)" + " " + "\(id2)"
+        
+        let timestamp: String = NSDate().getCurrentShortDate()
+        
+        self.rootRef.child("swaps").child(timestamp).setValue(swap)
+        
+    }
+    
     func generateProductsArray(callback:([Product]) -> Void) -> Void {
         
         let user = FIRAuth.auth()?.currentUser
-        var hasLikes = false
-        
         
         self.rootRef.child("product").observeSingleEventOfType(.Value, withBlock: { snapshot in
            
@@ -321,15 +327,15 @@ class DAO {
         
         self.rootRef.child("profile").child(thisUser!.uid).observeSingleEventOfType(.Value, withBlock: { snapshot in
             
-            print(snapshot)
             User.singleton.id = snapshot.key
             
             print(snapshot.value!["name"])
             
             User.singleton.name = snapshot.value!["name"] as! String
             User.singleton.location = snapshot.value!["location"] as! String
-        
+            
+            DAOCache().saveUser()
+            
         })
-        
     }
 }
