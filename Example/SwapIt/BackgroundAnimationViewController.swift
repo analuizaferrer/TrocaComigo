@@ -176,13 +176,14 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
        
         if imagesArray.count > Int(index) {
-            let data = imagesArray[Int(index)].image
             currentIndex = Int(index)
-            currentProductId = imagesArray[Int(index)].owner
+            
+            let data = imagesArray[Int(index)].image
             
             for product in productsArray {
                 if product.id == imagesArray[Int(index)].owner {
-                     currentOwnerId = product.userid
+                    currentOwnerId = product.userid
+                    currentProductId = imagesArray[Int(index)].owner
                 }
             }
             

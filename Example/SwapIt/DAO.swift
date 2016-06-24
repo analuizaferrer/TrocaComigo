@@ -70,37 +70,17 @@ class DAO {
         DAOCache().saveUser()
     }
     
-    
     // REGISTER LIKES
     func registerLikes(likedUserID: String, likedProductID: String) {
         
         print("entrou na funçao")
         let user = FIRAuth.auth()?.currentUser
         
-        let idLike = "\(user!.uid)" + " " + "\(likedProductID)"
+        let idLike = "\(likedProductID)" + " " + "\(user!.uid)"
         
         let timestamp: String = NSDate().getCurrentShortDate()
         
-        self.rootRef.child("profile").child(likedUserID).observeEventType(.Value, withBlock: { snapshot in
-                for (item, value) in snapshot.value as! [String : AnyObject] {
-                    
-                    if item == "likes"{
-                        
-                        let likesDict = value as! [String : AnyObject]
-                        
-                        for (ts, likeid) in likesDict {
-                            let fullID = String(likeid)
-                            let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
-                            
-                            if (fullNameArr[0] == user?.uid && fullNameArr[1] == likedProductID) {
-                                print("usuário já deu like nesse produto!")
-                                self.rootRef.child("profile").child((user?.uid)!).child("likes").child(ts).removeValue()
-                            }
-                        }
-                    }
-                }
-            self.rootRef.child("profile").child(likedUserID).child("likes").child(timestamp).setValue(idLike)
-            })
+        self.rootRef.child("profile").child(likedUserID).child("likes").child(idLike).setValue(timestamp)
     }
     
     func registerProfilePic(imageData: NSData) {
@@ -150,7 +130,7 @@ class DAO {
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_SEC)))
             let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
             dispatch_async(dispatch_get_main_queue()) {
                 guard ok else {
@@ -312,6 +292,7 @@ class DAO {
                 let product : Product = Product(dict: productDict, index: index)
                 
                 if user?.uid != product.userid {
+                    
                     products.append(product)
                 } else {
                     User.singleton.products.append(product)

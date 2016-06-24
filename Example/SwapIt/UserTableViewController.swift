@@ -26,15 +26,13 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
         
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
         self.profileImage.clipsToBounds = true
+        profileImage.contentMode = UIViewContentMode.ScaleAspectFill
         
         let user = UIImage(named: "user-fill")
         let imageView = UIImageView(image: user)
         self.navigationItem.titleView = imageView
         
         generateClosetImageIDArray()
-        
-        
-        
     }
     
     func generateClosetImageIDArray () {
@@ -48,10 +46,7 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
                 closetArray.append(image)
                 print("appending 2")
             }
-            
         })
-
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -149,14 +144,9 @@ class UserTableViewController: UITableViewController, UIImagePickerControllerDel
             performSegueWithIdentifier("profile", sender: self)
             break
         case 2:
-            
             if closetArray.count == User.singleton.products.count {
-                
                 self.performSegueWithIdentifier("closet", sender: self)
-                
             }
-                
-            
             break
         case 3:
             performSegueWithIdentifier("settings", sender: self)

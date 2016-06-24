@@ -94,18 +94,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     for product in products {
                         productsArray.append(product)
-                        productsIDs.append(product.id!)
+                        if productsIDs.count < 5 {
+                            productsIDs.append(product.id!)
+                        }
                     }
                     
                     dao.getImages(productsIDs, callback: { images in
     
                         for image in images {
                            imagesArray.append(image)
+                            print(imagesArray.count)
+                            print(productsArray.count)
+                            if imagesArray.count == productsArray.count {
+                                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                                self.presentViewController(homeViewController, animated: true, completion: nil)
+                            }
                         }
-                        
-                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                        self.presentViewController(homeViewController, animated: true, completion: nil)
                     })
                 })
                 
