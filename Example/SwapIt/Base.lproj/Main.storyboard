@@ -227,7 +227,7 @@
                             <tableViewSection id="vW8-fW-HUx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="X8D-OL-XG0">
-                                        <rect key="frame" x="0.0" y="419.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="237.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X8D-OL-XG0" id="Wed-dA-0gd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -606,7 +606,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Sau-ad-fqA" secondAttribute="height" multiplier="1:1" id="9lA-YF-Zmu"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="blue"/>
+                                <state key="normal" backgroundImage="men"/>
                                 <connections>
                                     <action selector="men:" destination="yme-va-Y8P" eventType="touchUpInside" id="3W3-ZX-zBV"/>
                                 </connections>
@@ -634,7 +634,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8mi-DX-Oay" secondAttribute="height" multiplier="1:1" id="t98-Dt-VcG"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="blue"/>
+                                <state key="normal" backgroundImage="women"/>
                                 <connections>
                                     <action selector="women:" destination="yme-va-Y8P" eventType="touchUpInside" id="dVG-Fz-Wb9"/>
                                 </connections>
@@ -644,7 +644,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nGR-wQ-7PD" secondAttribute="height" multiplier="1:1" id="hfm-kB-9oW"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="blue"/>
+                                <state key="normal" backgroundImage="kids"/>
                                 <connections>
                                     <action selector="kids:" destination="yme-va-Y8P" eventType="touchUpInside" id="JfH-le-OK9"/>
                                 </connections>
@@ -711,7 +711,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RVa-GK-SgZ" secondAttribute="height" multiplier="1:1" id="9kI-Vy-mAS"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="pink"/>
+                                <state key="normal" backgroundImage="top"/>
                                 <connections>
                                     <action selector="top:" destination="TDk-Cb-ZFg" eventType="touchUpInside" id="aqa-sJ-h4f"/>
                                 </connections>
@@ -727,7 +727,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Fcp-qj-yRf" secondAttribute="height" multiplier="1:1" id="cn3-2S-DMO"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="pink"/>
+                                <state key="normal" backgroundImage="bottom"/>
                                 <connections>
                                     <action selector="bottom:" destination="TDk-Cb-ZFg" eventType="touchUpInside" id="FkY-1t-cq4"/>
                                 </connections>
@@ -743,7 +743,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0bM-2W-vh0" secondAttribute="height" multiplier="1:1" id="vNA-Sc-Ysk"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="pink"/>
+                                <state key="normal" backgroundImage="one-piece"/>
                                 <connections>
                                     <action selector="onePiece:" destination="TDk-Cb-ZFg" eventType="touchUpInside" id="Nnf-Zb-ygk"/>
                                 </connections>
@@ -759,7 +759,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="iGf-DY-NAa" secondAttribute="height" multiplier="1:1" id="J1j-lC-QYg"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="pink"/>
+                                <state key="normal" backgroundImage="bags"/>
                                 <connections>
                                     <action selector="bags:" destination="TDk-Cb-ZFg" eventType="touchUpInside" id="Zod-OR-70F"/>
                                 </connections>
@@ -775,7 +775,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7k0-P6-0HO" secondAttribute="height" multiplier="1:1" id="2rj-An-0ca"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="pink"/>
+                                <state key="normal" backgroundImage="shoes"/>
                                 <connections>
                                     <action selector="footwear:" destination="TDk-Cb-ZFg" eventType="touchUpInside" id="Hwe-jX-wPN"/>
                                 </connections>
@@ -797,7 +797,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lI4-ZC-4xc" secondAttribute="height" multiplier="1:1" id="KHU-Cg-Lcy"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="pink"/>
+                                <state key="normal" backgroundImage="acessories"/>
                                 <connections>
                                     <action selector="accessories:" destination="TDk-Cb-ZFg" eventType="touchUpInside" id="IhA-Ds-Lzs"/>
                                 </connections>
@@ -1732,7 +1732,7 @@
                                 <color key="shadowColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wcy-Hq-8vo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wcy-Hq-8vo">
                                 <rect key="frame" x="33" y="270" width="130" height="130"/>
                                 <color key="backgroundColor" red="0.26274509800000001" green="0.7725490196" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1742,7 +1742,7 @@
                                     <rect key="frame" x="33" y="269" width="130" height="130"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-Gy-aBX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-Gy-aBX">
                                 <rect key="frame" x="213" y="270" width="130" height="130"/>
                                 <color key="backgroundColor" red="0.1239039376" green="0.1423230767" blue="0.18813481930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1752,7 +1752,7 @@
                                     <rect key="frame" x="213" y="269" width="130" height="130"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1o-x0-H01">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1o-x0-H01">
                                 <rect key="frame" x="37" y="448" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="K1o-x0-H01" secondAttribute="height" multiplier="6:1" id="14k-vd-jpZ"/>
@@ -1765,7 +1765,7 @@
                                     <rect key="frame" x="37" y="447" width="300" height="50"/>
                                 </variation>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lQ-Gy-aVS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lQ-Gy-aVS">
                                 <rect key="frame" x="37" y="518" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4lQ-Gy-aVS" secondAttribute="height" multiplier="6:1" id="Wkv-rR-jph"/>
@@ -1781,7 +1781,7 @@
                                     <segue destination="QRT-Kt-H6i" kind="show" id="ZTX-CR-P5P"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name liked your clothing too!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGl-LY-TFN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name liked your clothing too!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGl-LY-TFN">
                                 <rect key="frame" x="0.0" y="195" width="375" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                 <color key="textColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
@@ -1889,9 +1889,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="acessories" width="100" height="100"/>
         <image name="add" width="26" height="26"/>
         <image name="back" width="26" height="18"/>
-        <image name="blue" width="100" height="100"/>
+        <image name="bags" width="100" height="100"/>
+        <image name="bottom" width="100" height="100"/>
         <image name="checked" width="26" height="20"/>
         <image name="close" width="26" height="26"/>
         <image name="deny" width="74" height="74"/>
@@ -1901,11 +1903,16 @@
         <image name="heart" width="27" height="25"/>
         <image name="heart-round" width="75" height="74"/>
         <image name="info" width="52" height="52"/>
+        <image name="kids" width="100" height="100"/>
+        <image name="men" width="100" height="100"/>
         <image name="no-photo" width="64" height="64"/>
-        <image name="pink" width="100" height="100"/>
+        <image name="one-piece" width="100" height="100"/>
         <image name="pizza" width="1800" height="1200"/>
         <image name="profile" width="200" height="200"/>
+        <image name="shoes" width="100" height="100"/>
         <image name="shoot" width="54" height="54"/>
+        <image name="top" width="100" height="100"/>
         <image name="user" width="23" height="27"/>
+        <image name="women" width="100" height="100"/>
     </resources>
 </document>
