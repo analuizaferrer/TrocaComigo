@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NAB-uX-TCJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NAB-uX-TCJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -347,10 +347,18 @@
                                     <action selector="login:" destination="gM7-DE-8Nk" eventType="touchUpInside" id="Lt9-bj-GCR"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-hanger" translatesAutoresizingMaskIntoConstraints="NO" id="grK-Es-vIW">
+                                <rect key="frame" x="104" y="65" width="169" height="129"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="grK-Es-vIW" secondAttribute="height" multiplier="169:129" id="VRd-Iv-AVV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.58039215690000001" green="0.88235294119999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1B9-ji-eQw" firstAttribute="leading" secondItem="0D0-eT-d7f" secondAttribute="leading" constant="38" id="0Oi-Kb-j8H"/>
+                            <constraint firstItem="grK-Es-vIW" firstAttribute="top" secondItem="4oP-Ir-bMq" secondAttribute="bottom" constant="45" id="140-tJ-4E9"/>
+                            <constraint firstItem="grK-Es-vIW" firstAttribute="leading" secondItem="0D0-eT-d7f" secondAttribute="leading" constant="104" id="1Gu-vc-ZtT"/>
                             <constraint firstItem="qpy-yO-QZX" firstAttribute="top" secondItem="1B9-ji-eQw" secondAttribute="bottom" constant="15" id="2SS-L2-o2i"/>
                             <constraint firstItem="1B9-ji-eQw" firstAttribute="top" secondItem="4oP-Ir-bMq" secondAttribute="bottom" constant="228" id="76g-Kz-NNL"/>
                             <constraint firstItem="qpy-yO-QZX" firstAttribute="leading" secondItem="0D0-eT-d7f" secondAttribute="leading" constant="38" id="8tW-ax-J1E"/>
@@ -364,9 +372,11 @@
                             <constraint firstItem="bNI-hT-r8e" firstAttribute="top" secondItem="CAb-gt-iaL" secondAttribute="bottom" constant="15" id="M4i-9X-aUv"/>
                             <constraint firstAttribute="trailing" secondItem="wNg-Ca-m5G" secondAttribute="trailing" constant="37" id="NMa-0E-cuc"/>
                             <constraint firstItem="CAb-gt-iaL" firstAttribute="centerX" secondItem="0D0-eT-d7f" secondAttribute="centerX" id="TTm-kW-Rtt"/>
+                            <constraint firstItem="1B9-ji-eQw" firstAttribute="top" secondItem="grK-Es-vIW" secondAttribute="bottom" constant="54" id="UQa-jU-HTx"/>
                             <constraint firstAttribute="trailing" secondItem="1B9-ji-eQw" secondAttribute="trailing" constant="37" id="cIL-SK-gfD"/>
                             <constraint firstItem="CAb-gt-iaL" firstAttribute="top" secondItem="qpy-yO-QZX" secondAttribute="bottom" constant="15" id="cPY-op-BzS"/>
                             <constraint firstItem="Ca0-q6-XoH" firstAttribute="top" secondItem="bNI-hT-r8e" secondAttribute="bottom" constant="15" id="d8a-u0-7nm"/>
+                            <constraint firstAttribute="trailing" secondItem="grK-Es-vIW" secondAttribute="trailing" constant="102" id="f0i-1D-DP1"/>
                             <constraint firstAttribute="trailing" secondItem="CAb-gt-iaL" secondAttribute="trailing" constant="37" id="fC9-EW-gxc"/>
                             <constraint firstAttribute="trailing" secondItem="bNI-hT-r8e" secondAttribute="trailing" constant="37" id="k8R-1f-EgN"/>
                             <constraint firstItem="bNI-hT-r8e" firstAttribute="leading" secondItem="0D0-eT-d7f" secondAttribute="leading" constant="38" id="lcB-LN-1Z1"/>
@@ -386,7 +396,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbG-fH-fwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-351.75" y="1634.5"/>
+            <point key="canvasLocation" x="-352.5" y="1634.5"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="Xm7-fr-06D">
@@ -1902,6 +1912,7 @@
         <image name="gallery" width="37" height="30"/>
         <image name="heart" width="27" height="25"/>
         <image name="heart-round" width="75" height="74"/>
+        <image name="icon-hanger" width="688" height="532"/>
         <image name="info" width="52" height="52"/>
         <image name="kids" width="100" height="100"/>
         <image name="men" width="100" height="100"/>
