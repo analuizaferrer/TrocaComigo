@@ -32,13 +32,6 @@ class ProfileTableViewController: UITableViewController {
         nameField.delegate = self
         locationField.delegate = self
         
-//        let dao = DAO()
-//        dao.getName(callbackName)
-//        dao.getLocation(callbackLocation)
-//        dao.getWomenPreferences(callbackWomen)
-//        dao.getMenPreferences(callbackMen)
-//        dao.getKidsPreferences(callbackKids)
-        
         DAOCache().loadUser()
         
         if User.singleton.name != nil {
@@ -47,24 +40,10 @@ class ProfileTableViewController: UITableViewController {
         if User.singleton.location != nil {
             self.locationField.text = User.singleton.location
         }
-        if User.singleton.womenPreference != nil {
-            self.switchWomen.setOn(User.singleton.womenPreference, animated: true)
-        }
-        if User.singleton.menPreference != nil {
-            self.switchMen.setOn(User.singleton.menPreference, animated: true)
-        }
-        if User.singleton.kidsPreference != nil {
-            self.switchKids.setOn(User.singleton.kidsPreference, animated: true)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
-//        let dao = DAO()
-//        dao.getName(callbackName)
-//        dao.getLocation(callbackLocation)
-//        dao.getWomenPreferences(callbackWomen)
-//        dao.getMenPreferences(callbackMen)
-//        dao.getKidsPreferences(callbackKids)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,53 +59,8 @@ class ProfileTableViewController: UITableViewController {
         self.locationField.text = snapshot.value! as? String
     }
     
-    func callbackWomen(snapshot: FIRDataSnapshot) {
-        if snapshot.value! as? String == "true" {
-            self.switchWomen.setOn(true, animated: false)
-        } else {
-            self.switchWomen.setOn(false, animated: false)
-        }
-    }
-    
-    func callbackMen(snapshot: FIRDataSnapshot) {
-        if snapshot.value! as? String == "true" {
-            self.switchMen.setOn(true, animated: false)
-        } else {
-            self.switchMen.setOn(false, animated: false)
-        }
-    }
-    
-    func callbackKids(snapshot: FIRDataSnapshot) {
-        if snapshot.value! as? String == "true" {
-            self.switchKids.setOn(true, animated: false)
-        } else {
-            self.switchKids.setOn(false, animated: false)
-        }
-    }
-
-    @IBAction func womenSwitchDidChange(sender: AnyObject) {
-        let dao = DAO()
-        dao.registerUserPreferences("women", status: switchWomen.on)
-        User.singleton.womenPreference = switchWomen.on
-        DAOCache().saveUser()
-    }
-    
-    @IBAction func menSwitchDidChange(sender: AnyObject) {
-        let dao = DAO()
-        dao.registerUserPreferences("men", status: switchMen.on)
-        User.singleton.menPreference = switchMen.on
-        DAOCache().saveUser()
-    }
-    
-    @IBAction func kidsSwitchDidChange(sender: AnyObject) {
-        let dao = DAO()
-        dao.registerUserPreferences("kids", status: switchKids.on)
-        User.singleton.kidsPreference = switchKids.on
-        DAOCache().saveUser()
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 1 {
             let alert = UIAlertController(title: "Are you sure you want to log out?", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             
             let exitAccount = UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction) in
@@ -139,11 +73,8 @@ class ProfileTableViewController: UITableViewController {
             alert.addAction(cancel)
             
             self.presentViewController(alert, animated: true, completion: nil)
-            
         }
-        
     }
-    
 }
 
 extension ProfileTableViewController : UITextFieldDelegate {

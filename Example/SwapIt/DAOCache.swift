@@ -96,9 +96,6 @@ class DAOCache {
         dict["Products"] = products
         dict["name"] = user.name
         dict["location"] = user.location
-        dict["womenPreference"] = user.womenPreference
-        dict["menPreference"] = user.menPreference
-        dict["kidsPreference"] = user.kidsPreference
         dict["profilePic"] = imageData
         
         dict.writeToFile(plistPath, atomically: true)
@@ -120,18 +117,6 @@ class DAOCache {
         
         if dict?.valueForKey("location") != nil {
             user.location = dict?.valueForKey("location") as! String!
-        }
-        
-        if dict?.valueForKey("womenPreference") != nil {
-            user.womenPreference = dict?.valueForKey("womenPreference") as! Bool!
-        }
-        
-        if dict?.valueForKey("menPreference") != nil {
-            user.menPreference = dict?.valueForKey("menPreference") as! Bool!
-        }
-        
-        if dict?.valueForKey("kidsPreferences") != nil {
-            user.kidsPreference = dict?.valueForKey("kidsPreference") as! Bool!
         }
         
         if dict?.valueForKey("profilePic") != nil {

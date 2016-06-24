@@ -36,8 +36,10 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
         super.viewDidLoad()
         
         print("entrou no view did load do koloda")
-        print(productsArray[0].id)
-//        productsArray.shuffle()
+ 
+        if productsArray.count >= 0 {
+            numberOfCards = UInt(productsArray.count)
+        }
         
         DAOCache().loadUser()
         
@@ -58,11 +60,11 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     }
     
     //MARK: IBActions
-    @IBAction func leftButtonTapped() { // dislke
+    @IBAction func leftButtonTapped() {
         kolodaView?.swipe(SwipeResultDirection.Left)
     }
     
-    @IBAction func rightButtonTapped() { // like self.rootRef.child("profile").child(idDonoProduto).child("likes").child(idUsuario).setValue(idProduto)
+    @IBAction func rightButtonTapped() { // like
         kolodaView?.swipe(SwipeResultDirection.Right)
         print(currentOwnerId)
         print(currentProductId)
@@ -71,10 +73,6 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
-    }
-    
-    func callbackMatchProduct(snapshot: FIRDataSnapshot) {
-        self.matchProduct = (snapshot.value! as? String)!
     }
 }
 
@@ -145,16 +143,11 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
         i = 0
         
     }
-
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
-       // UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
-            
-        
         self.navigationController?.navigationBarHidden = true
         configureProductDetailsView()
         view.addSubview(productDetailsView)
-
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {
@@ -181,10 +174,18 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     }
     
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
+       
         if imagesArray.count > Int(index) {
-            print("entrou no if do koloda")
-            let data = imagesArray[Int(index)]
+            let data = imagesArray[Int(index)].image
             currentIndex = Int(index)
+            currentProductId = imagesArray[Int(index)].owner
+            
+            for product in productsArray {
+                if product.id == imagesArray[Int(index)].owner {
+                     currentOwnerId = product.userid
+                }
+            }
+            
             let image = UIImage(data: data)
             let imageView = UIImageView(image: image)
             imageView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -203,14 +204,12 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     }
     
     func koloda(koloda: KolodaView, didSwipeCardAtIndex index: UInt, inDirection direction: SwipeResultDirection) {
+      
         if direction == .Right {
-            
             DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
             DAO().searchForMatch(currentOwnerId, callback: { snapshot in
-                
             })
         }
-        
     }
 }
 

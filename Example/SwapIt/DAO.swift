@@ -29,14 +29,6 @@ class DAO {
         User.singleton.id = userID
     }
     
-    func registerUserPreferences(name: String, status: Bool) {
-        if let user = FIRAuth.auth()?.currentUser {
-            self.rootRef.child("profile").child(user.uid).child("preferences").child(name).setValue(status.description)
-        } else {
-            // No user is signed in.
-        }
-    }
-    
     /* MARK: Function registerProduct
      Registers the product using the owners id */
     func registerProduct(category: String, subcategory: String, description: String, brand: String, size: String, condition: String, userID: String, images: [NSData]) {
@@ -88,10 +80,27 @@ class DAO {
         let idLike = "\(user!.uid)" + " " + "\(likedProductID)"
         
         let timestamp: String = NSDate().getCurrentShortDate()
-        print(timestamp)
-       
-        self.rootRef.child("profile").child(likedUserID).child("likes").child(timestamp).setValue(idLike)
         
+        self.rootRef.child("profile").child(likedUserID).observeEventType(.Value, withBlock: { snapshot in
+                for (item, value) in snapshot.value as! [String : AnyObject] {
+                    
+                    if item == "likes"{
+                        
+                        let likesDict = value as! [String : AnyObject]
+                        
+                        for (ts, likeid) in likesDict {
+                            let fullID = String(likeid)
+                            let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
+                            
+                            if (fullNameArr[0] == user?.uid && fullNameArr[1] == likedProductID) {
+                                print("usuário já deu like nesse produto!")
+                                self.rootRef.child("profile").child((user?.uid)!).child("likes").child(ts).removeValue()
+                            }
+                        }
+                    }
+                }
+            self.rootRef.child("profile").child(likedUserID).child("likes").child(timestamp).setValue(idLike)
+            })
     }
     
     func registerProfilePic(imageData: NSData) {
@@ -110,25 +119,29 @@ class DAO {
         }
     }
     
-    func getImages(ids: [String], callback:([NSData]) -> Void) -> Void  {
-        var images: [NSData] = []
+    func getImages(ids: [String], callback:([Image]) -> Void) -> Void  {
+        var images: [Image] = []
         let loadImagesGroup = dispatch_group_create()
-        print("entrou na funçào das imagens com id de user \(User.singleton.id)")
         
         if (FIRAuth.auth()?.currentUser) != nil {
-            print("current user")
+          
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+            
             for id in ids {
                 print(id)
+                
                 for product in productsArray {
+                    
                     if product.id == id {
+                        
                         let userid = product.userid
                         let imageRef = storageRef.child(userid).child("products").child(id).child("image1")
                         dispatch_group_enter(loadImagesGroup)
                         imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
                             if error == nil {
                                 print("deu append nas fotos")
-                                images.append(data!)
+                                let img = Image(image: data!, owner: id)
+                                images.append(img)
                             }
                             dispatch_group_leave(loadImagesGroup)
                         })
@@ -190,8 +203,6 @@ class DAO {
         }
     }
 
-
-    
     /* MARK: Function createAccount
      Gets the email and password typed by the user and saves on the database */
     func createAccount(name: String, username: String, password: String, callback: FIRAuthResultCallback) {
@@ -208,9 +219,6 @@ class DAO {
      Logs out of the application */
     func logout() {
         try! FIRAuth.auth()!.signOut()
-    }
-
-    func resetPassword() {
     }
     
     /* MARK: Function updateName
@@ -256,30 +264,6 @@ class DAO {
         return "user not found"
     }
     
-    func getWomenPreferences(callback:(FIRDataSnapshot) -> Void)->Void {
-        if let user = FIRAuth.auth()?.currentUser {
-            self.rootRef.child("profile").child(user.uid).child("preferences").child("women").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func getMenPreferences(callback:(FIRDataSnapshot) -> Void)->Void {
-        if let user = FIRAuth.auth()?.currentUser {
-            self.rootRef.child("profile").child(user.uid).child("preferences").child("men").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func getKidsPreferences(callback:(FIRDataSnapshot) -> Void)->Void {
-        if let user = FIRAuth.auth()?.currentUser {
-            self.rootRef.child("profile").child(user.uid).child("preferences").child("kids").observeSingleEventOfType(.Value, withBlock: callback) { (error) in
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     // SEARCH FOR MATCH (searches if the user whose product you like already likes a product of yours)
     func searchForMatch(ownerID: String, callback:(FIRDataSnapshot) -> Void)->Void {
         
@@ -309,6 +293,8 @@ class DAO {
     func generateProductsArray(callback:([Product]) -> Void) -> Void {
         
         let user = FIRAuth.auth()?.currentUser
+        var hasLikes = false
+        
         
         self.rootRef.child("product").observeSingleEventOfType(.Value, withBlock: { snapshot in
            
@@ -316,32 +302,11 @@ class DAO {
             
             for (index, value) in snapshot.value as! [String : AnyObject] {
                
-                var productDidEnterArray = false
                 let productDict = value as! [String : AnyObject]
                 let product : Product = Product(dict: productDict, index: index)
                 
-                // CONSERTAR!
-                
                 if user?.uid != product.userid {
-                  
-                    self.rootRef.child("profile").child(product.userid).observeEventType(.Value, withBlock: { snapshot in
-                      
-                        for (_, value) in snapshot.value as! [String : AnyObject] {
-                           
-                            let fullID = String(value)
-                            let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
-                            
-                            if (fullNameArr[0] == user?.uid && fullNameArr[1] == product.id) {
-                               print("usuário já deu like nesse produto!")
-                            } else {
-                                products.append(product)
-                                productDidEnterArray = true
-                            }
-                        }
-                    })
-                    if !productDidEnterArray {
-                        products.append(product)
-                    }
+                    products.append(product)
                 } else {
                     User.singleton.products.append(product)
                 }

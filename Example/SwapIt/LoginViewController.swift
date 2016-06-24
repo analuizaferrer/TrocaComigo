@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 var productsArray: [Product] = []
-var imagesArray: [NSData] = []
+var imagesArray: [Image] = []
 var productsIDs: [String] = []
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -76,9 +76,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         uniqueUser.id = user?.uid
                         uniqueUser.name = nil
                         uniqueUser.location = nil
-                        uniqueUser.kidsPreference = nil
-                        uniqueUser.menPreference = nil
-                        uniqueUser.womenPreference = nil
                         uniqueUser.profilePic = nil
                         uniqueUser.products.removeAll()
                         
@@ -94,21 +91,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
 
                 dao.generateProductsArray({ products in
-                    print("entrou no callback")
                     
                     for product in products {
-                        print("entrou no for")
                         productsArray.append(product)
                         productsIDs.append(product.id!)
                     }
                     
                     dao.getImages(productsIDs, callback: { images in
-                        print("entrou no segundo callback")
+    
                         for image in images {
-                            print("entrou no segundo for")
-                            imagesArray.append(image)
+                           imagesArray.append(image)
                         }
-                        print("veio pra ca")
                         
                         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
@@ -131,9 +124,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("signup")
         self.presentViewController(homeViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func forgotPasswordButtonAction(sender: AnyObject) {
-        DAO().resetPassword()
     }
 }

@@ -67,23 +67,34 @@ class CreateAccountViewController: UIViewController {
             
             func signUpCallback (user: FIRUser?, error: NSError?) {
                 if error == nil {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                    self.presentViewController(homeViewController, animated: true, completion: nil)
-                    
                     dao.registerUser(name.text!, location: "", userID: (user?.uid)!)
                     
                     let uniqueUser = User.singleton
                     uniqueUser.id = user?.uid
                     uniqueUser.name = name.text
                     uniqueUser.location = nil
-                    uniqueUser.kidsPreference = nil
-                    uniqueUser.menPreference = nil
-                    uniqueUser.womenPreference = nil
                     uniqueUser.profilePic = nil
                     uniqueUser.products.removeAll()
                     
                     DAOCache().saveUser()
+                    
+                    dao.generateProductsArray({ products in
+                        
+                        for product in products {
+                            productsArray.append(product)
+                            productsIDs.append(product.id!)
+                        }
+                        
+                        dao.getImages(productsIDs, callback: { images in
+                            for image in images {
+                                imagesArray.append(image)
+                            }
+                            
+                            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                            let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                            self.presentViewController(homeViewController, animated: true, completion: nil)
+                        })
+                    })
                 } else {
                     
                     var errorMessage = ""
@@ -106,7 +117,6 @@ class CreateAccountViewController: UIViewController {
                         errorMessage = "Error"
                     }
 
-
                     let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
                     let cancel = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(cancel)
@@ -116,8 +126,9 @@ class CreateAccountViewController: UIViewController {
                 
                 
             }
-            
+          
             dao.createAccount(name.text!, username: email.text!, password: password.text!, callback: signUpCallback)
+       
         } else {
             let alert = UIAlertController(title: "Error", message: "Passwords don't match.", preferredStyle: UIAlertControllerStyle.Alert)
             

@@ -13,9 +13,6 @@ class User {
     var id: String!
     var name: String!
     var location: String!
-    var womenPreference: Bool!
-    var menPreference: Bool!
-    var kidsPreference: Bool!
     var profilePic: UIImage?
     var products = [Product]()
     
@@ -24,12 +21,4 @@ class User {
     private init() {
         
     }
-    
-//    init(dict : [String : AnyObject]) {
-//        self.name = dict["name"] as! String
-//        self.location = dict["location"] as! String
-//        self.womenPreference = true
-//        self.menPreference = true
-//        self.kidsPreference = true
-//    }
 }
