@@ -19,6 +19,7 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 private var currentProductId = productsArray[0].id
 private var currentOwnerId = productsArray[0].userid
 private var currentIndex = 0
+private var currentImage = UIImage(named: "close")
 
 class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate {
 
@@ -28,6 +29,7 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     
     var productDetailsView : UIView!
     var detailsPageControl : UIPageControl!
+    var detailsImageView : UIImageView!
     
     var matchProduct = ""
     
@@ -99,15 +101,22 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
         
         var i = 0
         
-        while (productsArray[i].id != productsIDs[currentIndex]) {
+        while (productsArray[i].id != currentProductId) {
             i+=1
         }
         
         productDetailsView = UIView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
         productDetailsView.backgroundColor = UIColor.whiteColor()
         
-        detailsPageControl = UIPageControl(frame: CGRectMake(0,0,view.frame.width, view.frame.width))
-        configurePageControl()
+//        detailsPageControl = UIPageControl(frame: CGRectMake(0,0,view.frame.width, view.frame.width))
+//        configurePageControl()
+        
+        detailsImageView = UIImageView(frame: CGRectMake(0, 0, view.frame.width, view.frame.width))
+        detailsImageView.image = currentImage
+        detailsImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        detailsImageView.clipsToBounds = true
+        productDetailsView.addSubview(detailsImageView)
+
         
         let leaveDetailsViewButton = UIButton(frame: CGRectMake(20,20,40,40))
         leaveDetailsViewButton.setBackgroundImage(UIImage(named: "down"), forState: .Normal)
@@ -188,6 +197,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             
             let image = UIImage(data: data)
             let imageView = UIImageView(image: image)
+            currentImage = image
             imageView.contentMode = UIViewContentMode.ScaleAspectFill
             imageView.layer.cornerRadius = 15.0
             imageView.clipsToBounds = true
