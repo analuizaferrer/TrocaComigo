@@ -36,8 +36,6 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("entrou no view did load do koloda")
  
         if productsArray.count >= 0 {
             numberOfCards = UInt(productsArray.count)
@@ -68,8 +66,6 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     
     @IBAction func rightButtonTapped() { // like
         kolodaView?.swipe(SwipeResultDirection.Right)
-        print(currentOwnerId)
-        print(currentProductId)
         DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
     }
     
@@ -218,7 +214,12 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
       
         if direction == .Right {
             DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
-            DAO().searchForMatch(currentOwnerId, callback: { snapshot in
+            DAO().searchForMatch(currentOwnerId, callback: { didRegisterSwap in
+                if didRegisterSwap {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                    self.presentViewController(homeViewController, animated: true, completion: nil)
+                }
             })
         }
     }

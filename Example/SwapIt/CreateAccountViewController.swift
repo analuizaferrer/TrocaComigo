@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var name: UITextField!
     
@@ -24,8 +24,22 @@ class CreateAccountViewController: UIViewController {
         return true
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        name.resignFirstResponder()
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        passwordConf.resignFirstResponder()
+        
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        name.delegate = self
+        email.delegate = self
+        password.delegate = self
+        passwordConf.delegate = self
         
         name.attributedPlaceholder = NSAttributedString(string:"name", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
         email.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)])
