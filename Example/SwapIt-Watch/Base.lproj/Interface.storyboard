@@ -10,9 +10,8 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SwapIt_Watch" customModuleProvider="target">
                     <items>
-                        <imageView width="100" height="100" alignment="center" verticalAlignment="center" image="pizza" id="aGs-0H-41i"/>
+                        <imageView width="100" height="100" alignment="center" verticalAlignment="center" image="roupa1" id="aGs-0H-41i"/>
                     </items>
-                    <color key="backgroundColor" red="0.48627450979999998" green="0.1450980392" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="swapImage" destination="aGs-0H-41i" id="XAb-r6-ajI"/>
                     </connections>
