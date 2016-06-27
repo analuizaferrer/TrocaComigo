@@ -33,6 +33,14 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		CE4940D71D17347E004242C9 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4940D61D17347E004242C9 /* SettingsTableViewController.swift */; };
+		CE87E26C1D1F3FBF00B6E64A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE87E26A1D1F3FBF00B6E64A /* Interface.storyboard */; };
+		CE87E26E1D1F3FBF00B6E64A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE87E26D1D1F3FBF00B6E64A /* Assets.xcassets */; };
+		CE87E2751D1F3FBF00B6E64A /* SwapIt-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE87E2741D1F3FBF00B6E64A /* SwapIt-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE87E27C1D1F3FBF00B6E64A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87E27B1D1F3FBF00B6E64A /* InterfaceController.swift */; };
+		CE87E27E1D1F3FBF00B6E64A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87E27D1D1F3FBF00B6E64A /* ExtensionDelegate.swift */; };
+		CE87E2801D1F3FBF00B6E64A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87E27F1D1F3FBF00B6E64A /* NotificationController.swift */; };
+		CE87E2821D1F3FBF00B6E64A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE87E2811D1F3FBF00B6E64A /* Assets.xcassets */; };
+		CE87E2861D1F3FBF00B6E64A /* SwapIt-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CE87E2681D1F3FBF00B6E64A /* SwapIt-Watch.app */; };
 		F60896F71D11DF6700B8145D /* LikesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */; };
 		F624B9AA1D1CD75700214978 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F624B9A91D1CD75700214978 /* Image.swift */; };
 		F630965B1D10AEB900936C46 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630965A1D10AEB900936C46 /* UserTableViewController.swift */; };
@@ -51,6 +59,48 @@
 		F6C10F141D09A31700DEE51F /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C10F131D09A31700DEE51F /* CreateAccountViewController.swift */; };
 		F6FD01231D1C3C1000FB34FB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD01221D1C3C1000FB34FB /* Extensions.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE87E2761D1F3FBF00B6E64A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE87E2731D1F3FBF00B6E64A;
+			remoteInfo = "SwapIt-Watch Extension";
+		};
+		CE87E2841D1F3FBF00B6E64A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE87E2671D1F3FBF00B6E64A;
+			remoteInfo = "SwapIt-Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE87E28C1D1F3FBF00B6E64A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CE87E2751D1F3FBF00B6E64A /* SwapIt-Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87E28E1D1F3FBF00B6E64A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				CE87E2861D1F3FBF00B6E64A /* SwapIt-Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		093C6CC368001B8BAFD235CB /* Pods-Koloda_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +136,19 @@
 		8C6AF94B3192C604963C53B3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A8A21A7254497CF03F2BBEA3 /* Pods-Koloda_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Tests/Pods-Koloda_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE4940D61D17347E004242C9 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		CE87E2681D1F3FBF00B6E64A /* SwapIt-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwapIt-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE87E26B1D1F3FBF00B6E64A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		CE87E26D1D1F3FBF00B6E64A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE87E26F1D1F3FBF00B6E64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE87E2741D1F3FBF00B6E64A /* SwapIt-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SwapIt-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE87E27A1D1F3FBF00B6E64A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		CE87E27B1D1F3FBF00B6E64A /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		CE87E27D1D1F3FBF00B6E64A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		CE87E27F1D1F3FBF00B6E64A /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		CE87E2811D1F3FBF00B6E64A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE87E2831D1F3FBF00B6E64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE87E28F1D1F423500B6E64A /* Koloda_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Koloda_Example.entitlements; sourceTree = "<group>"; };
+		CE87E2901D1F424100B6E64A /* SwapIt-Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SwapIt-Watch Extension.entitlements"; sourceTree = "<group>"; };
 		CF2C9E50C19A9188464AE19E /* Pods-Koloda_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koloda_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Koloda_Example/Pods-Koloda_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D6781607B5327BAF503C32E3 /* Koloda.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Koloda.podspec; path = ../Koloda.podspec; sourceTree = "<group>"; };
 		F60896F61D11DF6700B8145D /* LikesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikesCollectionViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +179,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE87E2711D1F3FBF00B6E64A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -138,9 +208,12 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				CE87E28F1D1F423500B6E64A /* Koloda_Example.entitlements */,
 				F63F71401D1B34B300791500 /* Default-568h@2x.png */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example */,
+				CE87E2691D1F3FBF00B6E64A /* SwapIt-Watch */,
+				CE87E2781D1F3FBF00B6E64A /* SwapIt-Watch Extension */,
 				607FACD11AFB9204008FA782 /* Products */,
 				AB88095976C7B6CA809587FB /* Pods */,
 				85B3405D0F2A73D9A709B3FA /* Frameworks */,
@@ -151,6 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* Koloda_Example.app */,
+				CE87E2681D1F3FBF00B6E64A /* SwapIt-Watch.app */,
+				CE87E2741D1F3FBF00B6E64A /* SwapIt-Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +287,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CE87E2691D1F3FBF00B6E64A /* SwapIt-Watch */ = {
+			isa = PBXGroup;
+			children = (
+				CE87E26A1D1F3FBF00B6E64A /* Interface.storyboard */,
+				CE87E26D1D1F3FBF00B6E64A /* Assets.xcassets */,
+				CE87E26F1D1F3FBF00B6E64A /* Info.plist */,
+			);
+			path = "SwapIt-Watch";
+			sourceTree = "<group>";
+		};
+		CE87E2781D1F3FBF00B6E64A /* SwapIt-Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CE87E2901D1F424100B6E64A /* SwapIt-Watch Extension.entitlements */,
+				CE87E27B1D1F3FBF00B6E64A /* InterfaceController.swift */,
+				CE87E27D1D1F3FBF00B6E64A /* ExtensionDelegate.swift */,
+				CE87E27F1D1F3FBF00B6E64A /* NotificationController.swift */,
+				CE87E2811D1F3FBF00B6E64A /* Assets.xcassets */,
+				CE87E2831D1F3FBF00B6E64A /* Info.plist */,
+				CE87E2791D1F3FBF00B6E64A /* Supporting Files */,
+			);
+			path = "SwapIt-Watch Extension";
+			sourceTree = "<group>";
+		};
+		CE87E2791D1F3FBF00B6E64A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE87E27A1D1F3FBF00B6E64A /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F631A3941D08AD11003EF2CE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,15 +378,51 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				64922D3147424C142700ED20 /* [CP] Embed Pods Frameworks */,
 				822E414921E8C1E4C57072A9 /* [CP] Copy Pods Resources */,
+				CE87E28E1D1F3FBF00B6E64A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CE87E2851D1F3FBF00B6E64A /* PBXTargetDependency */,
 			);
 			name = Koloda_Example;
 			productName = Koloda;
 			productReference = 607FACD01AFB9204008FA782 /* Koloda_Example.app */;
 			productType = "com.apple.product-type.application";
+		};
+		CE87E2671D1F3FBF00B6E64A /* SwapIt-Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE87E28D1D1F3FBF00B6E64A /* Build configuration list for PBXNativeTarget "SwapIt-Watch" */;
+			buildPhases = (
+				CE87E2661D1F3FBF00B6E64A /* Resources */,
+				CE87E28C1D1F3FBF00B6E64A /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE87E2771D1F3FBF00B6E64A /* PBXTargetDependency */,
+			);
+			name = "SwapIt-Watch";
+			productName = "SwapIt-Watch";
+			productReference = CE87E2681D1F3FBF00B6E64A /* SwapIt-Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		CE87E2731D1F3FBF00B6E64A /* SwapIt-Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE87E28B1D1F3FBF00B6E64A /* Build configuration list for PBXNativeTarget "SwapIt-Watch Extension" */;
+			buildPhases = (
+				CE87E2701D1F3FBF00B6E64A /* Sources */,
+				CE87E2711D1F3FBF00B6E64A /* Frameworks */,
+				CE87E2721D1F3FBF00B6E64A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwapIt-Watch Extension";
+			productName = "SwapIt-Watch Extension";
+			productReference = CE87E2741D1F3FBF00B6E64A /* SwapIt-Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -287,13 +430,31 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = W245C3CL8W;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					CE87E2671D1F3FBF00B6E64A = {
+						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 833JWEH774;
+					};
+					CE87E2731D1F3FBF00B6E64A = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = W245C3CL8W;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -311,6 +472,8 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* Koloda_Example */,
+				CE87E2671D1F3FBF00B6E64A /* SwapIt-Watch */,
+				CE87E2731D1F3FBF00B6E64A /* SwapIt-Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -337,6 +500,23 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				F6C10F121D09920300DEE51F /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87E2661D1F3FBF00B6E64A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE87E26E1D1F3FBF00B6E64A /* Assets.xcassets in Resources */,
+				CE87E26C1D1F3FBF00B6E64A /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87E2721D1F3FBF00B6E64A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE87E2821D1F3FBF00B6E64A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +603,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE87E2701D1F3FBF00B6E64A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE87E2801D1F3FBF00B6E64A /* NotificationController.swift in Sources */,
+				CE87E27E1D1F3FBF00B6E64A /* ExtensionDelegate.swift in Sources */,
+				CE87E27C1D1F3FBF00B6E64A /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE87E2771D1F3FBF00B6E64A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE87E2731D1F3FBF00B6E64A /* SwapIt-Watch Extension */;
+			targetProxy = CE87E2761D1F3FBF00B6E64A /* PBXContainerItemProxy */;
+		};
+		CE87E2851D1F3FBF00B6E64A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE87E2671D1F3FBF00B6E64A /* SwapIt-Watch */;
+			targetProxy = CE87E2841D1F3FBF00B6E64A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4420661B1B44577500FD4CAD /* OverlayView.xib */ = {
@@ -448,6 +651,14 @@
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		CE87E26A1D1F3FBF00B6E64A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE87E26B1D1F3FBF00B6E64A /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -540,6 +751,7 @@
 			baseConfigurationReference = CF2C9E50C19A9188464AE19E /* Pods-Koloda_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Koloda_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwapIt/Info.plist;
@@ -556,6 +768,7 @@
 			baseConfigurationReference = 093C6CC368001B8BAFD235CB /* Pods-Koloda_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Koloda_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwapIt/Info.plist;
@@ -564,6 +777,78 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		CE87E2871D1F3FBF00B6E64A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = SwapIt_Watch_Extension;
+				INFOPLIST_FILE = "SwapIt-Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		CE87E2881D1F3FBF00B6E64A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = SwapIt_Watch_Extension;
+				INFOPLIST_FILE = "SwapIt-Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		CE87E2891D1F3FBF00B6E64A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "SwapIt-Watch Extension/SwapIt-Watch Extension.entitlements";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "SwapIt-Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		CE87E28A1D1F3FBF00B6E64A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "SwapIt-Watch Extension/SwapIt-Watch Extension.entitlements";
+				INFOPLIST_FILE = "SwapIt-Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
 		};
@@ -587,6 +872,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		CE87E28B1D1F3FBF00B6E64A /* Build configuration list for PBXNativeTarget "SwapIt-Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE87E2891D1F3FBF00B6E64A /* Debug */,
+				CE87E28A1D1F3FBF00B6E64A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CE87E28D1D1F3FBF00B6E64A /* Build configuration list for PBXNativeTarget "SwapIt-Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE87E2871D1F3FBF00B6E64A /* Debug */,
+				CE87E2881D1F3FBF00B6E64A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

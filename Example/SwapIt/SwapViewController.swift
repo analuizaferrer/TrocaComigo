@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import WatchConnectivity
 
-class SwapViewController: UIViewController {
+class SwapViewController: UIViewController, WCSessionDelegate {
     
     @IBOutlet weak var warningText: UILabel!
     
@@ -21,9 +22,27 @@ class SwapViewController: UIViewController {
         return true
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // verificar se o canal entre iphone e watch pode ser aberto
+        if #available(iOS 9.0, *) {
+            if WCSession.isSupported() {
+                let wcsession = WCSession.defaultSession()
+                wcsession.delegate = self
+                wcsession.activateSession()
+            }
+        }
+        
+        
+        let imageFromSwap = UIImage(named: "pizza")
+        let dataFromSwap = UIImageJPEGRepresentation(imageFromSwap!, 1.0)
+        
+        if #available(iOS 9.0, *) {
+            WCSession.defaultSession().sendMessageData(dataFromSwap!,
+                                                       replyHandler: { (handler) -> Void in print(handler)},
+                                                       errorHandler: { (error) -> Void in print(#file, error)})
+        }
         
         self.myClothe.contentMode = UIViewContentMode.ScaleAspectFill
         self.myClothe.layer.cornerRadius = self.myClothe.frame.size.width / 2
@@ -34,7 +53,6 @@ class SwapViewController: UIViewController {
         self.yourClothe.layer.cornerRadius = self.yourClothe.frame.size.width / 2
         self.yourClothe.clipsToBounds = true
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

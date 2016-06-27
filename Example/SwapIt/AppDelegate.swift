@@ -17,11 +17,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // Override point for customization after application launch.
-        
         FIRApp.configure()
         
         UINavigationBar.appearance().barTintColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
+        
+        
+        
+        /* ~~~ NOTIFICATIONS ~~~ */
+
+        
+        /* identificar as ações que o usuário pode fazer */
+        let swapAction = UIMutableUserNotificationAction()
+        swapAction.identifier = "didSwap"
+        swapAction.title = "Swap"
+        
+        /* identificar as categorias de notificações que pretendo enviar */
+        let swapCategory = UIMutableUserNotificationCategory()
+        swapCategory.identifier = "itWorked"
+        
+        /* notificações no watch são mostradas no default context */
+        // The default context is the lock screen.
+        swapCategory.setActions([swapAction],
+                                forContext: UIUserNotificationActionContext.Default)
+        
+        /* contexto mínimo é importante porque as notificações podem ser mostradas no iphone */
+        // The minimal context is when the user pulls down on a notification banner.
+        swapCategory.setActions([swapAction],
+                                forContext: UIUserNotificationActionContext.Minimal)
+        
+        /* descrição do que o usuário vai ter quando a notificação aparecer */
+        let settings = UIUserNotificationSettings(forTypes: [
+                                                            UIUserNotificationType.Alert,
+                                                            UIUserNotificationType.Badge,
+                                                            UIUserNotificationType.Sound
+                                                            ],
+                                                  categories: [swapCategory])
+        
+        /* nesse ponto, o sistema pede por permissão para mostrar notificações */
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        
+        
+        
+        
         
         return true
     }
