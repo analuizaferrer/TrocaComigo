@@ -72,6 +72,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
           
             if error == nil {
                
+                let activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+                
+                activityView.center = self.view.center
+                
+                activityView.startAnimating()
+                
+                self.view.addSubview(activityView)
+                
                 let uniqueUser = User.singleton
                 if uniqueUser.id != nil {
                    
@@ -94,18 +102,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     for product in products {
                         productsArray.append(product)
-                        productsIDs.append(product.id!)
+                        if productsIDs.count < 5 {
+                            productsIDs.append(product.id!)
+                        }
                     }
                     
                     dao.getImages(productsIDs, callback: { images in
     
                         for image in images {
                            imagesArray.append(image)
+                            print(imagesArray.count)
+                            print(productsArray.count)
+                            if imagesArray.count == productsArray.count {
+                                self.view.willRemoveSubview(activityView)
+                                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
+                                self.presentViewController(homeViewController, animated: true, completion: nil)
+                            }
                         }
-                        
-                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                        self.presentViewController(homeViewController, animated: true, completion: nil)
                     })
                 })
                 

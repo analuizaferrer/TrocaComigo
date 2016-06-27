@@ -17,6 +17,11 @@ class SwapViewController: UIViewController, WCSessionDelegate {
     
     @IBOutlet weak var yourClothe: UIImageView!
     
+    var userImage1: UIImage!
+    
+    var userImage2: UIImage!
+    
+    var username: String!
 
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -43,6 +48,9 @@ class SwapViewController: UIViewController, WCSessionDelegate {
                                                        replyHandler: { (handler) -> Void in print(handler)},
                                                        errorHandler: { (error) -> Void in print(#file, error)})
         }
+
+        self.warningText.text = "\(self.username) liked your clothing too!"
+
         
         self.myClothe.contentMode = UIViewContentMode.ScaleAspectFill
         self.myClothe.layer.cornerRadius = self.myClothe.frame.size.width / 2
@@ -53,6 +61,9 @@ class SwapViewController: UIViewController, WCSessionDelegate {
         self.yourClothe.layer.cornerRadius = self.yourClothe.frame.size.width / 2
         self.yourClothe.clipsToBounds = true
 
+        // Do any additional setup after loading the view.
+        self.myClothe.image = userImage1
+        self.yourClothe.image = userImage2
     }
 
     override func didReceiveMemoryWarning() {

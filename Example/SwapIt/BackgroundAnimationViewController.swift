@@ -20,6 +20,8 @@ private var currentProductId = productsArray[0].id
 private var currentOwnerId = productsArray[0].userid
 private var currentIndex = 0
 private var currentImage = UIImage(named: "close")
+private var currentOwnerName: String!
+private var currentOwnerImage: UIImage!
 
 class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate {
 
@@ -36,8 +38,6 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("entrou no view did load do koloda")
  
         if productsArray.count >= 0 {
             numberOfCards = UInt(productsArray.count)
@@ -68,8 +68,6 @@ class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate 
     
     @IBAction func rightButtonTapped() { // like
         kolodaView?.swipe(SwipeResultDirection.Right)
-        print(currentOwnerId)
-        print(currentProductId)
         DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
     }
     
@@ -185,13 +183,14 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
        
         if imagesArray.count > Int(index) {
-            let data = imagesArray[Int(index)].image
             currentIndex = Int(index)
-            currentProductId = imagesArray[Int(index)].owner
+            
+            let data = imagesArray[Int(index)].image
             
             for product in productsArray {
                 if product.id == imagesArray[Int(index)].owner {
-                     currentOwnerId = product.userid
+                    currentOwnerId = product.userid
+                    currentProductId = imagesArray[Int(index)].owner
                 }
             }
             
@@ -217,9 +216,36 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
       
         if direction == .Right {
             DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
-            DAO().searchForMatch(currentOwnerId, callback: { snapshot in
+            
+            DAO().searchForMatch(currentOwnerId, callback: { didRegisterSwap in
+                print(didRegisterSwap.description)
+                
+                if didRegisterSwap {
+                    DAO().getOwnerName(currentOwnerId, callback: { name in
+                        currentOwnerName = name
+                        
+                        DAO().getProfilePic(currentOwnerId, callback: { image in
+                            currentOwnerImage = image
+                            
+                            self.performSegueWithIdentifier("itsASwap", sender: self)
+                        })
+                    })
+                }
             })
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "itsASwap" {
+            let swapVC = segue.destinationViewController as! SwapViewController
+            
+            swapVC.username = currentOwnerName
+            swapVC.userImage1 = User.singleton.profilePic
+            swapVC.userImage2 = currentOwnerImage
+        }
+     }
+    
+    @IBAction func prepareForUnwindHomeScreen(segue: UIStoryboardSegue) {
     }
 }
 

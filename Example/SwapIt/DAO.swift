@@ -70,37 +70,17 @@ class DAO {
         DAOCache().saveUser()
     }
     
-    
     // REGISTER LIKES
     func registerLikes(likedUserID: String, likedProductID: String) {
         
-        print("entrou na funçao")
         let user = FIRAuth.auth()?.currentUser
         
-        let idLike = "\(user!.uid)" + " " + "\(likedProductID)"
+        let idLike = "\(likedProductID)" + " " + "\(user!.uid)"
         
         let timestamp: String = NSDate().getCurrentShortDate()
         
-        self.rootRef.child("profile").child(likedUserID).observeEventType(.Value, withBlock: { snapshot in
-                for (item, value) in snapshot.value as! [String : AnyObject] {
-                    
-                    if item == "likes"{
-                        
-                        let likesDict = value as! [String : AnyObject]
-                        
-                        for (ts, likeid) in likesDict {
-                            let fullID = String(likeid)
-                            let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
-                            
-                            if (fullNameArr[0] == user?.uid && fullNameArr[1] == likedProductID) {
-                                print("usuário já deu like nesse produto!")
-                                self.rootRef.child("profile").child((user?.uid)!).child("likes").child(ts).removeValue()
-                            }
-                        }
-                    }
-                }
-            self.rootRef.child("profile").child(likedUserID).child("likes").child(timestamp).setValue(idLike)
-            })
+        self.rootRef.child("profile").child(likedUserID).child("likes").child(idLike).setValue(timestamp)
+
     }
     
     func registerProfilePic(imageData: NSData) {
@@ -123,6 +103,8 @@ class DAO {
         var images: [Image] = []
         let loadImagesGroup = dispatch_group_create()
         
+        print("entrou aqui")
+        
         if (FIRAuth.auth()?.currentUser) != nil {
           
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
@@ -138,9 +120,9 @@ class DAO {
                         dispatch_group_enter(loadImagesGroup)
                         imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
                             if error == nil {
-                                print("deu append nas fotos")
                                 let img = Image(image: data!, owner: id)
                                 images.append(img)
+                                print("appeding")
                             }
                             dispatch_group_leave(loadImagesGroup)
                         })
@@ -150,7 +132,7 @@ class DAO {
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_SEC)))
             let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
             dispatch_async(dispatch_get_main_queue()) {
                 guard ok else {
@@ -168,17 +150,14 @@ class DAO {
 
         let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
         for id in ids {
-            print(id)
             for product in User.singleton.products {
                 if product.id == id {
                         let userid = product.userid
                         let imageRef = storageRef.child(userid).child("products").child(id).child("image1")
-                    print("OK")
                         dispatch_group_enter(loadImagesGroup)
                         imageRef.dataWithMaxSize(18752503, completion: { (data, error) in
                             if error == nil {
                                 images.append(data!)
-                                print("ta appending")
                             }
                             dispatch_group_leave(loadImagesGroup)
                         })
@@ -189,7 +168,7 @@ class DAO {
         
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_SEC)))
             let ok = dispatch_group_wait(loadImagesGroup, timeout) == 0
             dispatch_async(dispatch_get_main_queue()) {
                 guard ok else {
@@ -263,28 +242,36 @@ class DAO {
     }
     
     // SEARCH FOR MATCH (searches if the user whose product you like already likes a product of yours)
-    func searchForMatch(ownerID: String, callback:(FIRDataSnapshot) -> Void)->Void {
+    func searchForMatch(ownerID: String, callback: Bool -> Void)->Void {
         
+        var didRegisterSwap = false
         let user = FIRAuth.auth()?.currentUser
 
         self.rootRef.child("profile").child(user!.uid).observeEventType(.Value, withBlock: { (snapshot: FIRDataSnapshot) in
+            print("entrou aqui 2")
             
             for (item, value) in snapshot.value as! [String : AnyObject] {
+              
                 if item == "likes" {
+                   
+                    print("entrou aqui 3")
                     let likesDict = value as! [String : AnyObject]
-                    for (timestamp, like) in likesDict {
+                   
+                    for (like, _) in likesDict {
+                        
                         let fullID = String(like)
                         let fullNameArr = fullID.characters.split{$0 == " "}.map(String.init)
-                        print(fullNameArr[0])
                     
-                        if fullNameArr[0] == ownerID {
-                            self.rootRef.child("profile").child(user!.uid).child("likes").child(timestamp).removeValue()
-                        
+                        if fullNameArr[1] == ownerID {
+                          
+                            self.rootRef.child("profile").child(user!.uid).child("likes").child(like).removeValue()
                             self.registerSwap((user?.uid)!, id2: ownerID)
+                            didRegisterSwap = true
                         }
                     }
                 }
             }
+            callback(didRegisterSwap)
         })
     }
     
@@ -294,7 +281,7 @@ class DAO {
         
         let timestamp: String = NSDate().getCurrentShortDate()
         
-        self.rootRef.child("swaps").child(timestamp).setValue(swap)
+        self.rootRef.child("swaps").child(swap).setValue(timestamp)
         
     }
     
@@ -312,6 +299,7 @@ class DAO {
                 let product : Product = Product(dict: productDict, index: index)
                 
                 if user?.uid != product.userid {
+                    
                     products.append(product)
                 } else {
                     User.singleton.products.append(product)
@@ -329,13 +317,43 @@ class DAO {
             
             User.singleton.id = snapshot.key
             
-            print(snapshot.value!["name"])
-            
             User.singleton.name = snapshot.value!["name"] as! String
             User.singleton.location = snapshot.value!["location"] as! String
             
             DAOCache().saveUser()
             
         })
+    }
+    
+    func getOwnerName(userID: String, callback: String->Void)->Void {
+        
+        var username: String!
+        
+        self.rootRef.child("profile").child(userID).observeEventType(.Value, withBlock: { snapshot in
+            username = snapshot.value!["name"] as! String
+            print(username)
+            callback(username)
+        })
+    }
+
+    func getProfilePic(userID: String, callback: UIImage->Void)->Void {
+        
+        let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+        let imageRef = storageRef.child(userID).child("profile").child("image")
+        var profilePic: UIImage!
+        
+        func imageCallback(data: NSData?, error: NSError?) {
+            if error != nil {
+                print(error?.localizedDescription)
+                print("deu erro")
+                profilePic = UIImage(named: "user-fill")
+            } else {
+                print("nao deu erro")
+                profilePic = UIImage(data: data!)
+            }
+            callback(profilePic)
+        }
+    
+        imageRef.dataWithMaxSize(1 * 1024 * 1024, completion: imageCallback)
     }
 }
