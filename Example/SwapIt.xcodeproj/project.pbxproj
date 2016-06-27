@@ -439,20 +439,20 @@
 						DevelopmentTeam = W245C3CL8W;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
 					CE87E2671D1F3FBF00B6E64A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 833JWEH774;
+						DevelopmentTeam = W245C3CL8W;
 					};
 					CE87E2731D1F3FBF00B6E64A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = W245C3CL8W;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -751,13 +751,12 @@
 			baseConfigurationReference = CF2C9E50C19A9188464AE19E /* Pods-Koloda_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Koloda_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwapIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bepid.SwapIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -768,13 +767,12 @@
 			baseConfigurationReference = 093C6CC368001B8BAFD235CB /* Pods-Koloda_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Koloda_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwapIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bepid.SwapIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -791,7 +789,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = SwapIt_Watch_Extension;
 				INFOPLIST_FILE = "SwapIt-Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bepid.SwapIt.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -810,7 +808,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = SwapIt_Watch_Extension;
 				INFOPLIST_FILE = "SwapIt-Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bepid.SwapIt.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -823,11 +821,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "SwapIt-Watch Extension/SwapIt-Watch Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "SwapIt-Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bepid.SwapIt.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -840,10 +838,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "SwapIt-Watch Extension/SwapIt-Watch Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SwapIt-Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yalantis.SwapIt.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bepid.SwapIt.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -880,6 +878,7 @@
 				CE87E28A1D1F3FBF00B6E64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE87E28D1D1F3FBF00B6E64A /* Build configuration list for PBXNativeTarget "SwapIt-Watch" */ = {
 			isa = XCConfigurationList;
@@ -888,6 +887,7 @@
 				CE87E2881D1F3FBF00B6E64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
