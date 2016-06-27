@@ -103,6 +103,8 @@ class DAO {
         var images: [Image] = []
         let loadImagesGroup = dispatch_group_create()
         
+        print("entrou aqui")
+        
         if (FIRAuth.auth()?.currentUser) != nil {
           
             let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
@@ -120,6 +122,7 @@ class DAO {
                             if error == nil {
                                 let img = Image(image: data!, owner: id)
                                 images.append(img)
+                                print("appeding")
                             }
                             dispatch_group_leave(loadImagesGroup)
                         })
@@ -268,8 +271,8 @@ class DAO {
                     }
                 }
             }
+            callback(didRegisterSwap)
         })
-        callback(didRegisterSwap)
     }
     
     func registerSwap(id1: String, id2: String) {
@@ -320,5 +323,37 @@ class DAO {
             DAOCache().saveUser()
             
         })
+    }
+    
+    func getOwnerName(userID: String, callback: String->Void)->Void {
+        
+        var username: String!
+        
+        self.rootRef.child("profile").child(userID).observeEventType(.Value, withBlock: { snapshot in
+            username = snapshot.value!["name"] as! String
+            print(username)
+            callback(username)
+        })
+    }
+
+    func getProfilePic(userID: String, callback: UIImage->Void)->Void {
+        
+        let storageRef = self.storage.referenceForURL("gs://project-8034361784340242301.appspot.com")
+        let imageRef = storageRef.child(userID).child("profile").child("image")
+        var profilePic: UIImage!
+        
+        func imageCallback(data: NSData?, error: NSError?) {
+            if error != nil {
+                print(error?.localizedDescription)
+                print("deu erro")
+                profilePic = UIImage(named: "user-fill")
+            } else {
+                print("nao deu erro")
+                profilePic = UIImage(data: data!)
+            }
+            callback(profilePic)
+        }
+    
+        imageRef.dataWithMaxSize(1 * 1024 * 1024, completion: imageCallback)
     }
 }

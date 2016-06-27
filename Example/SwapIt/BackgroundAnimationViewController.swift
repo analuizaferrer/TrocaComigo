@@ -20,6 +20,8 @@ private var currentProductId = productsArray[0].id
 private var currentOwnerId = productsArray[0].userid
 private var currentIndex = 0
 private var currentImage = UIImage(named: "close")
+private var currentOwnerName: String!
+private var currentOwnerImage: UIImage!
 
 class BackgroundAnimationViewController: UIViewController, UIScrollViewDelegate {
 
@@ -214,14 +216,36 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
       
         if direction == .Right {
             DAO().registerLikes(currentOwnerId, likedProductID: currentProductId!)
+            
             DAO().searchForMatch(currentOwnerId, callback: { didRegisterSwap in
+                print(didRegisterSwap.description)
+                
                 if didRegisterSwap {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("home")
-                    self.presentViewController(homeViewController, animated: true, completion: nil)
+                    DAO().getOwnerName(currentOwnerId, callback: { name in
+                        currentOwnerName = name
+                        
+                        DAO().getProfilePic(currentOwnerId, callback: { image in
+                            currentOwnerImage = image
+                            
+                            self.performSegueWithIdentifier("itsASwap", sender: self)
+                        })
+                    })
                 }
             })
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "itsASwap" {
+            let swapVC = segue.destinationViewController as! SwapViewController
+            
+            swapVC.username = currentOwnerName
+            swapVC.userImage1 = User.singleton.profilePic
+            swapVC.userImage2 = currentOwnerImage
+        }
+     }
+    
+    @IBAction func prepareForUnwindHomeScreen(segue: UIStoryboardSegue) {
     }
 }
 

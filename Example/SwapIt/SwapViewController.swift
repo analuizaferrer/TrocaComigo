@@ -16,14 +16,20 @@ class SwapViewController: UIViewController {
     
     @IBOutlet weak var yourClothe: UIImageView!
     
+    var userImage1: UIImage!
+    
+    var userImage2: UIImage!
+    
+    var username: String!
 
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.warningText.text = "\(self.username) liked your clothing too!"
         
         self.myClothe.contentMode = UIViewContentMode.ScaleAspectFill
         self.myClothe.layer.cornerRadius = self.myClothe.frame.size.width / 2
@@ -35,6 +41,8 @@ class SwapViewController: UIViewController {
         self.yourClothe.clipsToBounds = true
 
         // Do any additional setup after loading the view.
+        self.myClothe.image = userImage1
+        self.yourClothe.image = userImage2
     }
 
     override func didReceiveMemoryWarning() {
